@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "CoTEC"
+    }
+  },
+  "defaultProject": "CoTEC",
+  "cli": {
+    "analytics": false
+  }
 }
