@@ -11,11 +11,14 @@ import {ShapeService} from '../services/shape.service';
 
 
 export class MapComponent implements AfterViewInit {
+
+  // Attributes
   private map;
   private countries;
   public isHovered;
   public message;
-  public position;
+  public popup = L.popup();
+  public layer;
 
   constructor(private shapeService: ShapeService) { }
 
@@ -27,7 +30,7 @@ export class MapComponent implements AfterViewInit {
     });
   }
 
-  // Add the shapes to the map as a layer
+  // Add the shapes to the map as a layer, includes mouse events over layers
   private initCountriesLayer() {
     const countryLayer = L.geoJSON(this.countries, {
       style: (feature) => ({
@@ -39,6 +42,7 @@ export class MapComponent implements AfterViewInit {
       }),
       onEachFeature: (feature, layer) => (
         layer.on({
+          mousemove: (e) => (this.popupUpdate(e)),
           mouseover: (e) => (this.highlightFeature(e)),
           mouseout: (e) => (this.resetFeature(e)),
           click: (e) => (this.selectFeature(e))
@@ -49,7 +53,18 @@ export class MapComponent implements AfterViewInit {
     this.map.addLayer(countryLayer);
   }
 
-  // Highlights when hover
+  // Updates the position of the popup
+  popupUpdate(e){
+    const layer = e.target;
+    if (this.isHovered){
+      this.initPopup(e, layer);
+    }
+    else{
+      this.popup.closePopup();
+    }
+  }
+
+  // Highlights region when hovered
   private highlightFeature(e)  {
     this.isHovered = true;
     const layer = e.target;
@@ -60,15 +75,10 @@ export class MapComponent implements AfterViewInit {
       fillOpacity: 1.0,
       fillColor: '#FAE042',
     });
-    const country = layer.feature.properties;
-    console.log(country.name);
 
-    this.message = country.name + '\n' +
-      'caca';
   }
 
-
-  // Resets to base color
+  // Resets regions to base color
   private resetFeature(e)  {
     this.isHovered = false;
     const layer = e.target;
@@ -79,6 +89,7 @@ export class MapComponent implements AfterViewInit {
       fillOpacity: 0.8,
       fillColor: '#6DB65B'
     });
+    this.layer.closePopup();
   }
 
   // Shows country info
@@ -109,8 +120,21 @@ export class MapComponent implements AfterViewInit {
     tiles.addTo(this.map);
   }
 
+  // Initializes popup on the map and updates it's content
+  initPopup(e, layer){
+    this.layer = layer;
+    const country = layer.feature.properties;
+    console.log(country.name);
 
-  showInfo(layer): void {
+    this.message = 'País: ' +  country.name + '\n' +
+      ' ';
+
+    this.popup
+      .setLatLng(e.latlng)
+      .setContent(this.message)
+      .openOn(this.map);
+
+    this.layer.bindPopup(this.popup);
   }
 
 

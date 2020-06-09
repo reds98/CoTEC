@@ -78,14 +78,3 @@ li:hover {
   background-position : 0 0;
 }
 
-#toggle:checked ~ nav {
-  margin-left:  -240px;
-}
-
-::ng-deep .tooltip{
-  background-color: #f4f5f6;
-  color: black !important;
-  font-size:25px;
-  white-space: pre-line;
-}
-
