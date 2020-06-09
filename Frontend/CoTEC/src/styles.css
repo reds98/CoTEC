@@ -3,3 +3,6 @@
 @import url('../node_modules/font-awesome/css/font-awesome.min.css');
 @import "~leaflet/dist/leaflet.css";
 
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

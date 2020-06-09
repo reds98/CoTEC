@@ -1,5 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
+import * as $ from 'jquery';
 import {ShapeService} from '../services/shape.service';
 
 @Component({
@@ -7,9 +8,14 @@ import {ShapeService} from '../services/shape.service';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
+
+
 export class MapComponent implements AfterViewInit {
   private map;
   private countries;
+  public isHovered;
+  public message;
+  public position;
 
   constructor(private shapeService: ShapeService) { }
 
@@ -45,6 +51,7 @@ export class MapComponent implements AfterViewInit {
 
   // Highlights when hover
   private highlightFeature(e)  {
+    this.isHovered = true;
     const layer = e.target;
     layer.setStyle({
       weight: 10,
@@ -53,10 +60,17 @@ export class MapComponent implements AfterViewInit {
       fillOpacity: 1.0,
       fillColor: '#FAE042',
     });
+    const country = layer.feature.properties;
+    console.log(country.name);
+
+    this.message = country.name + '\n' +
+      'caca';
   }
+
 
   // Resets to base color
   private resetFeature(e)  {
+    this.isHovered = false;
     const layer = e.target;
     layer.setStyle({
       weight: 3,
@@ -77,6 +91,7 @@ export class MapComponent implements AfterViewInit {
       fillOpacity: 0.8,
       fillColor: '#000000'
     });
+
   }
 
 
