@@ -1,4 +1,8 @@
-DROP DATABASE CoTecDB;
+--DROP DATABASE CoTecDB;
+/*
+Script para crear todas las tablas de la base de datos
+Autor: Juan Pablo Alvarado
+*/
 CREATE DATABASE CoTecDB;
 
 USE CoTecDB;
@@ -79,4 +83,37 @@ CREATE TABLE Patients (
     Hospital_Id int FOREIGN KEY REFERENCES Hospitals(Id),
 );
 
+CREATE TABLE Patient_Pathologies (
+    Patient_SSN varchar(255) FOREIGN KEY REFERENCES Patients(SSN),
+    Pathology_Name varchar(255) FOREIGN KEY REFERENCES Pathologies(Name),
+    PRIMARY KEY (Patient_SSN,Pathology_Name)
+);
 
+CREATE TABLE Patient_Medications (
+    Patient_SSN varchar(255) FOREIGN KEY REFERENCES Patients(SSN),
+    Medication_Id int FOREIGN KEY REFERENCES Medications(Id),
+    PRIMARY KEY (Patient_SSN,Medication_Id)
+);
+
+
+CREATE TABLE Contacted_Person (
+    SSN varchar(255) NOT NULL,
+    Patient_SSN varchar(255) FOREIGN KEY REFERENCES Patients(SSN),
+    First_Name varchar(255),
+    Last_Name varchar(255),
+    Adress varchar(255),
+    Email varchar(255),
+    Age int,
+    PRIMARY KEY (SSN,Patient_SSN)
+);
+
+CREATE TABLE Patient_Status (
+    Name varchar(255) NOT NULL PRIMARY KEY,
+    Patient_SSN varchar(255) FOREIGN KEY REFERENCES Patients(SSN)
+);
+
+CREATE TABLE Events (
+    Event_Id varchar(255) NOT NULL PRIMARY KEY,
+    Date varchar(255),
+    Patient_SSN varchar(255) FOREIGN KEY REFERENCES Patients(SSN)
+);
