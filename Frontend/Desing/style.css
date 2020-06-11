@@ -1,0 +1,141 @@
+
+:root {
+  --stat-green: rgb(101, 221, 155);
+  --stat-red: #F65164;
+  --stat-orange: #FF9D00;
+  --stat-amber: #ffc137;
+  --stat-yellow: rgb(248, 245, 64);
+  --stat-blue: rgb(68, 155, 226);
+  --paleGray: #DFDFEF;
+
+  --color-primary: #5468b3;
+
+  --color-navy-1: #2e3652;
+  --color-navy-2: #364061;
+  --color-navy-3: #2B4162;
+  --color-navy-4: #445175;
+  --color-navy-5: #4b5a81;
+
+  --color-info: #347fd5;
+  --color-success: #43ca54;
+  --color-error: #F35353;
+  --color-warning: #ffd337;
+
+  --color-none: transparent;
+
+  --color-facebook: #3b5998;
+  --color-twitter: #1da1f2;
+  --color-instagram: #fb3958;
+  --color-youtube: red;
+  --color-linkedin: #4875B4;
+  --color-discord: #7289da;
+  --color-stripe: #6772e5;
+}
+
+html,
+body {
+/*   width: 100%;
+  height: 100%; */
+  background-color: var(--color-navy-3) !important;
+}
+ /* Titulos */
+.Main{
+  font-size: 50px;
+  text-align: center;
+  padding-top: 15px;
+  font-weight: bolder;
+  margin-bottom: 0;"
+}
+.Second{
+  font-size: 30px;
+  text-align: center;
+  font-weight: bolder;
+  margin-bottom: 0;"
+}
+.Third{
+  font-size: 18px;
+  text-align: center;
+  font-weight: bolder;
+  margin-bottom: 0;"
+}
+
+/* Numbers */
+
+.N-Primary{
+
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 0;
+  font-size: 50px;
+  margin-bottom: 0px;
+}
+
+.N-Secundary{
+
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 0;
+  font-size: 30px;
+  margin-bottom: 0px;
+}
+
+.N-Third{
+
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 0;
+  font-size: 18px;
+  margin-bottom: 0px;
+}
+/* body {
+  opacity: 0;
+  color: var(--paleGray);
+} */
+
+.text--green {
+  color: var(--stat-green);
+}
+
+.text--red {
+  color: var(--stat-red);
+}
+
+.text--orange {
+  color: var(--stat-orange);
+}
+
+.text--yellow {
+  color: var(--stat-yellow);
+}
+
+.text--amber {
+  color: var(--stat-amber);
+}
+
+.text--blue {
+  color: var(--stat-blue);
+}
+
+.text--gray {
+  color: var(--paleGray);
+}
+
+.text--center {
+  text-align: center;
+}
+
+.bg-navy-1 {
+  background-color: var(--color-navy-1);
+}
+.bg-navy-2 {
+  background-color: var(--color-navy-2);
+}
+.bg-navy-3 {
+  background-color: var(--color-navy-3);
+}
+.bg-navy-4 {
+  background-color: var(--color-navy-4);
+}
+.bg-navy-5 {
+  background-color: var(--color-navy-5);
+}
