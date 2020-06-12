@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b6751472-007d-497d-9a63-3e802b067c2b" name="Default Changelist" comment="" />
+    <list default="true" id="b6751472-007d-497d-9a63-3e802b067c2b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CoTEC/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/CoTEC/angular.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CoTEC/e2e/src/app.po.ts" beforeDir="false" afterPath="$PROJECT_DIR$/CoTEC/e2e/src/app.po.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CoTEC/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/CoTEC/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CoTEC/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/CoTEC/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CoTEC/src/app/app.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CoTEC/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/CoTEC/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CoTEC/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/CoTEC/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CoTEC/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/CoTEC/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CoTEC/src/app/components/map/map.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CoTEC/src/app/components/map/map.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/CoTEC/src/app/components/map/map.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CoTEC/src/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desing/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Desing/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Desing/style.css" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,6 +36,25 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
+    <property name="ts.external.directory.path" value="D:\jessi\Documentos\TEC\CoTEC\Frontend\CoTEC\node_modules\typescript\lib" />
+  </component>
+  <component name="RunManager">
+    <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/CoTEC/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -34,10 +68,50 @@
       <updated>1591586932802</updated>
       <workItem from="1591586934335" duration="44000" />
       <workItem from="1591587012388" duration="41000" />
+      <workItem from="1591835519954" duration="20171000" />
+      <workItem from="1591913278303" duration="5046000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="361" y="71" key="#Compass" timestamp="1591849262597">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="71" key="#Compass/0.0.1536.824@0.0.1536.824" timestamp="1591849262597" />
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1591843199449">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1591843199449" />
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1591835893771">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1591835893771" />
+    <state width="757" height="130" key="GridCell.Tab.0.bottom" timestamp="1591914112081">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="757" height="130" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1591914112081" />
+    <state width="757" height="130" key="GridCell.Tab.0.center" timestamp="1591914112081">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="757" height="130" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1591914112081" />
+    <state width="757" height="130" key="GridCell.Tab.0.left" timestamp="1591914112081">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="757" height="130" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1591914112081" />
+    <state width="757" height="130" key="GridCell.Tab.0.right" timestamp="1591914112081">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="757" height="130" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1591914112081" />
+    <state x="555" y="106" key="SettingsEditor" timestamp="1591857359799">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="555" y="106" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1591857359799" />
+    <state x="302" y="0" width="759" height="824" key="find.popup" timestamp="1591849574884">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="302" y="0" width="759" height="824" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1591849574884" />
   </component>
 </project>
