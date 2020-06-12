@@ -1,86 +1,53 @@
-@import 'src/styles';@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700");
-$page-background : #303f9f;
-$nav-background : white;
-$color : rgba(black, .87);
-$transition : .75s;
+@import url('https://fonts.googleapis.com/css?family=Varela+Round');
 
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
-
-body {
-  font: 100% Roboto;
-  background: $page-background;
-  margin: 50px;
-}
-
-nav {
-  width: 200px;
-  margin-left: 3px;
-  margin-top: 3px;
-  background: var(--stat-blue);
-  color: var(--paleGray);
-  text-align: center;
-  outline: solid var(--stat-amber) 2px;
-  clip-path: circle(24px at 50px 30px);
-  transition:
-    -webkit-clip-path $transition*.75,
-    clip-path $transition/2;
-
-  &:hover {
-    transition-timing-function: ease-out;
-    transition-duration: $transition;
-    clip-path: circle(390px at 150px 30px);
-  }
-}
-
-a {
+/*
+  Code for sidebar menu with animation
+ */
+.header {
   display: block;
-  line-height: 50px;
-  padding: 0 20px;
-  color: inherit;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
+  box-shadow: none;
+  background-color: var(--color-navy-3);
+  position: fixed;
+  height: 50px!important;
+  overflow: hidden;
+  z-index: 10;
+}
+
+#sidebarMenu {
+  height: 100%;
+  position: fixed;
+  left: 0;
+  width: 200px;
+  margin-top: 50px;
+  border-radius: -20px;
+  background: linear-gradient(180deg, var(--color-navy-3) 20%, rgb(101, 221, 155) 100%);
+}
+.sidebarMenuInner{
+  margin:0;
+  padding:0;
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+}
+.sidebarMenuInner li{
+  list-style: none;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 20px;
   cursor: pointer;
-  user-select: none;
-
-  &:hover { background: var(--stat-amber)}
-  &:active { background: #ffca28; }
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
 }
-
-
-@mixin line {
-  width: 20px;
-  height: 2px;
-  background: $color;
+.sidebarMenuInner li span{
+  display: block;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.50);
 }
-
-.navicon {
-  color: whitesmoke;
-  margin-left: 20px;
-  padding: 30px 20px;
+.sidebarMenuInner li a{
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
   cursor: pointer;
-  transform-origin: 32px 24px;
-
-  div {
-    position: relative;
-    @include line;
-
-    &:before, &:after {
-      display: block;
-      content: "";
-      @include line;
-      position: absolute;
-    }
-
-    &:before { top: -7px; }
-    &:after { top: 7px; }
-  }
-}
-
-.menuBtn{
-  display     : inline-block;
-  margin-left : auto;
-  width       : 60px;
-  padding     : 18px 0;
-  background-color: rgba(100,100,100,.3);
-  color : #fff;
-  text-align : center;
-  cursor : pointer;
+  text-decoration: none;
 }

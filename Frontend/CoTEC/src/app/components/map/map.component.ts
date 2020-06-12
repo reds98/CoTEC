@@ -35,9 +35,9 @@ export class MapComponent implements AfterViewInit {
     const countryLayer = L.geoJSON(this.countries, {
       style: (feature) => ({
         weight: 3,
-        opacity: 0.5,
+        opacity: 0.3,
         color: '#008f68',
-        fillOpacity: 0.8,
+        fillOpacity: 1,
         fillColor: '#6DB65B'
       }),
       onEachFeature: (feature, layer) => (
@@ -71,9 +71,9 @@ export class MapComponent implements AfterViewInit {
     layer.setStyle({
       weight: 10,
       opacity: 0,
-      color: '#DFA612',
+      color: '#ffc137',
       fillOpacity: 1.0,
-      fillColor: '#FAE042',
+      fillColor: '#ffc137',
     });
 
   }

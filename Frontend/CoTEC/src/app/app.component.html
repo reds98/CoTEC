@@ -1,13 +1,16 @@
-<div class="container">
-  <nav class="row">
-    <div class="navicon col-md-4">
-      <div></div>
-    </div>
-
-    <a>Home</a>
-    <a>World Map</a>
-    <a>About</a>
-    <a>Contact</a>
-
-  </nav>
+<div class="header"></div>
+<div id="sidebarMenu">
+  <ul class="sidebarMenuInner">
+    <li><a href="#" >Home</a></li>
+    <li><a routerLink="/map">World Map</a></li>
+    <li><a href="">About</a></li>
+    <li><a href="">Contact</a></li>
+  </ul>
 </div>
+
+<div id='center' class="main center">
+</div>
+
+
+
+<router-outlet></router-outlet>
