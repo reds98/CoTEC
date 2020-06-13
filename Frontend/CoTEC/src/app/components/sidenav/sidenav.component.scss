@@ -1,0 +1,60 @@
+@import "src/styles";
+
+.sidenav-container {
+  height: 100%;
+  color: $--color-navy-1;
+}
+
+.sidenav {
+  width: 200px;
+  background: linear-gradient(180deg, $--color-navy-1 30%, $--stat-green 100%);
+}
+
+.sidenav li{
+  list-style: none;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 20px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+
+.sidenav li a{
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.mat-toolbar{
+  position: static;
+}
+
+.mat-toolbar.mat-primary {
+  height: 50px;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, $--color-navy-1 10%, $--stat-green 100%);
+}
+
+.mat-sidenav-content{
+  background-color: $--color-navy-5;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.menuBtn{
+  background: transparent;
+  size: 60px;
+  border: none;
+  outline: none;
+}
+
+.icon {
+  color: whitesmoke;
+}

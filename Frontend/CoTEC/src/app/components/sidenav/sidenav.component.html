@@ -1,0 +1,44 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedTopGap="56">
+    <mat-nav-list>
+      <li class="sn-item">
+        <a mat-list-item href="#" routerLink="/" class="text-light sn-icon mb-4 pt-1">
+          Inicio
+        </a>
+      </li>
+      <li>
+        <a mat-list-item href="#" routerLink="/map" class="text-light sn-icon mb-4 pt-1">
+          Mapa Mundial
+        </a>
+      </li>
+      <li>
+        <a mat-list-item href="#" routerLink="/map" class="text-light sn-icon mb-4 pt-1">
+          Medidas
+        </a>
+      </li>
+      <li class="sn-item">
+        <a mat-list-item href="#" routerLink="/about" class="text-light sn-icon mb-4 pt-1">
+          Acerca de
+        </a>
+      </li>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <button
+          class="menuBtn"
+          aria-label="Toggle sidenav"
+          (click)="drawer.toggle()">
+          <i class="icon fa fa-bars fa-2x"></i>
+        </button>
+        <span class="spacer"></span>
+
+      </mat-toolbar-row>
+
+    </mat-toolbar>
+
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>
