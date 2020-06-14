@@ -115,5 +115,5 @@ CREATE TABLE Patient_Status (
 CREATE TABLE Events (
     Event_Id varchar(255) NOT NULL PRIMARY KEY,
     Date varchar(255),
-    Patient_SSN varchar(255) FOREIGN KEY REFERENCES Patients(SSN)
+    Country_Name varchar(255) FOREIGN KEY REFERENCES Countries(Name)
 );
