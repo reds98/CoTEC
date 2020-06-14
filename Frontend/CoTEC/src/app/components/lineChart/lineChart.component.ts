@@ -15,9 +15,9 @@ export class ChartComponent implements OnInit {
     maintainAspectRatio: false
   };
   chartData = [
-    { data: [330, 600, 460, 700], label: 'Incremento diario de casos' }
+    { data: [330, 600, 460, 700, 500, 690, 85, 654], label: 'Incremento diario de casos' }
   ];
-  chartLabels = ['Día 1', 'Día 2', 'Día 3', 'Día4'];
+  chartLabels = ['Día 1', 'Día 2', 'Día 3', 'Día4', 'Día 1', 'Día 2', 'Día 3', 'Día4'];
 
   colors = [
     {
