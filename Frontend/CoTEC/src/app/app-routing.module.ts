@@ -3,10 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { MapComponent } from './components/map/map.component';
 import {AboutComponent} from './components/about/about.component';
-import {AppComponent} from './app.component'; // Add this
+import {HomeComponent} from './components/home/home.component'; // Add this
 
 
 const routes: Routes = [
+  { path: 'home', component: HomeComponent},
   { path: 'map', component: MapComponent},
   { path: 'about', component: AboutComponent}
   ];
