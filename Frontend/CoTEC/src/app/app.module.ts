@@ -16,7 +16,8 @@ import { AboutComponent } from './components/about/about.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { HomeComponent } from './components/home/home.component';
 import {ChartsModule} from 'ng2-charts';
-import { ChartComponent } from './components/chart/chart.component';
+import { LineChartComponent } from './components/lineChart/lineChart.component';
+import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ChartComponent } from './components/chart/chart.component';
     AboutComponent,
     SidenavComponent,
     HomeComponent,
-    ChartComponent
+    LineChartComponent,
+    PieChartComponent
   ],
     imports: [
         BrowserModule,
