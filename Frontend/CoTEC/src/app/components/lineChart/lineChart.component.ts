@@ -5,10 +5,10 @@ import * as pluginAnnotations from 'chartjs-plugin-annotation';
 
 @Component({
   selector: 'app-chart',
-  templateUrl: './chart.component.html',
-  styleUrls: ['./chart.component.scss']
+  templateUrl: './lineChart.component.html',
+  styleUrls: ['./lineChart.component.scss']
 })
-export class ChartComponent implements OnInit {
+export class LineChartComponent implements OnInit {
 
   chartOptions = {
     responsive: true,

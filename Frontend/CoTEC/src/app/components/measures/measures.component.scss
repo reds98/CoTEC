@@ -1,0 +1,25 @@
+.measures-container {
+  background: var(--color-navy-3);
+  width: calc(100% - 200px);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  top: 50px;
+  left: 200px;
+}
+
+.measures-frame {
+  background: var(--color-navy-3);
+  border: none;
+  height: 100%;
+  left: 250px;
+}
+
+.leaflet-container {
+  background-color:rgba(255,0,0,0.0);
+}
+
+#measures {
+  height: 100%;
+}

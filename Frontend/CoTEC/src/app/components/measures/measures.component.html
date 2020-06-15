@@ -1,0 +1,41 @@
+<style>
+  h1 {margin-top: 1.5cm; text-align: center;}
+  h3 {margin-top: 2cm; text-align: center;}
+  p {text-align: center;}
+</style>
+
+<div class="measures-container">
+  <div class="measures-frame">
+    <div id="measures">
+      <h1>Medidas de Contención</h1>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{countrySelected}}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div *ngIf="countries">
+            <ul>
+              <li *ngFor="let country of countries">
+                <a class="dropdown-item" href="#" (click)="toggleDropdown($event,country.name, country.id)">{{country.name}} </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="countries">
+        <h3>{{this.mydate.toUTCString()}}</h3>
+        <ul>
+          <li *ngFor="let measure of todayMeasures">
+            {{measure}}
+          </li>
+        </ul>
+        <h3>{{this.otherDate}}</h3>
+        <ul>
+          <li *ngFor="let measure of nextMeasures">
+            {{measure}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "name": "Costa Rica",
+    "description": "Incidunt et magni est ut.",
+    "measures": [
+      {"date": 20200613, "measures": ["first", "second"]},
+      {"date": 20200813, "measures": ["first", "second"]}
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Canadá",
+    "description": "Sint libero mollitia.",
+    "measures": [
+      {"date": 20200613, "measures": ["Canadá first", "Canadá second"]},
+      {"date": 20200813, "measures": ["Canadá first", "Canadá second"]}]
+  },
+  {
+    "id": 3,
+    "name": "Suiza",
+    "description": "In consequuntur cupiditate et unde minus.",
+    "measures": [
+      {"date": 20200613, "measures": ["Suiza first", "Suiza second"]},
+      {"date": 20201313, "measures": ["Suiza first", "Suiza second"]}]
+  }
+]
