@@ -20,6 +20,10 @@ import { HomeComponent } from './components/home/home.component';
 import {ChartsModule} from 'ng2-charts';
 import { LineChartComponent } from './components/lineChart/lineChart.component';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -42,7 +46,12 @@ import { PieChartComponent } from './components/pie-chart/pie-chart.component';
     MatListModule,
     MatIconModule,
     MatToolbarModule,
-    ChartsModule
+    ChartsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     ShapeService

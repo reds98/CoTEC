@@ -23,7 +23,6 @@
     "@angular/router": "^9.1.11",
     "@types/jquery": "^3.3.38",
     "bootstrap": "^4.5.0",
-    "bootstrap-css": "^4.0.0-alpha.5",
     "chart.js": "^2.9.3",
     "chartjs-plugin-annotation": "^0.5.7",
     "chartjs-plugin-datalabels": "^0.7.0",

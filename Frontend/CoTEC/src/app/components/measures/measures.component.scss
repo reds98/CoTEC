@@ -1,8 +1,9 @@
+@import "src/styles";
+
 .measures-container {
   background: var(--color-navy-3);
   width: calc(100% - 200px);
   position: absolute;
-  top: 0;
   right: 0;
   bottom: 0;
   top: 50px;

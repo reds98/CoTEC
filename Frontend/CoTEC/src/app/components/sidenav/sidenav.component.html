@@ -21,6 +21,16 @@
           Acerca de
         </a>
       </li>
+      <li *ngIf="adminView" class="sn-item">
+        <a mat-list-item href="#" routerLink="/map" class="text-light sn-icon mb-4 pt-1">
+          Administrador
+        </a>
+      </li>
+      <li *ngIf="hospitalView" class="sn-item">
+        <a mat-list-item href="#" routerLink="/map" class="text-light sn-icon mb-4 pt-1">
+          Centro Hospitalario
+        </a>
+      </li>
     </mat-nav-list>
   </mat-sidenav>
 
