@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// @ts-ignore
 import * as data from '../../data.json';
 import {MeasuresService} from '../services/measures.service';
 import {DatePipe} from '@angular/common';

@@ -18,12 +18,8 @@ import { CommonModule } from '@angular/common';
 import {MeasuresComponent} from './components/measures/measures.component';
 import { HomeComponent } from './components/home/home.component';
 import {ChartsModule} from 'ng2-charts';
-<<<<<<< HEAD
-
-=======
 import { LineChartComponent } from './components/lineChart/lineChart.component';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
->>>>>>> Feature-angularDev
 
 @NgModule({
   declarations: [
@@ -45,7 +41,8 @@ import { PieChartComponent } from './components/pie-chart/pie-chart.component';
     MatCheckboxModule,
     MatListModule,
     MatIconModule,
-    MatToolbarModule
+    MatToolbarModule,
+    ChartsModule
   ],
   providers: [
     ShapeService
