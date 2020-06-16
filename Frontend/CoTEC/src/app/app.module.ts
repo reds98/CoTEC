@@ -24,6 +24,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
+import { AdminViewComponent } from './components/admin-view/admin-view.component';
+import { HospitalViewComponent } from './components/hospital-view/hospital-view.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import {ReactiveFormsModule, FormsModule} from '@angular/forms';
     SidenavComponent,
     HomeComponent,
     LineChartComponent,
-    PieChartComponent
+    PieChartComponent,
+    AdminViewComponent,
+    HospitalViewComponent
   ],
   imports: [
     BrowserModule,
