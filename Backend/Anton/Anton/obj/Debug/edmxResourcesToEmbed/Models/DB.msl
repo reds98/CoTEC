@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CoTecDBModelStoreContainer" CdmEntityContainer="CoTecDBEntities">
+    <EntitySetMapping Name="Contacted_Person">
+      <EntityTypeMapping TypeName="CoTecDBModel.Contacted_Person">
+        <MappingFragment StoreEntitySet="Contacted_Person">
+          <ScalarProperty Name="SSN" ColumnName="SSN" />
+          <ScalarProperty Name="Patient_SSN" ColumnName="Patient_SSN" />
+          <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+          <ScalarProperty Name="Adress" ColumnName="Adress" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Continents">
+      <EntityTypeMapping TypeName="CoTecDBModel.Continents">
+        <MappingFragment StoreEntitySet="Continents">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="CoTecDBModel.Countries">
+        <MappingFragment StoreEntitySet="Countries">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Continent_Name" ColumnName="Continent_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CountryLocations">
+      <EntityTypeMapping TypeName="CoTecDBModel.CountryLocations">
+        <MappingFragment StoreEntitySet="CountryLocations">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Country_Name" ColumnName="Country_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EnforcedMeasurements">
+      <EntityTypeMapping TypeName="CoTecDBModel.EnforcedMeasurements">
+        <MappingFragment StoreEntitySet="EnforcedMeasurements">
+          <ScalarProperty Name="Country_Name" ColumnName="Country_Name" />
+          <ScalarProperty Name="Measurement_Id" ColumnName="Measurement_Id" />
+          <ScalarProperty Name="Start_Date" ColumnName="Start_Date" />
+          <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Events">
+      <EntityTypeMapping TypeName="CoTecDBModel.Events">
+        <MappingFragment StoreEntitySet="Events">
+          <ScalarProperty Name="Event_Id" ColumnName="Event_Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Country_Name" ColumnName="Country_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hospital_ICUs">
+      <EntityTypeMapping TypeName="CoTecDBModel.Hospital_ICUs">
+        <MappingFragment StoreEntitySet="Hospital_ICUs">
+          <ScalarProperty Name="ICU_Patient" ColumnName="ICU_Patient" />
+          <ScalarProperty Name="Hospital_Id" ColumnName="Hospital_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hospitals">
+      <EntityTypeMapping TypeName="CoTecDBModel.Hospitals">
+        <MappingFragment StoreEntitySet="Hospitals">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ICU_Capacity" ColumnName="ICU_Capacity" />
+          <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+          <ScalarProperty Name="Manager_Name" ColumnName="Manager_Name" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Country_Name" ColumnName="Country_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Medications">
+      <EntityTypeMapping TypeName="CoTecDBModel.Medications">
+        <MappingFragment StoreEntitySet="Medications">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Provider" ColumnName="Provider" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pathologies">
+      <EntityTypeMapping TypeName="CoTecDBModel.Pathologies">
+        <MappingFragment StoreEntitySet="Pathologies">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Symptoms" ColumnName="Symptoms" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Treatment" ColumnName="Treatment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Patient_Status">
+      <EntityTypeMapping TypeName="CoTecDBModel.Patient_Status">
+        <MappingFragment StoreEntitySet="Patient_Status">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Patient_SSN" ColumnName="Patient_SSN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Patients">
+      <EntityTypeMapping TypeName="CoTecDBModel.Patients">
+        <MappingFragment StoreEntitySet="Patients">
+          <ScalarProperty Name="SSN" ColumnName="SSN" />
+          <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+          <ScalarProperty Name="Hospitalized" ColumnName="Hospitalized" />
+          <ScalarProperty Name="ICU" ColumnName="ICU" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Residence" ColumnName="Residence" />
+          <ScalarProperty Name="Country_Birth" ColumnName="Country_Birth" />
+          <ScalarProperty Name="Hospital_Id" ColumnName="Hospital_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SanityMeasurements">
+      <EntityTypeMapping TypeName="CoTecDBModel.SanityMeasurements">
+        <MappingFragment StoreEntitySet="SanityMeasurements">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Hospital_Medications" TypeName="CoTecDBModel.Hospital_Medications" StoreEntitySet="Hospital_Medications">
+      <EndProperty Name="Hospitals">
+        <ScalarProperty Name="Id" ColumnName="Hospital_Id" />
+      </EndProperty>
+      <EndProperty Name="Medications">
+        <ScalarProperty Name="Id" ColumnName="Medication_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Patient_Medications" TypeName="CoTecDBModel.Patient_Medications" StoreEntitySet="Patient_Medications">
+      <EndProperty Name="Medications">
+        <ScalarProperty Name="Id" ColumnName="Medication_Id" />
+      </EndProperty>
+      <EndProperty Name="Patients">
+        <ScalarProperty Name="SSN" ColumnName="Patient_SSN" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Patient_Pathologies" TypeName="CoTecDBModel.Patient_Pathologies" StoreEntitySet="Patient_Pathologies">
+      <EndProperty Name="Pathologies">
+        <ScalarProperty Name="Name" ColumnName="Pathology_Name" />
+      </EndProperty>
+      <EndProperty Name="Patients">
+        <ScalarProperty Name="SSN" ColumnName="Patient_SSN" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -93,3 +93,7 @@ C:\Users\sahid\Documents\CoTEC\Backend\Anton\Anton\obj\Debug\Anton.csproj.CoreCo
 C:\Users\sahid\Documents\CoTEC\Backend\Anton\Anton\obj\Debug\Anton.csproj.CopyComplete
 C:\Users\sahid\Documents\CoTEC\Backend\Anton\Anton\obj\Debug\Anton.dll
 C:\Users\sahid\Documents\CoTEC\Backend\Anton\Anton\obj\Debug\Anton.pdb
+C:\Users\sahid\Documents\CoTEC\Backend\Anton\Anton\bin\EntityFramework.dll
+C:\Users\sahid\Documents\CoTEC\Backend\Anton\Anton\bin\EntityFramework.SqlServer.dll
+C:\Users\sahid\Documents\CoTEC\Backend\Anton\Anton\bin\EntityFramework.xml
+C:\Users\sahid\Documents\CoTEC\Backend\Anton\Anton\bin\EntityFramework.SqlServer.xml
