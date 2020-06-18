@@ -1,1 +1,29 @@
-<p>admin-view works!</p>
+<h1>Admin of {{currentTitle}}</h1>
+<table>
+    <thead>
+      <tr>           
+        <th *ngFor="let field of currentModel">{{field.column}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of currentData">           
+        <td *ngFor="let key of currentModel">{{item[key.column]}}</td>
+        <td >
+            <button (click)="onDelete(item)">Delete</button>
+            <button (click)="onUpdate(item)">Update</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<button (click)="onCreate()">Create</button>
+
+<div *ngIf="editStatus">
+    <div *ngFor="let key of currentModel">
+        <p>{{key.column}}</p>
+        <input *ngIf="!key.FK" value="{{currentItem[key.column]}}"/>
+        <select *ngIf="key.FK" value="{{currentItem[key.column]}}">
+            <option></option>
+        </select>
+    </div>
+    <button (click)="onClose()">Finish</button>
+</div>
