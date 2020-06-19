@@ -71,6 +71,10 @@ CREATE TABLE Pathologies (
     Treatment varchar(255)
 );
 
+CREATE TABLE Patient_Status (
+    Name varchar(255) NOT NULL PRIMARY KEY
+);
+
 CREATE TABLE Patients (
     SSN varchar(255) NOT NULL PRIMARY KEY,
     First_Name varchar(255),
@@ -81,6 +85,7 @@ CREATE TABLE Patients (
     Residence varchar(255) FOREIGN KEY REFERENCES Countries(Name),
     Country_Birth varchar(255) FOREIGN KEY REFERENCES Countries(Name),
     Hospital_Id int FOREIGN KEY REFERENCES Hospitals(Id),
+    Status int FOREIGN KEY REFERENCES Patient_Status(Name),
 );
 
 CREATE TABLE Patient_Pathologies (
@@ -107,13 +112,11 @@ CREATE TABLE Contacted_Person (
     PRIMARY KEY (SSN,Patient_SSN)
 );
 
-CREATE TABLE Patient_Status (
-    Name varchar(255) NOT NULL PRIMARY KEY,
-    Patient_SSN varchar(255) FOREIGN KEY REFERENCES Patients(SSN)
-);
+
 
 CREATE TABLE Events (
-    Event_Id varchar(255) NOT NULL PRIMARY KEY,
+    Event int NOT NULL PRIMARY KEY,
+    Event varchar(255),
     Date varchar(255),
     Country_Name varchar(255) FOREIGN KEY REFERENCES Countries(Name)
 );
