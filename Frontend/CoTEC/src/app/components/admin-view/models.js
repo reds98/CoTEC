@@ -8,7 +8,9 @@ export const pathology = [
     {"column":"Description"},
     {"column":"Treatment"}
 ];
-export const patient_status = "F"; //!!!
+export const patient_status = [
+    {"column":"Name","PK":1}
+];
 export const hospital = [
     {"column":"Id","PK":1},
     {"column":"Name"},
@@ -23,7 +25,7 @@ export const sanity_measurements = [
     {"column":"Name"},
     {"column":"Description"}
 ];
-export const enforced_measurements = [ //!!!
+export const enforced_measurements = [
     {"column":"Start_Date"},
     {"column":"End_Date"},
     {"column":"Country_Name","FK":"Countries","PK":1},

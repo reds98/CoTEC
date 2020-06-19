@@ -42,29 +42,29 @@ export class AdminViewComponent implements OnInit {
   }
 
   onDelete(item): void {
-    let PK = null;
+    let PKs = [];
     for(let field of this.currentModel){
       if (field.PK) {
-        PK = field.column
+        PKs.push(field.column)
         break;
       }
     }
 
-    console.log(item[PK])
+    console.log(PKs)
   }
 
   onUpdate(item): void {
-    let PK = null;
+    let PKs = [];
     for(let field of this.currentModel){
       if (field.PK) {
-        PK = field.column
+        PKs.push(field.column)
         break;
       }
     }
     this.currentItem = item;
     this.editStatus = true;
 
-    console.log(item[PK])
+    console.log(PKs)
   }
 
   onCreate(): void {
