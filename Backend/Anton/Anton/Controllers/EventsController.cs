@@ -12,45 +12,44 @@ using Anton.Models;
 
 namespace Anton.Controllers
 {
-    public class ContinentsController : ApiController
+    public class EventsController : ApiController
     {
         private CoTecDBEntities db = new CoTecDBEntities();
 
-        // GET: api/Continents
-        public IQueryable<Continents> GetContinents()
+        // GET: api/Events
+        public IQueryable<Events> GetEvents()
         {
-
-            return db.Continents;
+            return db.Events;
         }
 
-        // GET: api/Continents/5
-        [ResponseType(typeof(Continents))]
-        public IHttpActionResult GetContinents(string id)
+        // GET: api/Events/5
+        [ResponseType(typeof(Events))]
+        public IHttpActionResult GetEvents(string id)
         {
-            Continents continents = db.Continents.Find(id);
-            if (continents == null)
+            Events events = db.Events.Find(id);
+            if (events == null)
             {
                 return NotFound();
             }
 
-            return Ok(continents);
+            return Ok(events);
         }
 
-        // PUT: api/Continents/5
+        // PUT: api/Events/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutContinents(string id, Continents continents)
+        public IHttpActionResult PutEvents(string id, Events events)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != continents.Name)
+            if (id != events.Event_Id)
             {
                 return BadRequest();
             }
 
-            db.Entry(continents).State = EntityState.Modified;
+            db.Entry(events).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +57,7 @@ namespace Anton.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ContinentsExists(id))
+                if (!EventsExists(id))
                 {
                     return NotFound();
                 }
@@ -71,16 +70,16 @@ namespace Anton.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Continents
-        [ResponseType(typeof(Continents))]
-        public IHttpActionResult PostContinents(Continents continents)
+        // POST: api/Events
+        [ResponseType(typeof(Events))]
+        public IHttpActionResult PostEvents(Events events)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Continents.Add(continents);
+            db.Events.Add(events);
 
             try
             {
@@ -88,7 +87,7 @@ namespace Anton.Controllers
             }
             catch (DbUpdateException)
             {
-                if (ContinentsExists(continents.Name))
+                if (EventsExists(events.Event_Id))
                 {
                     return Conflict();
                 }
@@ -98,23 +97,23 @@ namespace Anton.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = continents.Name }, continents);
+            return CreatedAtRoute("DefaultApi", new { id = events.Event_Id }, events);
         }
 
-        // DELETE: api/Continents/5
-        [ResponseType(typeof(Continents))]
-        public IHttpActionResult DeleteContinents(string id)
+        // DELETE: api/Events/5
+        [ResponseType(typeof(Events))]
+        public IHttpActionResult DeleteEvents(string id)
         {
-            Continents continents = db.Continents.Find(id);
-            if (continents == null)
+            Events events = db.Events.Find(id);
+            if (events == null)
             {
                 return NotFound();
             }
 
-            db.Continents.Remove(continents);
+            db.Events.Remove(events);
             db.SaveChanges();
 
-            return Ok(continents);
+            return Ok(events);
         }
 
         protected override void Dispose(bool disposing)
@@ -126,9 +125,9 @@ namespace Anton.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ContinentsExists(string id)
+        private bool EventsExists(string id)
         {
-            return db.Continents.Count(e => e.Name == id) > 0;
+            return db.Events.Count(e => e.Event_Id == id) > 0;
         }
     }
 }

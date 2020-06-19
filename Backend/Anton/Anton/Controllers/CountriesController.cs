@@ -12,45 +12,51 @@ using Anton.Models;
 
 namespace Anton.Controllers
 {
-    public class ContinentsController : ApiController
+
+    public class CountriesController : ApiController
     {
         private CoTecDBEntities db = new CoTecDBEntities();
 
-        // GET: api/Continents
-        public IQueryable<Continents> GetContinents()
+        // GET: api/Countries
+        public IQueryable<Countries> GetCountries()
         {
+            foreach (Countries Countrie in db.Countries) {
+                Console.WriteLine(string.Format("Name: {0}\\Continente: {1}",
+                Countrie.Name, Countrie.Continent_Name));
+                System.Diagnostics.Debug.WriteLine(Countrie.Name + "Shia " + "Feo");
 
-            return db.Continents;
+            }
+            return db.Countries;
         }
 
-        // GET: api/Continents/5
-        [ResponseType(typeof(Continents))]
-        public IHttpActionResult GetContinents(string id)
+        // GET: api/Countries/5
+        [ResponseType(typeof(Countries))]
+        public IHttpActionResult GetCountries(string id)
         {
-            Continents continents = db.Continents.Find(id);
-            if (continents == null)
+            Countries countries = db.Countries.Find(id);
+            if (countries == null)
             {
                 return NotFound();
             }
 
-            return Ok(continents);
+            return Ok(countries);
         }
 
-        // PUT: api/Continents/5
+        // PUT: api/Countries/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutContinents(string id, Continents continents)
+        public IHttpActionResult PutCountries(string id, Countries countries)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != continents.Name)
+            if (id != countries.Name)
             {
                 return BadRequest();
             }
 
-            db.Entry(continents).State = EntityState.Modified;
+            db.Entry(countries).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +64,7 @@ namespace Anton.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ContinentsExists(id))
+                if (!CountriesExists(id))
                 {
                     return NotFound();
                 }
@@ -71,16 +77,16 @@ namespace Anton.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Continents
-        [ResponseType(typeof(Continents))]
-        public IHttpActionResult PostContinents(Continents continents)
+        // POST: api/Countries
+        [ResponseType(typeof(Countries))]
+        public IHttpActionResult PostCountries(Countries countries)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Continents.Add(continents);
+            db.Countries.Add(countries);
 
             try
             {
@@ -88,7 +94,7 @@ namespace Anton.Controllers
             }
             catch (DbUpdateException)
             {
-                if (ContinentsExists(continents.Name))
+                if (CountriesExists(countries.Name))
                 {
                     return Conflict();
                 }
@@ -98,23 +104,23 @@ namespace Anton.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = continents.Name }, continents);
+            return CreatedAtRoute("DefaultApi", new { id = countries.Name }, countries);
         }
 
-        // DELETE: api/Continents/5
-        [ResponseType(typeof(Continents))]
-        public IHttpActionResult DeleteContinents(string id)
+        // DELETE: api/Countries/5
+        [ResponseType(typeof(Countries))]
+        public IHttpActionResult DeleteCountries(string id)
         {
-            Continents continents = db.Continents.Find(id);
-            if (continents == null)
+            Countries countries = db.Countries.Find(id);
+            if (countries == null)
             {
                 return NotFound();
             }
 
-            db.Continents.Remove(continents);
+            db.Countries.Remove(countries);
             db.SaveChanges();
 
-            return Ok(continents);
+            return Ok(countries);
         }
 
         protected override void Dispose(bool disposing)
@@ -126,9 +132,9 @@ namespace Anton.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ContinentsExists(string id)
+        private bool CountriesExists(string id)
         {
-            return db.Continents.Count(e => e.Name == id) > 0;
+            return db.Countries.Count(e => e.Name == id) > 0;
         }
     }
 }
