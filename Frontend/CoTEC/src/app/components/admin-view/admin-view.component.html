@@ -1,29 +1,45 @@
-<h1>Admin of {{currentTitle}}</h1>
-<table>
-    <thead>
-      <tr>           
-        <th *ngFor="let field of currentModel">{{field.column}}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of currentData">           
-        <td *ngFor="let key of currentModel">{{item[key.column]}}</td>
-        <td >
-            <button (click)="onDelete(item)">Delete</button>
-            <button (click)="onUpdate(item)">Update</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-<button (click)="onCreate()">Create</button>
+<div class="container jumbotron customJumbotron mt-5 mb-5">
+  <h1 align="center" class="N-Primary text--blue mb-5">Admin of {{currentTitle}}</h1>
 
-<div *ngIf="editStatus">
-    <div *ngFor="let key of currentModel">
-        <p>{{key.column}}</p>
-        <input *ngIf="!key.FK" [(ngModel)]="currentItem[key.column]"/>
-        <select *ngIf="key.FK" [(ngModel)]="currentItem[key.column]">
-            <option></option>
-        </select>
+  <table class="table table-striped">
+  <thead>
+  <tr>
+    <th *ngFor="let field of columns">{{field}}</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of currentData">
+    <td *ngFor="let key of currentModel">{{item[key.column]}}</td>
+    <td>
+      <button class="customBtn" (click)="onDelete(item)"><i class="icon fa fa-trash"></i></button>
+      <button class="customBtn" (click)="onUpdate(item)"><i class="icon fa fa-edit"></i></button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<button class="btn customBtn" (click)="onCreate()"><i class="icon fa fa-plus"></i></button>
+
+  <br>
+  <br>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div *ngIf="editStatus">
+        <div *ngFor="let key of currentModel">
+          <input class="form-control customInput" type="text" *ngIf="!key.FK" value="{{currentItem[key.column]}}" placeholder="{{key.column}}"/>
+        </div>
+          <mat-form-field>
+            <mat-label>Región</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let column of columns" [value]="column">{{column}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        <button class="customBtn" (click)="onClose()">Finish</button>
+      </div>
     </div>
-    <button (click)="onClose()">Finish</button>
+  </div>
 </div>
+
+
+</div>
+
