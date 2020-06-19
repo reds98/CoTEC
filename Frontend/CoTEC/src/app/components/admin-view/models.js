@@ -1,6 +1,6 @@
 export const country_location = [
     {"column":"Name","PK":1},
-    {"column":"Country_Name","FK":"Countries"}
+    {"column":"Country_Name","FK":"countries"}
 ];
 export const pathology = [
     {"column":"Name","PK":1},

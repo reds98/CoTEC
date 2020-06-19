@@ -26,6 +26,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { AdminViewComponent } from './components/admin-view/admin-view.component';
 import { HospitalViewComponent } from './components/hospital-view/hospital-view.component';
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { HospitalViewComponent } from './components/hospital-view/hospital-view.
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatSelectModule
   ],
   providers: [
     ShapeService

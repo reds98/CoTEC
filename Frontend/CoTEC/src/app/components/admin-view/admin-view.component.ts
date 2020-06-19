@@ -12,9 +12,11 @@ import {
 @Component({
   selector: 'app-admin-view',
   templateUrl: './admin-view.component.html',
-  styleUrls: ['./admin-view.component.css']
+  styleUrls: ['./admin-view.component.scss']
 })
 export class AdminViewComponent implements OnInit {
+  objectKeys = Object.keys;
+  objectValues = Object.values;
   /*
   [
     {
@@ -25,46 +27,51 @@ export class AdminViewComponent implements OnInit {
     },
   ];
   */
-  currentData = 
+
+
+  currentData =
   [
     {"Name":"Cartago","Country_Name":"Costa_Rica"},
     {"Name":"Alajuela","Country_Name":"Costa_Rica"}
   ];
+
+
+  columns = this.getColumns();
   currentModel = country_location;
   currentTitle = "Regions";
   editStatus = false;
   currentItem = null;
-  
+
+
   constructor() { }
 
   ngOnInit(): void {
-    console.log("hello",country_location)
   }
 
-  onDelete(item): void {
+  onDelete(event) {
     let PK = null;
     for(let field of this.currentModel){
       if (field.PK) {
-        PK = field.column
+        PK = field.column;
         break;
       }
     }
-
-    console.log(item[PK])
+    const item = event.data;
+    console.log(item[PK]);
+    event.confirm.resolve(event.source.data);
   }
 
   onUpdate(item): void {
     let PK = null;
     for(let field of this.currentModel){
       if (field.PK) {
-        PK = field.column
+        PK = field.column;
         break;
       }
     }
     this.currentItem = item;
     this.editStatus = true;
 
-    console.log(item[PK])
   }
 
   onCreate(): void {
@@ -77,7 +84,18 @@ export class AdminViewComponent implements OnInit {
 
   onClose(): void {
     this.editStatus = false;
-    console.log(this.currentItem)
+    console.log(this.currentItem);
   }
+
+  getColumns(){
+    let cols;
+    for (let i of this.currentData){
+      cols = this.objectKeys(i);
+    }
+    cols.push('Acciones');
+    return cols;
+  }
+
+
 
 }
