@@ -20,8 +20,8 @@
 <div *ngIf="editStatus">
     <div *ngFor="let key of currentModel">
         <p>{{key.column}}</p>
-        <input *ngIf="!key.FK" value="{{currentItem[key.column]}}"/>
-        <select *ngIf="key.FK" value="{{currentItem[key.column]}}">
+        <input *ngIf="!key.FK" [(ngModel)]="currentItem[key.column]"/>
+        <select *ngIf="key.FK" [(ngModel)]="currentItem[key.column]">
             <option></option>
         </select>
     </div>

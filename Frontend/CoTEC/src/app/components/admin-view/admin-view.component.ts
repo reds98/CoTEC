@@ -15,7 +15,6 @@ import {
   styleUrls: ['./admin-view.component.css']
 })
 export class AdminViewComponent implements OnInit {
-
   /*
   [
     {
@@ -78,6 +77,7 @@ export class AdminViewComponent implements OnInit {
 
   onClose(): void {
     this.editStatus = false;
+    console.log(this.currentItem)
   }
 
 }
