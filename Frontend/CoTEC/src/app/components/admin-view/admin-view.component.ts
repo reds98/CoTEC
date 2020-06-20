@@ -79,6 +79,9 @@ export class AdminViewComponent implements OnInit {
   }
 
 
+
+
+
   changeModels(type){
     this.currentData = [];
     switch (type) {
@@ -125,30 +128,31 @@ export class AdminViewComponent implements OnInit {
   }
 
 
-  onDelete(event) {
-    let PK = null;
+  onDelete(item): void {
+    let PKs = [];
     for(let field of this.currentModel){
       if (field.PK) {
-        PK = field.column;
+        PKs.push(field.column)
         break;
       }
     }
-    const item = event.data;
-    console.log(item[PK]);
-    event.confirm.resolve(event.source.data);
+
+    console.log(PKs)
   }
+  
 
   onUpdate(item): void {
-    let PK = null;
+    let PKs = [];
     for(let field of this.currentModel){
       if (field.PK) {
-        PK = field.column;
+        PKs.push(field.column)
         break;
       }
     }
     this.currentItem = item;
     this.editStatus = true;
 
+    console.log(PKs)
   }
 
   onCreate(): void {
