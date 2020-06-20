@@ -8,7 +8,9 @@ export const pathology = [
     {"column":"Description"},
     {"column":"Treatment"}
 ];
-export const patient_status = "F"; //!!!
+export const patient_status = [
+  {"column":"F", "PK":1}
+  ]; //!!!
 export const hospital = [
     {"column":"Id","PK":1},
     {"column":"Name"},

@@ -26,6 +26,26 @@
   outline: none;
 }
 
+.customBtn:focus {
+  outline: none;
+  border: 0;
+}
+
+.switchBtn{
+  font-size: 20px;
+  background: $--stat-green;
+  border: none;
+  outline: none;
+  height: 50px;
+  border-radius: 10px;
+  margin-right: 5px;
+}
+
+.switchBtn:focus {
+  outline: none;
+  border: 0;
+}
+
 .icon{
   color: white;
 }
