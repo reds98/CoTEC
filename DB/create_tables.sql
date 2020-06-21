@@ -1,3 +1,4 @@
+--USE master;
 --DROP DATABASE CoTecDB;
 /*
 Script para crear todas las tablas de la base de datos
@@ -23,7 +24,7 @@ CREATE TABLE CountryLocations (
 );
 
 CREATE TABLE SanityMeasurements (
-    Id int NOT NULL PRIMARY KEY IDENTITY (1,1),
+    Id int NOT NULL PRIMARY KEY,
     Name varchar(255),
     Description varchar(255)
 );
@@ -37,7 +38,7 @@ CREATE TABLE EnforcedMeasurements (
 );
 
 CREATE TABLE Hospitals (
-    Id int NOT NULL PRIMARY KEY IDENTITY (1,1),
+    Id int NOT NULL PRIMARY KEY,
     Name varchar(255),
     ICU_Capacity int,
     Capacity int,
@@ -53,7 +54,7 @@ CREATE TABLE Hospital_ICUs (
 );
 
 CREATE TABLE Medications (
-    Id int NOT NULL PRIMARY KEY IDENTITY (1,1),
+    Id int NOT NULL PRIMARY KEY,
     Name varchar(255),
     Provider varchar(255),
 );
@@ -115,7 +116,7 @@ CREATE TABLE Contacted_Person (
 
 
 CREATE TABLE Events (
-    Id int NOT NULL PRIMARY KEY IDENTITY (1,1),
+    Id int NOT NULL PRIMARY KEY,
     Event varchar(255),
     Date varchar(255),
     Country_Name varchar(255) FOREIGN KEY REFERENCES Countries(Name)
