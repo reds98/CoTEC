@@ -23,7 +23,7 @@ CREATE TABLE CountryLocations (
 );
 
 CREATE TABLE SanityMeasurements (
-    Id int NOT NULL PRIMARY KEY,
+    Id int NOT NULL PRIMARY KEY IDENTITY (1,1),
     Name varchar(255),
     Description varchar(255)
 );
@@ -37,7 +37,7 @@ CREATE TABLE EnforcedMeasurements (
 );
 
 CREATE TABLE Hospitals (
-    Id int NOT NULL PRIMARY KEY,
+    Id int NOT NULL PRIMARY KEY IDENTITY (1,1),
     Name varchar(255),
     ICU_Capacity int,
     Capacity int,
@@ -53,7 +53,7 @@ CREATE TABLE Hospital_ICUs (
 );
 
 CREATE TABLE Medications (
-    Id int NOT NULL PRIMARY KEY,
+    Id int NOT NULL PRIMARY KEY IDENTITY (1,1),
     Name varchar(255),
     Provider varchar(255),
 );
@@ -85,7 +85,7 @@ CREATE TABLE Patients (
     Residence varchar(255) FOREIGN KEY REFERENCES Countries(Name),
     Country_Birth varchar(255) FOREIGN KEY REFERENCES Countries(Name),
     Hospital_Id int FOREIGN KEY REFERENCES Hospitals(Id),
-    Status int FOREIGN KEY REFERENCES Patient_Status(Name),
+    Status varchar(255) FOREIGN KEY REFERENCES Patient_Status(Name),
 );
 
 CREATE TABLE Patient_Pathologies (
@@ -115,7 +115,7 @@ CREATE TABLE Contacted_Person (
 
 
 CREATE TABLE Events (
-    Event int NOT NULL PRIMARY KEY,
+    Id int NOT NULL PRIMARY KEY IDENTITY (1,1),
     Event varchar(255),
     Date varchar(255),
     Country_Name varchar(255) FOREIGN KEY REFERENCES Countries(Name)
