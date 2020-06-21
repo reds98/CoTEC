@@ -10,7 +10,7 @@ import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 })
 export class PieChartComponent implements OnInit {
 
-  // Pie
+  // Chart settings
   public pieChartOptions: ChartOptions = {
     responsive: true,
     legend: {
@@ -25,6 +25,8 @@ export class PieChartComponent implements OnInit {
       },
     }
   };
+
+  // Chart data
   public pieChartLabels: Label[] = [['America'], ['Europa'], ['Africa'], ['Australia'], ['Asia']];
   public pieChartData: number[] = [500, 300, 200, 200, 500];
   public pieChartType: ChartType = 'pie';

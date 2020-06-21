@@ -7,6 +7,8 @@ import {FormControl} from '@angular/forms';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  // Attributes
   title = 'CoTEC';
   adminViewOn = true;
   hospitalViewOn = true;
@@ -15,6 +17,7 @@ export class AppComponent {
   adminToken = '123456';
   hospitalToken = '654321';
 
+  // Checks for verification to enable admin and hospital views
   validateToken(){
     const value = this.tokenForm.value.toString();
     if (value === this.adminToken){
@@ -35,6 +38,7 @@ export class AppComponent {
     console.log(this.tokenForm.value === this.adminToken);
   }
 
+  // Logged in as guest
   guestLogIn(){
     this.adminViewOn = false;
     this.hospitalViewOn = false;

@@ -1,41 +1,29 @@
-<style>
-  h1 {margin-top: 1.5cm; text-align: center;}
-  h3 {margin-top: 2cm; text-align: center;}
-  p {text-align: center;}
-</style>
-
-<div class="measures-container">
-  <div class="measures-frame">
-    <div id="measures">
-      <h1>Medidas de Contención</h1>
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {{countrySelected}}
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <div *ngIf="countries">
-            <ul>
-              <li *ngFor="let country of countries">
-                <a class="dropdown-item" href="#" (click)="toggleDropdown($event,country.name, country.id)">{{country.name}} </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div *ngIf="countries">
-        <h3>{{this.mydate.toUTCString()}}</h3>
+<div class="container jumbotron customJumbotron mt-5 mb-5">
+  <h1 align="center" class="N-Primary text--blue mb-5">Medidas de contención</h1>
+  <div class="row" align="center">
+    <div class="col">
+      <mat-form-field class="form">
+        <mat-label>Seleccione un país</mat-label>
+        <mat-select (selectionChange)="getTodayMeasure()" [(ngModel)]="countrySelected" name="food">
+          <mat-option *ngFor="let country of countriesList" [value]="country">
+            {{country}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+      <div class="col" align="center" *ngIf="countries">
+        <h3 class="mt-5">Medidas de hoy {{this.mydate.toUTCString()}}</h3>
         <ul>
-          <li *ngFor="let measure of todayMeasures">
-            {{measure}}
+          <li class="list mt-3">
+            <a>{{todayMeasures}}</a>
           </li>
         </ul>
-        <h3>{{this.otherDate}}</h3>
+        <h3 class="mt-5">Medidas en una semana</h3>
         <ul>
-          <li *ngFor="let measure of nextMeasures">
-            {{measure}}
+          <li class="list mt-3">
+            {{nextMeasures}}
           </li>
         </ul>
       </div>
     </div>
   </div>
-</div>

@@ -10,10 +10,12 @@ import * as pluginAnnotations from 'chartjs-plugin-annotation';
 })
 export class LineChartComponent implements OnInit {
 
+  // Settings for the chart
   chartOptions = {
     responsive: true,
     maintainAspectRatio: false
   };
+  // Data that the chart contains
   chartData = [
     { data: [330, 600, 460, 700, 500, 690, 85, 654], label: 'Incremento diario de casos' }
   ];

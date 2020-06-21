@@ -21,54 +21,50 @@ export class AdminViewComponent implements OnInit {
 
 
   pathData =   [    {
-    "Name":"covid",
-    "Symptoms":"tos",
-    "Description":"F",
-    "Treatment":"F"
+    Name: 'covid',
+    Symptoms: 'tos',
+    Description: 'F',
+    Treatment: 'F'
   },
     {
-      "Name":"covid",
-      "Symptoms":"tos",
-      "Description":"F",
-      "Treatment":"F"
+      Name: 'covid',
+      Symptoms: 'tos',
+      Description: 'F',
+      Treatment: 'F'
     }
   ];
 
   regionsData =   [
-    {"Name":"Cartago","Country_Name":"Costa_Rica"},
-    {"Name":"Alajuela","Country_Name":"Costa_Rica"}
+    {Name: 'Cartago', Country_Name: 'Costa_Rica'},
+    {Name: 'Alajuela', Country_Name: 'Costa_Rica'}
   ];
 
   hospitalData =   [
     {
-      "Id":"12345",
-      "Name":"Juan Santamaria",
-      "ICU_Capacity": "589",
-      "Capacity": "2458",
-      "Manager_name": "Karen",
-      "Phone": "852963741",
-      "Country_Name": "Costa Rica"
+      Id: '12345',
+      Name: 'Juan Santamaria',
+      ICU_Capacity: '589',
+      Capacity: '2458',
+      Manager_name: 'Karen',
+      Phone: '852963741',
+      Country_Name: 'Costa Rica'
     },
     {
-      "Id":"9875",
-      "Name":"Mexico",
-      "ICU_Capacity": "799",
-      "Capacity": "6958",
-      "Manager_name": "John",
-      "Phone": "85489641",
-      "Country_Name": "Costa Rica"
+      Id: '9875',
+      Name: 'Mexico',
+      ICU_Capacity: '799',
+      Capacity: '6958',
+      Manager_name: 'John',
+      Phone: '85489641',
+      Country_Name: 'Costa Rica'
     },
   ];
 
 
-
-  currentData = this.hospitalData;
-
-
-
+  currentData: any = this.hospitalData;
   columns = this.getColumns();
   currentModel = pathology;
-  currentTitle = "Regiones";
+  currentTitle = 'Regiones';
   editStatus = false;
   currentItem = null;
 
@@ -78,99 +74,101 @@ export class AdminViewComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
-
-
-
+  // Allows change of admin view models
   changeModels(type){
     this.currentData = [];
     switch (type) {
       case 'country_location':
         this.currentModel = country_location;
-        this.currentTitle = "Regiones";
+        this.currentTitle = 'Regiones';
         this.currentData = this.regionsData;
         this.columns = this.getColumns();
         break;
       case 'pathology':
         this.currentModel = pathology;
-        this.currentTitle = "Patologias";
+        this.currentTitle = 'Patologias';
         this.currentData = this.pathData;
         this.columns = this.getColumns();
         break;
       case 'patient_status':
         this.currentModel = patient_status;
-        this.currentTitle = "Estados de pacientes";
+        this.currentTitle = 'Estados de pacientes';
         this.columns = this.getColumns();
         break;
       case 'hospital':
         this.currentModel = hospital;
-        this.currentTitle = "Centros Hospitalarios";
+        this.currentTitle = 'Centros Hospitalarios';
         this.currentData = this.hospitalData;
         this.columns = this.getColumns();
         break;
       case 'sanity_measurements':
-        this.currentModel = sanity_measurements
-        this.currentTitle = "Medidas sanitarias";
+        this.currentModel = sanity_measurements;
+        this.currentTitle = 'Medidas sanitarias';
         break;
       case 'enforced_measurements':
         this.currentModel = enforced_measurements;
-        this.currentTitle = "Medidas por pais";
+        this.currentTitle = 'Medidas por pais';
         break;
       case 'medication':
         this.currentModel = medication;
-        this.currentTitle = "Medicamentos";
+        this.currentTitle = 'Medicamentos';
         break;
       default:
         this.currentModel = country_location;
-        this.currentTitle = "Regions";
+        this.currentTitle = 'Regions';
         break;
     }
   }
 
 
+  // Deletes item
   onDelete(item): void {
-    let PKs = [];
-    for(let field of this.currentModel){
+    const PKs = [];
+    for (const field of this.currentModel){
       if (field.PK) {
-        PKs.push(field.column)
+        PKs.push(field.column);
         break;
       }
     }
 
-    console.log(PKs)
+    console.log(PKs);
   }
-  
 
+
+  // Updates or edits item
   onUpdate(item): void {
-    let PKs = [];
-    for(let field of this.currentModel){
+    const PKs = [];
+    for (const field of this.currentModel){
       if (field.PK) {
-        PKs.push(field.column)
+        PKs.push(field.column);
         break;
       }
     }
     this.currentItem = item;
     this.editStatus = true;
 
-    console.log(PKs)
+    console.log(PKs);
   }
 
+  // Creates item
   onCreate(): void {
-    this.currentItem = {}
-    for (let field of this.currentModel){
-      this.currentItem[field.column] = "";
+    this.currentItem = {};
+    for (const field of this.currentModel){
+      this.currentItem[field.column] = '';
     }
     this.editStatus = true;
   }
 
+  // Closes editing or creating mode
   onClose(): void {
     this.editStatus = false;
     console.log(this.currentItem);
   }
 
+  // Gets current columns and adds options column
   getColumns(){
     let cols;
-    for (let i of this.currentData){
+    for (const i of this.currentData){
       cols = this.objectKeys(i);
     }
     cols.push('Acciones');

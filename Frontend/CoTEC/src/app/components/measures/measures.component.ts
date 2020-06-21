@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import * as data from '../../data.json';
-import {MeasuresService} from '../services/measures.service';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {Services} from '../services/services';
 import {DatePipe} from '@angular/common';
 
 @Component({
@@ -9,48 +8,56 @@ import {DatePipe} from '@angular/common';
   styleUrls: ['./measures.component.scss'],
   providers: [DatePipe]
 })
-export class MeasuresComponent implements OnInit {
+export class MeasuresComponent implements AfterViewInit {
 
   public countrySelected = 'Seleccione el país';
-  public itemSelected;
-  public countries: any = (data  as  any).default;
+  public measures;
+  public countries;
   private today;
-  public nextDate;
-  public otherDate;
   public mydate = new Date();
   public todayMeasures;
   public nextMeasures;
+  public countriesList = [];
 
-  constructor(private measureService: MeasuresService, private datePipe: DatePipe) {
-    this.today = this.datePipe.transform(this.mydate, 'yyyy-MM-dd');
+  constructor(private service: Services, private datePipe: DatePipe) {
+    this.today = this.datePipe.transform(this.mydate, 'yyyy-MM-dd', 'GMT-6');
   }
 
-  ngOnInit(): void {
-    console.log(data);
+  ngAfterViewInit(): void {
     this.today = this.today.split('-').join('');
     console.log(this.today);
+    this.service.getMeasures().subscribe(measures => {
+      this.measures = measures.measures;
+    });
+    this.service.getCountries().subscribe(countries => {
+      this.countries = countries.countries;
+      this.getCountries();
+    });
   }
 
-  toggleDropdown($event: MouseEvent, item, id): void{
-    $event.preventDefault();
-    $event.stopPropagation();
-    this.countrySelected = item;
-    this.itemSelected = id - 1;
-    this.splitMeasures();
-  }
 
-  splitMeasures(): void{
-    for (let information of this.countries[this.itemSelected].measures){
-      if (this.today >= information.date) {
-        this.todayMeasures = information.measures;
-      }
-      else {
-        this.nextDate = new Date(information.date / 10**4,(information.date/10**2)%10**2, information.date%10**2);
-        this.otherDate = this.nextDate.toUTCString();
-        this.nextMeasures = information.measures;
+  // Returns countries list from data
+  getCountries(){
+    if (this.countries){
+      for (let i = 0; i < this.countries.length; i++){
+        this.countriesList.push(this.countries[i].name);
       }
     }
-    console.log(this.todayMeasures);
   }
 
+  getTodayMeasure(){
+    const country = this.countrySelected;
+    if (this.measures && this.countries){
+      for (let i = 0; i < this.measures.length; i++){
+        if (this.measures[i].country == country){
+          if (this.measures[i].date == 'present'){
+            this.todayMeasures = this.measures[i].description;
+          }
+          if (this.measures[i].date == 'nextWeek'){
+            this.nextMeasures = this.measures[i].description;
+          }
+        }
+      }
+    }
+  }
 }

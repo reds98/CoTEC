@@ -1,0 +1,20 @@
+{
+  "countries": [
+    {
+      "name": "Costa Rica",
+      "continent": "America"
+    },
+    {
+      "name": "Suiza",
+      "continent": "Europa"
+    },
+    {
+      "name": "Canada",
+      "continent": "America"
+    },
+    {
+      "name": "Francia",
+      "continent": "Europa"
+    }
+  ]
+}

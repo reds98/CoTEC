@@ -1,0 +1,52 @@
+{
+  "measures": [
+    {
+      "date": "present",
+      "country": "Costa Rica",
+      "name": "cierre de locales",
+      "description": "no se permiten locales con más de 20 personas"
+    },
+    {
+      "date": "nextWeek",
+      "country": "Costa Rica",
+      "name": "limitar el tráfico",
+      "description": "no se permite circular despueś de las 7pm"
+    },
+    {
+      "date": "present",
+      "country": "Canada",
+      "name": "cierre de locales",
+      "description": "no se permiten locales con más de 20 personas"
+    },
+    {
+      "date": "nextWeek",
+      "country": "Canada",
+      "name": "limitar el tráfico",
+      "description": "no se permite circular despueś de las 7pm"
+    },
+    {
+      "date": "present",
+      "country": "Suiza",
+      "name": "cierre de locales",
+      "description": "no se permiten locales con más de 20 personas"
+    },
+    {
+      "date": "nextWeek",
+      "country": "Suiza",
+      "name": "limitar el tráfico",
+      "description": "no se permite circular despueś de las 7pm"
+    },
+    {
+      "date": "present",
+      "country": "Francia",
+      "name": "cierre de locales",
+      "description": "no se permiten locales con más de 20 personas"
+    },
+    {
+      "date": "nextWeek",
+      "country": "Francia",
+      "name": "limitar el tráfico",
+      "description": "no se permite circular despueś de las 7pm"
+    }
+  ]
+}
