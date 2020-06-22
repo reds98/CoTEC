@@ -1,12 +1,39 @@
-<input type="checkbox" id="toggle"/>
-<label for="toggle" class="fa fa-bars"></label>
-<nav>
-  <menu>
-    <li><a href="#">home</a></li>
-    <li><a href="#">about</a></li>
-    <li><a href="#">places</a></li>
-    <li><a href="#">apps</a></li>
-    <li><a href="#">contact</a></li>
-    <li><a href="#">shopping</a></li>
-  </menu>
-</nav>
+
+<body *ngIf="loggedIn; else loggedOut">
+
+  <app-sidenav [adminView] = "adminViewOn" [hospitalView] = "hospitalViewOn">
+
+    <router-outlet></router-outlet>
+
+  </app-sidenav>
+
+</body>
+
+
+<ng-template #loggedOut>
+  <div class="container">
+    <div class="Main row-cols-1">
+      Inicio de sesión
+    </div>
+    <div class="row-cols-1 align-items-center">
+      <div class="col-12 align-self-center">
+        <div class="jumbotron customJumbotron mt-3" align="center">
+          <label class="N-Secundary customLabel mt-3">
+          </label>
+          <br>
+        <form>
+          <mat-form-field>
+            <mat-label>Token de Acceso</mat-label>
+            <input matInput [formControl]="tokenForm">
+          </mat-form-field>
+          <button (click)="validateToken()" mat-raised-button>Ingresar</button>
+        </form>
+          <div>
+            <button (click)="guestLogIn()" mat-raised-button>Ingresar como invitado</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ng-template>

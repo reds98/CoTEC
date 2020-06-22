@@ -1,0 +1,22 @@
+.map-container {
+  background: var(--color-navy-3);
+  width: 100%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  top: 60px;
+}
+
+.map-frame {
+  background: var(--color-navy-3);
+  border: none;
+  height: 100%;
+}
+
+.leaflet-container {
+  background-color:rgba(255,0,0,0.0);
+}
+
+#map {
+  height: 100%;
+}

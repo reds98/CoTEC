@@ -1,0 +1,29 @@
+<div class="container jumbotron customJumbotron mt-5 mb-5">
+  <h1 align="center" class="N-Primary text--blue mb-5">Medidas de contención</h1>
+  <div class="row" align="center">
+    <div class="col">
+      <mat-form-field class="form">
+        <mat-label>Seleccione un país</mat-label>
+        <mat-select (selectionChange)="getTodayMeasure()" [(ngModel)]="countrySelected" name="food">
+          <mat-option *ngFor="let country of countriesList" [value]="country">
+            {{country}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+      <div class="col" align="center" *ngIf="countries">
+        <h3 class="mt-5">Medidas de hoy {{this.mydate.toUTCString()}}</h3>
+        <ul>
+          <li class="list mt-3">
+            <a>{{todayMeasures}}</a>
+          </li>
+        </ul>
+        <h3 class="mt-5">Medidas en una semana</h3>
+        <ul>
+          <li class="list mt-3">
+            {{nextMeasures}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>

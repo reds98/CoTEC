@@ -1,0 +1,13 @@
+@import "src/styles";
+
+.customJumbotron{
+  background: $--color-navy-3;
+  border-radius: 20px;
+  border: $--color-navy-3 solid 10px;
+  width: border-box;
+  height: auto;
+}
+
+.col{
+  background-color: transparent;
+}

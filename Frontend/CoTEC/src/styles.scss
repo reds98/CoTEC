@@ -1,0 +1,175 @@
+@import "~font-awesome/css/font-awesome.css";
+@import "~bootstrap";
+@import "~bootstrap/dist/css/bootstrap.css";
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$CoTEC-primary: mat-palette($mat-indigo);
+$CoTEC-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$CoTEC-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$CoTEC-theme: mat-light-theme($CoTEC-primary, $CoTEC-accent, $CoTEC-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($CoTEC-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+// @import url('../node_modules/font-awesome/css/font-awesome.css');
+@import "~leaflet/dist/leaflet.css";
+
+
+  $--stat-green: rgb(101, 221, 155);
+  $--stat-red: #F65164;
+  $--stat-orange: #FF9D00;
+  $--stat-amber: #ffc137;
+  $--stat-yellow: rgb(248, 245, 64);
+  $--stat-blue: rgb(68, 155, 226);
+  $--paleGray: #DFDFEF;
+
+  $--color-primary: #5468b3;
+
+  $--color-navy-1: #2e3652;
+  $--color-navy-2: #364061;
+  $--color-navy-3: #2B4162;
+  $--color-navy-4: #445175;
+  $--color-navy-5: #4b5a81;
+
+  $--color-info: #347fd5;
+  $--color-success: #43ca54;
+  $--color-error: #F35353;
+  $--color-warning: #ffd337;
+
+  $--color-none: transparent;
+
+  $--color-facebook: #3b5998;
+  $--color-twitter: #1da1f2;
+  $--color-instagram: #fb3958;
+  $--color-youtube: red;
+  $--color-linkedin: #4875B4;
+  $--color-discord: #7289da;
+  $--color-stripe: #6772e5;
+
+/* Titles */
+.Main{
+  font-size: 50px;
+  text-align: center;
+  padding-top: 15px;
+  font-weight: bolder;
+  margin-bottom: 0;
+}
+.Second{
+  font-size: 30px;
+  text-align: center;
+  font-weight: bolder;
+  margin-bottom: 0;
+}
+.Third{
+  font-size: 18px;
+  text-align: center;
+  font-weight: bolder;
+  margin-bottom: 0;
+}
+
+/* Numbers */
+
+.N-Primary{
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 0;
+  font-size: 50px;
+  margin-bottom: 0px;
+}
+
+.N-Secundary{
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 0;
+  font-size: 30px;
+  margin-bottom: 0px;
+}
+
+.N-Third{
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 0;
+  font-size: 18px;
+  margin-bottom: 0px;
+}
+.text--green {
+  color: $--stat-green;
+}
+
+.text--red {
+  color: $--stat-red;
+}
+
+.text--orange {
+  color: $--stat-orange;
+}
+
+.text--yellow {
+  color: $--stat-yellow;
+}
+
+.text--amber {
+  color: $--stat-amber;
+}
+
+.text--blue {
+  color: $--stat-blue;
+}
+
+.text--grey {
+  color: $--paleGray;
+}
+
+.text--center {
+  text-align: center;
+}
+
+.bg-navy-1 {
+  background-color: $--color-navy-1;
+}
+.bg-navy-2 {
+  background-color: $--color-navy-2;
+}
+.bg-navy-3 {
+  background-color: $--color-navy-3;
+}
+.bg-navy-4 {
+  background-color: $--color-navy-4;
+}
+.bg-navy-5 {
+  background-color: $--color-navy-5;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+html, body {
+  height: 100%;
+  background-color: $--color-navy-5 !important;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: $--color-navy-5 !important;
+}

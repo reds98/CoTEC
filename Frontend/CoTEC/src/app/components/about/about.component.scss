@@ -1,0 +1,23 @@
+@import "src/styles";
+
+col{
+  align-items: center;
+  justify-content: center;
+}
+
+label{
+  background: $--color-navy-5;
+  border-radius: 50px;
+  border: $--color-navy-5 solid 10px;
+  width: border-box;
+  height: auto;
+  margin-top: 20px;
+}
+
+.label-jump-line{
+  white-space: pre-wrap;
+}
+
+.content{
+  background-color: $--color-navy-5;
+}

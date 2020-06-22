@@ -1,0 +1,53 @@
+<div class="container mt-5" align="center">
+  <button class="switchBtn" (click)="changeModels('country_location')">Regiones</button>
+  <button class="switchBtn" (click)="changeModels('pathology')">Patologías</button>
+  <button class="switchBtn" (click)="changeModels('patient_status')">Estados de pacientes</button>
+  <button class="switchBtn" (click)="changeModels('hospital')">Hospital</button>
+  <button class="switchBtn" (click)="changeModels('sanity_measurements')">Medidas Sanitarias</button>
+  <button class="switchBtn" (click)="changeModels('enforced_measurements')">Medidas por país</button>
+  <button class="switchBtn" (click)="changeModels('medication')">Medicamentos</button>
+</div>
+<div class="container jumbotron customJumbotron mt-5 mb-5">
+  <h1 align="center" class="N-Primary text--blue mb-5">Administración de {{currentTitle}}</h1>
+
+  <table class="table table-striped">
+  <thead>
+  <tr>
+    <th *ngFor="let field of columns">{{field}}</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of currentData">
+    <td *ngFor="let key of currentModel">{{item[key.column]}}</td>
+    <td>
+      <button class="customBtn" (click)="onDelete(item)"><i class="icon fa fa-trash"></i></button>
+      <button class="customBtn" (click)="onUpdate(item)"><i class="icon fa fa-edit"></i></button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<button class="btn customBtn" (click)="onCreate()"><i class="icon fa fa-plus"></i></button>
+  <br>
+  <br>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div *ngIf="editStatus">
+        <div *ngFor="let key of currentModel">
+          <input class="form-control customInput" type="text" *ngIf="!key.FK" value="{{currentItem[key.column]}}" placeholder="{{key.column}}"/>
+          <mat-form-field *ngIf="key.FK">
+            <mat-label>{{key.column}}</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let column of columns" [value]="column">{{column}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <button class="customBtn" (click)="onClose()">Finish</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+
