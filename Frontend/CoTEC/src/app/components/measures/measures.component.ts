@@ -1,4 +1,5 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import {Services} from '../services/services';
 import {DatePipe} from '@angular/common';
 

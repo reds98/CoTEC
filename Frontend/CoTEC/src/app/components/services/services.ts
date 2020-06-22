@@ -6,6 +6,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class Services {
+  private url = 'http://localhost:53572/api/';
 
   constructor(private http: HttpClient) { }
 
@@ -17,4 +18,9 @@ export class Services {
   getCountries(): Observable<any> {
     return this.http.get('/assets/countries.json');
   }
+
+  // Gets package json from server
+  getRegions(country): Observable<any>{
+    return this.http.get(this.url + '/CountryLocations');
+}
 }

@@ -1,0 +1,20 @@
+{
+  "countryLocations": [
+    {
+      "Name": "Cartago",
+      "Country_Name": "Costa Rica"
+    },
+    {
+      "Name": "Alajuela",
+      "Country_Name": "Costa Rica"
+    },
+    {
+      "Name": "Berna",
+      "Country_Name": "Suiza"
+    },
+    {
+      "Name": "Paris",
+      "Country_Name": "Francia"
+    }
+  ]
+}

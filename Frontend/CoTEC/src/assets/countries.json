@@ -1,20 +1,20 @@
 {
   "countries": [
     {
-      "name": "Costa Rica",
-      "continent": "America"
+      "Name": "Costa Rica",
+      "Continent": "America"
     },
     {
-      "name": "Suiza",
-      "continent": "Europa"
+      "Name": "Suiza",
+      "Continent": "Europa"
     },
     {
-      "name": "Canada",
-      "continent": "America"
+      "Name": "Canada",
+      "Continent": "America"
     },
     {
-      "name": "Francia",
-      "continent": "Europa"
+      "Name": "Francia",
+      "Continent": "Europa"
     }
   ]
 }
