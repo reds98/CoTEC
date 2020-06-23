@@ -27,6 +27,12 @@ import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { AdminViewComponent } from './components/admin-view/admin-view.component';
 import { HospitalViewComponent } from './components/hospital-view/hospital-view.component';
 import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -41,24 +47,26 @@ import {MatSelectModule} from '@angular/material/select';
     AdminViewComponent,
     HospitalViewComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatSidenavModule,
-    MatCheckboxModule,
-    MatListModule,
-    MatIconModule,
-    MatToolbarModule,
-    ChartsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    MatSelectModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatSidenavModule,
+        MatCheckboxModule,
+        MatListModule,
+        MatIconModule,
+        MatToolbarModule,
+        ChartsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        MatSelectModule,
+        MatDatepickerModule,
+        MatNativeDateModule
+    ],
   providers: [
     ShapeService
   ],

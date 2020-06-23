@@ -9,56 +9,71 @@ import {DatePipe} from '@angular/common';
   styleUrls: ['./measures.component.scss'],
   providers: [DatePipe]
 })
-export class MeasuresComponent implements AfterViewInit {
+export class MeasuresComponent implements OnInit {
 
+  // Attributes
   public countrySelected = 'Seleccione el país';
   public measures;
   public countries;
-  private today;
+  public consultDay: any;
+  public selected = false;
+  public nextWeek;
   public mydate = new Date();
   public todayMeasures;
   public nextMeasures;
   public countriesList = [];
 
   constructor(private service: Services, private datePipe: DatePipe) {
-    this.today = this.datePipe.transform(this.mydate, 'yyyy-MM-dd', 'GMT-6');
+    this.consultDay = this.datePipe.transform(this.mydate, 'yyyy-MM-dd');
   }
 
-  ngAfterViewInit(): void {
-    this.today = this.today.split('-').join('');
-    console.log(this.today);
+  ngOnInit(): void {
     this.service.getMeasures().subscribe(measures => {
       this.measures = measures.measures;
     });
     this.service.getCountries().subscribe(countries => {
       this.countries = countries.countries;
-      this.getCountries();
+      this.getCountriesList();
     });
   }
 
 
   // Returns countries list from data
-  getCountries(){
+  getCountriesList(){
     if (this.countries){
       for (let i = 0; i < this.countries.length; i++){
-        this.countriesList.push(this.countries[i].name);
+        this.countriesList.push(this.countries[i].Name);
       }
     }
   }
 
-  getTodayMeasure(){
+
+  // Gives format to selected dates
+  selectDate(e){
+    this.nextWeek = new Date();
+    this.consultDay = this.datePipe.transform(e.value, 'yyyy-MM-dd');
+    this.nextWeek.setDate(e.value.getDate() + 7 );
+    this.nextWeek = this.datePipe.transform(this.nextWeek, 'yyyy-MM-dd');
+    this.selected = true;
+  }
+
+
+  // Consults data and if match with dates and countries occurs, returns measurements
+  getMeasurements(){
     const country = this.countrySelected;
     if (this.measures && this.countries){
       for (let i = 0; i < this.measures.length; i++){
         if (this.measures[i].country == country){
-          if (this.measures[i].date == 'present'){
+          if (this.measures[i].date == this.consultDay){
             this.todayMeasures = this.measures[i].description;
           }
-          if (this.measures[i].date == 'nextWeek'){
+          if (this.measures[i].date == this.nextWeek){
             this.nextMeasures = this.measures[i].description;
           }
         }
       }
     }
   }
+
+
 }
