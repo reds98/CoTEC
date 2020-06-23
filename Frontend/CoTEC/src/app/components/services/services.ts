@@ -19,7 +19,10 @@ export class Services {
     return this.http.get('/assets/countries.json');
   }
 
-  // Gets package json from server
+  getTotalAccumulated(): Observable<any>{
+    return this.http.get('/assets/accumulated.json');
+  }
+
   getRegions(): Observable<any>{
     return this.http.get(this.url + 'values');
   }

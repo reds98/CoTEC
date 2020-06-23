@@ -38,7 +38,7 @@
           <mat-form-field *ngIf="key.FK">
             <mat-label>{{key.column}}</mat-label>
             <mat-select>
-              <mat-option *ngFor="let column of columns" [value]="column">{{column}}</mat-option>
+              <mat-option *ngFor="let country of countriesList" [value]="country">{{country}}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>

@@ -2,34 +2,34 @@
   <div class="row content">
     <div class="col-4" align="center">
 
-      <div class="jumbotron customJumbotron mt-3 text--amber">
+      <div class="jumbotron customJumbotron mt-3 text--amber" *ngFor="let item of totalAccumulated">
         <label class="N-Secundary customLabel mt-3 text--grey">
           Datos breves
         </label>
         <br>
         <label class="N-Primary customLabel mt-3 text--amber">
-          7,258,588
+          {{item.contagiados}}
         </label>
         <label class="customLabel mt-3 text--grey">
           Total de casos confirmados
         </label>
         <br>
         <label class="N-Primary customLabel mt-3 text--green">
-          435,489
+          {{item.muertos}}
         </label>
         <label class="customLabel mt-3 text--grey">
           Total de muertos
         </label>
         <br>
         <label class="N-Primary customLabel mt-3 text--yellow">
-          3,187,968
+          {{item.activos}}
         </label>
         <label class="customLabel mt-3 text--grey">
           Total de activos
         </label>
         <br>
         <label class="N-Primary customLabel mt-3 text--red">
-          3,635,131
+          {{item.recuperados}}
         </label>
         <label class="customLabel mt-3 text--grey">
           Total de recuperados
@@ -37,7 +37,7 @@
       </div>
     </div>
     <div class="col-8 mt-3">
-      <app-chart></app-chart>
+      <app-chart [chartDataSets] = "chartGlobalData" [chartLabels] = "chartLabels"></app-chart>
       <br>
       <app-pie-chart></app-pie-chart>
     </div>

@@ -44,8 +44,7 @@ export class MapComponent implements AfterViewInit {
         layer.on({
           mousemove: (e) => (this.popupUpdate(e)),
           mouseover: (e) => (this.highlightFeature(e)),
-          mouseout: (e) => (this.resetFeature(e)),
-          click: (e) => (this.selectFeature(e))
+          mouseout: (e) => (this.resetFeature(e))
         })
       )
     });
@@ -92,19 +91,6 @@ export class MapComponent implements AfterViewInit {
     this.layer.closePopup();
   }
 
-  // Shows country info
-  private selectFeature(e)  {
-    const layer = e.target;
-    layer.setStyle({
-      weight: 3,
-      opacity: 0.5,
-      color: '#000000',
-      fillOpacity: 0.8,
-      fillColor: '#000000'
-    });
-
-  }
-
 
   // Adds layers and initializes the map
   private initMap(): void {
@@ -126,7 +112,7 @@ export class MapComponent implements AfterViewInit {
     const country = layer.feature.properties;
     console.log(country.name);
 
-    this.message = 'País: ' +  country.name + '\n' +
+    this.message = country.name + '\n' +
       ' ';
 
     this.popup

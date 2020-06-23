@@ -8,6 +8,7 @@ import {
   enforced_measurements,
   medication
 } from './models.js';
+import {Services} from "../services/services";
 
 @Component({
   selector: 'app-admin-view',
@@ -17,7 +18,6 @@ import {
 export class AdminViewComponent implements OnInit {
   objectKeys = Object.keys;
   objectValues = Object.values;
-
 
 
   pathData =   [    {
@@ -60,18 +60,23 @@ export class AdminViewComponent implements OnInit {
     },
   ];
 
-
   currentData: any = this.hospitalData;
   columns = this.getColumns();
   currentModel = pathology;
   currentTitle = 'Regiones';
   editStatus = false;
   currentItem = null;
+  public countries;
+  public countriesList = [];
 
 
-  constructor() { }
+  constructor(private service: Services) { }
 
   ngOnInit(): void {
+    this.service.getCountries().subscribe(countries => {
+      this.countries = countries.countries;
+      this.getCountriesList();
+    });
   }
 
   // Allows change of admin view models
@@ -167,7 +172,7 @@ export class AdminViewComponent implements OnInit {
 
   // Gets current columns and adds options column
   getColumns(){
-    let cols;
+    let cols: any;
     for (const i of this.currentData){
       cols = this.objectKeys(i);
     }
@@ -175,6 +180,12 @@ export class AdminViewComponent implements OnInit {
     return cols;
   }
 
-
+  getCountriesList(){
+    if (this.countries){
+      for (let i = 0; i < this.countries.length; i++){
+        this.countriesList.push(this.countries[i].Name);
+      }
+    }
+  }
 
 }

@@ -1,0 +1,15 @@
+{
+  "acumuladoTotal" : [
+    {
+      "contagiados": 7654656,
+      "activos": 3569878,
+      "recuperados": 3119498,
+      "muertos": 965280,
+      "contagiados_dia": [432, 564, 876, 345, 546],
+      "activos_dia": [1, 3, -2, 5, 1],
+      "recuperados_dia": [56, 45, 78, 85, 96],
+      "muertos_dia": [6, 15, 9, 12, 17],
+      "Fechas": ["2020-06-09", "2020-06-10", "2020-06-11", "2020-06-12"]
+    }
+  ]
+}
