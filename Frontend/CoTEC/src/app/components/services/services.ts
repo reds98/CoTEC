@@ -19,8 +19,12 @@ export class Services {
     return this.http.get('/assets/countries.json');
   }
 
-  getTotalAccumulated(): Observable<any>{
+  getGlobalAccumulated(): Observable<any>{
     return this.http.get('/assets/accumulated.json');
+  }
+
+  getCountryAccumulated(): Observable<any>{
+    return this.http.get('/assets/CountryAccumulated.json');
   }
 
   getRegions(): Observable<any>{

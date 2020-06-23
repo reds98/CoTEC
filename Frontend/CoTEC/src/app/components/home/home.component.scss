@@ -6,8 +6,21 @@
   border: $--color-navy-3 solid 10px;
   width: border-box;
   height: auto;
+  align-content: center;
+  align-items: center;
 }
 
 .col{
   background-color: transparent;
+}
+
+.form{
+  background-color: white;
+  border-radius: 15px;
+  height: 70px;
+  font-size: 20px;
+  width: 250px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }

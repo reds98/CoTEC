@@ -2,7 +2,7 @@
   <div class="row content">
     <div class="col-4" align="center">
 
-      <div class="jumbotron customJumbotron mt-3 text--amber" *ngFor="let item of totalAccumulated">
+      <div class="jumbotron customJumbotron mt-3 text--amber" *ngFor="let item of globalAccumulated">
         <label class="N-Secundary customLabel mt-3 text--grey">
           Datos breves
         </label>
@@ -37,9 +37,21 @@
       </div>
     </div>
     <div class="col-8 mt-3">
+      <h3 align="center" class="text--grey">Incremento de casos diarios mundial</h3>
       <app-chart [chartDataSets] = "chartGlobalData" [chartLabels] = "chartLabels"></app-chart>
       <br>
-      <app-pie-chart></app-pie-chart>
+      <div class="customJumbotron">
+      <h3 align="center" class="text--grey">Incremento de casos diarios por país</h3>
+      <mat-form-field class="form mb-3">
+        <mat-label>Seleccione un país</mat-label>
+        <mat-select [(ngModel)]="countrySelected" name="countries">
+          <mat-option *ngFor="let country of countriesList" [value]="country">
+            {{country}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <app-chart [chartDataSets] = "chartCountryData" [chartLabels] = "chartLabels"></app-chart>
+      </div>
     </div>
   </div>
   <div class="row" >

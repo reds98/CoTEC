@@ -21,19 +21,19 @@ export class LineChartComponent implements OnInit {
 
   colors = [
     {
-      backgroundColor: 'rgba(103, 58, 183, .3)',
+      backgroundColor: 'rgba(103, 58, 183, .5)',
       borderColor: 'rgb(103, 58, 183)'
     },
     {
-      backgroundColor: 'rgb(248, 245, 64, .8)',
+      backgroundColor: 'rgb(248, 245, 64, .5)',
       borderColor: 'rgb(248, 245, 64)'
     },
     {
-      backgroundColor: 'rgb(101, 221, 155, .8)',
+      backgroundColor: 'rgb(101, 221, 155, .5)',
       borderColor: 'rgb(101, 221, 155)'
     },
     {
-      backgroundColor: 'rgb(251, 57, 88, .4)',
+      backgroundColor: 'rgb(251, 57, 88, .5)',
       borderColor: '#fb3958'
     }
   ];
