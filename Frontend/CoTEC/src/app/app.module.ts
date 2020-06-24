@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MapComponent } from './components/map/map.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ShapeService } from './components/services/shape.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -48,28 +47,27 @@ import {MatNativeDateModule} from '@angular/material/core';
     HospitalViewComponent
   ],
     imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        MatSidenavModule,
-        MatCheckboxModule,
-        MatListModule,
-        MatIconModule,
-        MatToolbarModule,
-        ChartsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatButtonModule,
-        ReactiveFormsModule,
-        FormsModule,
-        MatSelectModule,
-        MatDatepickerModule,
-        MatNativeDateModule
+      BrowserModule,
+      AppRoutingModule,
+      HttpClientModule,
+      BrowserAnimationsModule,
+      MatSidenavModule,
+      MatCheckboxModule,
+      MatListModule,
+      MatIconModule,
+      MatToolbarModule,
+      ChartsModule,
+      MatFormFieldModule,
+      MatInputModule,
+      MatButtonModule,
+      ReactiveFormsModule,
+      FormsModule,
+      MatSelectModule,
+      MatDatepickerModule,
+      MatNativeDateModule,
+      CommonModule
     ],
-  providers: [
-    ShapeService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

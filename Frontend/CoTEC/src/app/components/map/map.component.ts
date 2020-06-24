@@ -1,7 +1,8 @@
+
 import { Component, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
 import * as $ from 'jquery';
-import {ShapeService} from '../services/shape.service';
+import {Services} from '../services/services';
 
 @Component({
   selector: 'app-map',
@@ -16,17 +17,23 @@ export class MapComponent implements AfterViewInit {
   private map;
   private countries;
   public isHovered;
-  public message;
   public popup = L.popup();
   public layer;
+  public countriesGet;
+  public countriesList = [];
+  public selectedCountry;
 
-  constructor(private shapeService: ShapeService) { }
+  constructor(private service: Services) { }
 
   ngAfterViewInit(): void {
     this.initMap();
-    this.shapeService.getStateShapes().subscribe(countries => {
+    this.service.getStateShapes().subscribe(countries => {
       this.countries = countries;
       this.initCountriesLayer();
+    });
+    this.service.getCountries().subscribe(countries => {
+      this.countriesGet = countries.countries;
+      this.getCountriesList();
     });
   }
 
@@ -44,7 +51,8 @@ export class MapComponent implements AfterViewInit {
         layer.on({
           mousemove: (e) => (this.popupUpdate(e)),
           mouseover: (e) => (this.highlightFeature(e)),
-          mouseout: (e) => (this.resetFeature(e))
+          mouseout: (e) => (this.resetFeature(e)),
+          click: (e) => (this.selectFeature(e))
         })
       )
     });
@@ -67,6 +75,7 @@ export class MapComponent implements AfterViewInit {
   private highlightFeature(e)  {
     this.isHovered = true;
     const layer = e.target;
+    this.selectedCountry = layer.feature.properties.name;
     layer.setStyle({
       weight: 10,
       opacity: 0,
@@ -91,6 +100,19 @@ export class MapComponent implements AfterViewInit {
     this.layer.closePopup();
   }
 
+  // Shows country info
+  private selectFeature(e)  {
+    const layer = e.target;
+    layer.setStyle({
+      weight: 3,
+      opacity: 0.5,
+      color: '#000000',
+      fillOpacity: 0.8,
+      fillColor: '#000000'
+    });
+
+  }
+
 
   // Adds layers and initializes the map
   private initMap(): void {
@@ -112,16 +134,24 @@ export class MapComponent implements AfterViewInit {
     const country = layer.feature.properties;
     console.log(country.name);
 
-    this.message = country.name + '\n' +
-      ' ';
 
     this.popup
       .setLatLng(e.latlng)
-      .setContent(this.message)
+      .setContent(document.getElementById('popupContent'))
       .openOn(this.map);
+
 
     this.layer.bindPopup(this.popup);
   }
 
+
+  // Returns countries list from data
+  getCountriesList(){
+    if (this.countries){
+      for (let i = 0; i < this.countries.length; i++){
+        this.countriesList.push(this.countries[i].Name);
+      }
+    }
+  }
 
 }

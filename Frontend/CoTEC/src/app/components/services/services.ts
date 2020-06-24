@@ -10,6 +10,13 @@ export class Services {
 
   constructor(private http: HttpClient) { }
 
+
+  // Returns an observable of our serialized geojson object
+  getStateShapes(): Observable<any> {
+    return this.http.get('/assets/world-map.json');
+  }
+
+
   // Returns a json object with health measures
   getMeasures(): Observable<any> {
     return this.http.get('/assets/measures.json');
