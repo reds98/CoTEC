@@ -114,7 +114,7 @@ CREATE TABLE Contacted_Person (
     Patient_SSN varchar(255) FOREIGN KEY REFERENCES Patients(SSN),
     First_Name varchar(255),
     Last_Name varchar(255),
-    Adress varchar(255),
+    Address varchar(255),
     Email varchar(255),
     Age int
 );
