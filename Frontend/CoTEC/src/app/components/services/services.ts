@@ -16,7 +16,6 @@ export class Services {
     return this.http.get('/assets/world-map.json');
   }
 
-
   // Returns a json object with health measures
   getMeasures(): Observable<any> {
     return this.http.get('/assets/measures.json');

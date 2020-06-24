@@ -12,7 +12,7 @@ export class AppComponent {
   title = 'CoTEC';
   adminViewOn = false;
   hospitalViewOn = false;
-  public loggedIn = false;
+  public loggedIn = true;
   tokenForm = new FormControl();
   adminToken = '123456';
   hospitalToken = '654321';

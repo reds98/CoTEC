@@ -4,10 +4,14 @@
   </div>
 </div>
 
-<div id="popupContent" class="popupForm">
-  <label class="N-Third" id="country">{{selectedCountry}}</label>
-  <label id="infected"></label>
-  <label id="active"></label>
-  <label id="healed"></label>
-  <label id="dead"></label>
+<div *ngFor="let item of countryAccumulated" id="popupContent">
+  <label class="N-Secundary text--navy-1" id="country">{{selectedCountry}}</label>
+  <br>
+  <label class="N-Third text--amber" id="infected">Infected: {{item.contagiados}}</label>
+  <br>
+  <label class="N-Third text--green" id="active">Active: {{item.activos}}</label>
+  <br>
+  <label class="N-Third text--blue" id="recovered">Recovered: {{item.recuperados}}</label>
+  <br>
+  <label class="N-Third text--red" id="dead">Dead: {{item.muertos}}</label>
 </div>

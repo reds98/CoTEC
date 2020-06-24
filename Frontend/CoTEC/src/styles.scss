@@ -139,6 +139,10 @@ $CoTEC-theme: mat-light-theme($CoTEC-primary, $CoTEC-accent, $CoTEC-warn);
   color: $--paleGray;
 }
 
+.text--navy-1 {
+  color: $--color-navy-1;
+}
+
 .text--center {
   text-align: center;
 }

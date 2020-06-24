@@ -22,6 +22,7 @@ export class MapComponent implements AfterViewInit {
   public countriesGet;
   public countriesList = [];
   public selectedCountry;
+  public countryAccumulated;
 
   constructor(private service: Services) { }
 
@@ -34,6 +35,9 @@ export class MapComponent implements AfterViewInit {
     this.service.getCountries().subscribe(countries => {
       this.countriesGet = countries.countries;
       this.getCountriesList();
+    });
+    this.service.getCountryAccumulated().subscribe(countryAccumulated => {
+      this.countryAccumulated = countryAccumulated.acumuladoPais;
     });
   }
 
@@ -51,8 +55,7 @@ export class MapComponent implements AfterViewInit {
         layer.on({
           mousemove: (e) => (this.popupUpdate(e)),
           mouseover: (e) => (this.highlightFeature(e)),
-          mouseout: (e) => (this.resetFeature(e)),
-          click: (e) => (this.selectFeature(e))
+          mouseout: (e) => (this.resetFeature(e))
         })
       )
     });
@@ -98,19 +101,6 @@ export class MapComponent implements AfterViewInit {
       fillColor: '#6DB65B'
     });
     this.layer.closePopup();
-  }
-
-  // Shows country info
-  private selectFeature(e)  {
-    const layer = e.target;
-    layer.setStyle({
-      weight: 3,
-      opacity: 0.5,
-      color: '#000000',
-      fillOpacity: 0.8,
-      fillColor: '#000000'
-    });
-
   }
 
 
