@@ -1,5 +1,5 @@
 --USE master;
-DROP DATABASE CoTecDB;
+--DROP DATABASE CoTecDB;
 /*
 Script para crear todas las tablas de la base de datos
 Autor: Juan Pablo Alvarado
