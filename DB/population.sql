@@ -1,4 +1,10 @@
+/*
+Script para llenar todas las tablas de la base de datos
+Autor: Juan Pablo Alvarado
+*/
+
 USE CoTecDB;
+
 
 INSERT INTO Continents (Name)
 VALUES
@@ -289,8 +295,14 @@ VALUES
 INSERT INTO Hospital_ICUs 
 VALUES
 ('225225',1),
-('334334',1),
-('554554',2);
+('334334',3),
+('554554',3);
+
+INSERT INTO Hospital_Patients 
+VALUES
+('225225',1),
+('334334',4),
+('554554',4);
 
 INSERT INTO Medications 
 VALUES

@@ -1,5 +1,5 @@
 --USE master;
---DROP DATABASE CoTecDB;
+DROP DATABASE CoTecDB;
 /*
 Script para crear todas las tablas de la base de datos
 Autor: Juan Pablo Alvarado
@@ -18,9 +18,9 @@ CREATE TABLE Countries (
 );
 
 CREATE TABLE CountryLocations (
-    Name varchar(255) NOT NULL,
+    Id int IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    Name varchar(255) ,
     Country_Name varchar(255) FOREIGN KEY REFERENCES Countries(Name),
-    PRIMARY KEY (Name,Country_Name)
 );
 
 CREATE TABLE SanityMeasurements (
@@ -30,11 +30,11 @@ CREATE TABLE SanityMeasurements (
 );
 
 CREATE TABLE EnforcedMeasurements (
+    Id int IDENTITY(1,1) NOT NULL PRIMARY KEY,
     Country_Name varchar(255) FOREIGN KEY REFERENCES Countries(Name),
     Measurement_Id int FOREIGN KEY REFERENCES SanityMeasurements(Id),
     Start_Date varchar(255),
     End_Date varchar(255),
-    PRIMARY KEY (Country_Name,Measurement_Id)
 );
 
 CREATE TABLE Hospitals (
@@ -47,10 +47,16 @@ CREATE TABLE Hospitals (
     Country_Name varchar(255) FOREIGN KEY REFERENCES Countries(Name)
 );
 
-CREATE TABLE Hospital_ICUs (
-    ICU_Patient varchar(255) NOT NULL,
+CREATE TABLE Hospital_Patients (
+    Id int IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    Patient varchar(255),
     Hospital_Id int FOREIGN KEY REFERENCES Hospitals(Id),
-    PRIMARY KEY (ICU_Patient,Hospital_Id)
+);
+
+CREATE TABLE Hospital_ICUs (
+    Id int IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    ICU_Patient varchar(255),
+    Hospital_Id int FOREIGN KEY REFERENCES Hospitals(Id)
 );
 
 CREATE TABLE Medications (
@@ -60,9 +66,9 @@ CREATE TABLE Medications (
 );
 
 CREATE TABLE Hospital_Medications (
+    Id int IDENTITY(1,1) NOT NULL PRIMARY KEY,
     Hospital_Id int FOREIGN KEY REFERENCES Hospitals(Id),
     Medication_Id int FOREIGN KEY REFERENCES Medications(Id),
-    PRIMARY KEY (Hospital_Id,Medication_Id)
 );
 
 CREATE TABLE Pathologies (
@@ -90,27 +96,27 @@ CREATE TABLE Patients (
 );
 
 CREATE TABLE Patient_Pathologies (
+    Id int IDENTITY(1,1) NOT NULL PRIMARY KEY,
     Patient_SSN varchar(255) FOREIGN KEY REFERENCES Patients(SSN),
-    Pathology_Name varchar(255) FOREIGN KEY REFERENCES Pathologies(Name),
-    PRIMARY KEY (Patient_SSN,Pathology_Name)
+    Pathology_Name varchar(255) FOREIGN KEY REFERENCES Pathologies(Name)
 );
 
 CREATE TABLE Patient_Medications (
+    Id int IDENTITY(1,1) NOT NULL PRIMARY KEY,
     Patient_SSN varchar(255) FOREIGN KEY REFERENCES Patients(SSN),
     Medication_Id int FOREIGN KEY REFERENCES Medications(Id),
-    PRIMARY KEY (Patient_SSN,Medication_Id)
 );
 
 
 CREATE TABLE Contacted_Person (
-    SSN varchar(255) NOT NULL,
+    Id int IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    SSN varchar(255),
     Patient_SSN varchar(255) FOREIGN KEY REFERENCES Patients(SSN),
     First_Name varchar(255),
     Last_Name varchar(255),
     Adress varchar(255),
     Email varchar(255),
-    Age int,
-    PRIMARY KEY (SSN,Patient_SSN)
+    Age int
 );
 
 
