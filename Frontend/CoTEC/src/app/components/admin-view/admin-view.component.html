@@ -35,12 +35,18 @@
       <div *ngIf="editStatus">
         <div *ngFor="let key of currentModel">
           <input class="form-control customInput" type="text" *ngIf="!key.FK" value="{{currentItem[key.column]}}" placeholder="{{key.column}}"/>
-          <mat-form-field *ngIf="key.FK">
-            <mat-label>{{key.column}}</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let country of countriesList" [value]="country">{{country}}</mat-option>
-            </mat-select>
-          </mat-form-field>
+          <div *ngIf="key.FK">
+            <div class="mb-5">
+              <mat-form-field>
+                <mat-label>{{key.column}}</mat-label>
+                <mat-select>
+                  <div *ngFor="let option of getOptionsList(key.FK)">
+                    <mat-option [value]="option">{{option}}</mat-option>
+                  </div>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
         </div>
         <button class="customBtn" (click)="onClose()">Finish</button>
       </div>

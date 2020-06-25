@@ -63,12 +63,12 @@ export class MeasuresComponent implements OnInit {
     const country = this.countrySelected;
     if (this.measures && this.countries){
       for (let i = 0; i < this.measures.length; i++){
-        if (this.measures[i].country == country){
-          if (this.measures[i].date == this.consultDay){
-            this.todayMeasures = this.measures[i].description;
+        if (this.measures[i].Country == country){
+          if (this.measures[i].Date == this.consultDay){
+            this.todayMeasures = this.measures[i].Description;
           }
           if (this.measures[i].date == this.nextWeek){
-            this.nextMeasures = this.measures[i].description;
+            this.nextMeasures = this.measures[i].Description;
           }
         }
       }

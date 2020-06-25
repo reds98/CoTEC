@@ -1,16 +1,16 @@
 {
   "measures": [
     {
-      "date": "2020-06-17",
-      "country": "Costa Rica",
-      "name": "cierre de locales",
-      "description": "no se permiten locales con más de 20 personas"
+      "Date": "2020-06-17",
+      "Country": "Costa Rica",
+      "Name": "cierre de locales",
+      "Description": "no se permiten locales con más de 20 personas"
     },
     {
-      "date": "2020-06-24",
-      "country": "Costa Rica",
-      "name": "limitar el tráfico",
-      "description": "no se permite circular despueś de las 7pm"
+      "Date": "2020-06-24",
+      "Country": "Costa Rica",
+      "Name": "limitar el tráfico",
+      "Description": "no se permite circular despueś de las 7pm"
     }
 
   ]

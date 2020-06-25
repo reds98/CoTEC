@@ -1,5 +1,6 @@
 export const country_location = [
-    {"column":"Name","PK":1},
+    {"column":"Id","PK":1},
+    {"column":"Name"},
     {"column":"Country_Name","FK":"countries"}
 ];
 export const pathology = [
@@ -26,11 +27,14 @@ export const sanity_measurements = [
     {"column":"Description"}
 ];
 export const enforced_measurements = [
+    {"column":"Id", "PK": 1},
     {"column":"Start_Date"},
     {"column":"End_Date"},
-    {"column":"Country_Name","FK":"Countries","PK":1},
-    {"column":"Measurements_Id","FK":"EnforcedMeasurements","PK":1}
+    {"column":"Country_Name","FK":"Countries"},
+    {"column":"Measurements_Id","FK":"SanityMeasurements"}
 ];
+
+
 export const medication = [
     {"column":"Id","PK":1},
     {"column":"Name"},

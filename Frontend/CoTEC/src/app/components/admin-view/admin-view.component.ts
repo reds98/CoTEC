@@ -61,21 +61,25 @@ export class AdminViewComponent implements OnInit {
   ];
 
   currentData: any = this.hospitalData;
-  columns = this.getColumns();
-  currentModel = pathology;
+  columns;
+  currentModel;
   currentTitle = 'Regiones';
   editStatus = false;
   currentItem = null;
   public countries;
-  public countriesList = [];
+  public dropdownList: any = [];
+  public dropdownLists = [];
+  public dropdown;
+  public measures: any;
+  public index = -1;
+  public i = 0;
 
 
   constructor(private service: Services) { }
 
   ngOnInit(): void {
-    this.service.getCountries().subscribe(countries => {
-      this.countries = countries.countries;
-      this.getCountriesList();
+    this.service.getMeasures().subscribe(measures => {
+      this.measures = measures.measures;
     });
   }
 
@@ -85,9 +89,9 @@ export class AdminViewComponent implements OnInit {
     switch (type) {
       case 'country_location':
         this.currentModel = country_location;
+        this.columns = this.getColumns();
         this.currentTitle = 'Regiones';
         this.currentData = this.regionsData;
-        this.columns = this.getColumns();
         break;
       case 'pathology':
         this.currentModel = pathology;
@@ -123,6 +127,7 @@ export class AdminViewComponent implements OnInit {
         this.currentTitle = 'Regions';
         break;
     }
+    this.getData();
   }
 
 
@@ -172,20 +177,72 @@ export class AdminViewComponent implements OnInit {
 
   // Gets current columns and adds options column
   getColumns(){
-    let cols: any;
-    for (const i of this.currentData){
-      cols = this.objectKeys(i);
+    let cols: any = [];
+    for (const i of this.currentModel){
+      cols.push(i.column);
     }
     cols.push('Acciones');
     return cols;
   }
 
-  getCountriesList(){
-    if (this.countries){
-      for (let i = 0; i < this.countries.length; i++){
-        this.countriesList.push(this.countries[i].Name);
+  // Gets all lists for the dropdown menu options
+  getDropDownList(dropdown, fk){
+    this.dropdownList = [];
+    let list;
+    if (dropdown){
+      for (let i = 0; i < dropdown.length; i++){
+        this.dropdownList.push(dropdown[i].Name);
       }
     }
+    list = [fk, this.dropdownList];
+    this.dropdownLists.push(list);
+    console.log(this.dropdownLists);
+  }
+
+  // Gets the specific list for each dropdown, according to FK
+  getOptionsList(fk): any{
+    let result = [];
+    this.dropdownLists.forEach(e => {
+      if (e[0] === fk){
+        result = e[1];
+      }
+    });
+    return result;
+  }
+
+  getData(){
+    for (let key of this.currentModel){
+      if (key.FK){
+        this.dropdownLists = [];
+        switch (key.FK) {
+          case 'SanityMeasurements':
+            this.getMeasures(key.FK);
+            break;
+          case 'Countries':
+            this.getCountries(key.FK);
+            break;
+          default:
+            this.getCountries(key.FK);
+            break;
+        }
+
+      }
+    }
+  }
+
+
+  getCountries(fk){
+    this.service.getCountries().subscribe(countries => {
+      this.dropdown = countries.countries;
+      this.getDropDownList(this.dropdown, fk);
+    });
+  }
+
+  getMeasures(fk){
+    this.service.getMeasures().subscribe(measures => {
+      this.dropdown = measures.measures;
+      this.getDropDownList(this.dropdown, fk);
+    });
   }
 
 }
