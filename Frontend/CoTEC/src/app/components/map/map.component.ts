@@ -33,11 +33,11 @@ export class MapComponent implements AfterViewInit {
       this.initCountriesLayer();
     });
     this.service.getData('countries').subscribe(countries => {
-      this.countriesGet = (countries as any).countries;
+      this.countriesGet = (countries as any).data;
       this.getCountriesList();
     });
     this.service.getData('countryAccumulated').subscribe(countryAccumulated => {
-      this.countryAccumulated = (countryAccumulated as any).acumuladoPais;
+      this.countryAccumulated = (countryAccumulated as any).data;
     });
   }
 
