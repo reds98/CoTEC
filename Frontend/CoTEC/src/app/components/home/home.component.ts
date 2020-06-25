@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {Services} from "../services/services";
+import {Services} from '../services/services';
 
 @Component({
   selector: 'app-home',
@@ -25,16 +25,16 @@ export class HomeComponent implements OnInit {
   constructor(private service: Services) { }
 
   ngOnInit() {
-    this.service.getGlobalAccumulated().subscribe(totalAccumulated => {
-      this.globalAccumulated = totalAccumulated.acumuladoTotal;
+    this.service.getData('accumulated').subscribe(totalAccumulated => {
+      this.globalAccumulated = (totalAccumulated as any).data;
       this.getGlobalData();
     });
-    this.service.getCountryAccumulated().subscribe(countryAccumulated => {
-      this.countryAccumulated = countryAccumulated.acumuladoPais;
+    this.service.getData('countryAccumulated').subscribe(countryAccumulated => {
+      this.countryAccumulated = (countryAccumulated as any).data;
       this.getCountryData();
     });
-    this.service.getCountries().subscribe(countries => {
-      this.countries = countries.countries;
+    this.service.getData('countries').subscribe(countries => {
+      this.countries = (countries as any).data;
       this.getCountriesList();
     });
   }

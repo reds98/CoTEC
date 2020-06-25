@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Services} from '../services/services';
 import {
-  patient,
-  lastContacts
+  patients,
+  contacts
 } from '../hospital-view/models';
 
 @Component({
@@ -14,72 +14,46 @@ export class HospitalViewComponent implements OnInit {
   objectKeys = Object.keys;
   objectValues = Object.values;
 
-  patientData =   [
-    {
-      Id: '12345',
-      Name: 'Juan Santamaria',
-      ICU_Capacity: '589',
-      Capacity: '2458',
-      Manager_name: 'Karen',
-      Phone: '852963741',
-      Country_Name: 'Costa Rica'
-    },
-    {
-      Id: '9875',
-      Name: 'Mexico',
-      ICU_Capacity: '799',
-      Capacity: '6958',
-      Manager_name: 'John',
-      Phone: '85489641',
-      Country_Name: 'Costa Rica'
-    },
-  ];
 
-  currentData: any = this.patientData;
+
+  // Attributes
+  currentData: any;
   columns;
   currentModel;
-  currentTitle = 'Patient';
+  currentTitle = 'Select an option to administrate';
   editStatus = false;
   currentItem = null;
-  public countries;
   public dropdownList: any = [];
   public dropdownLists = [];
   public dropdown;
-  public measures: any;
-  public index = -1;
-  public i = 0;
+  public patientsModel: any = patients;
+  public contactsModel: any = contacts;
+  private data: any;
 
 
   constructor(private service: Services) { }
 
   ngOnInit(): void {
-    this.service.getMeasures().subscribe(measures => {
-      this.measures = measures.measures;
-    });
   }
 
-  // Allows change of admin view models
-  changeModels(type){
+  // Gets data from server and allows changing between models
+  changeModels(type, model){
     this.currentData = [];
-    switch (type) {
-      case 'patient':
-        this.currentModel = patient;
-        this.columns = this.getColumns();
-        this.currentTitle = 'Patient';
-        this.currentData = this.patientData;
-        break;
-      case 'LastContacts':
-        this.currentModel = lastContacts;
-        this.currentTitle = 'Last contacted people';
-        break;
-      default:
-        this.currentModel = patient;
-        this.currentTitle = 'Patient';
-        break;
+    if (!type) {
+      return;
     }
-    this.getData();
+    this.service.getData(type).subscribe(data => {
+      this.data = (data as any).data;
+      this.currentData = this.data;
+      this.currentModel = model;
+      this.columns = this.getColumns();
+      for (const key of this.currentModel){
+        if (key.FK){
+          this.loadData(this.data, key.FK, key.PK);
+        }
+      }
+      });
   }
-
 
   // Deletes item
   onDelete(item): void {
@@ -90,10 +64,7 @@ export class HospitalViewComponent implements OnInit {
         break;
       }
     }
-
-    console.log(PKs);
   }
-
 
   // Updates or edits item
   onUpdate(item): void {
@@ -106,8 +77,6 @@ export class HospitalViewComponent implements OnInit {
     }
     this.currentItem = item;
     this.editStatus = true;
-
-    console.log(PKs);
   }
 
   // Creates item
@@ -122,7 +91,6 @@ export class HospitalViewComponent implements OnInit {
   // Closes editing or creating mode
   onClose(): void {
     this.editStatus = false;
-    console.log(this.currentItem);
   }
 
   // Gets current columns and adds options column
@@ -136,17 +104,21 @@ export class HospitalViewComponent implements OnInit {
   }
 
   // Gets all lists for the dropdown menu options
-  getDropDownList(dropdown, fk){
+  getDropDownList(dropdown, fk, pk?){
     this.dropdownList = [];
     let list;
     if (dropdown){
       dropdown.forEach(e => {
-        this.dropdownList.push(e.Name);
+        if (e.Name){
+          this.dropdownList.push(e.Name);
+        }
+        else{
+          this.dropdownList.push(e.SSN);
+        }
       });
     }
     list = [fk, this.dropdownList];
     this.dropdownLists.push(list);
-    console.log(this.dropdownLists);
   }
 
   // Gets the specific list for each dropdown, according to FK
@@ -160,38 +132,13 @@ export class HospitalViewComponent implements OnInit {
     return result;
   }
 
-  getData(){
-    for (const key of this.currentModel){
-      if (key.FK){
-        this.dropdownLists = [];
-        switch (key.FK) {
-          case 'Patient':
-            this.getPatient(key.FK);
-            break;
-          case 'LastContacts':
-            this.getLastContacts(key.FK);
-            break;
-          default:
-            this.getPatient(key.FK);
-            break;
-        }
-
-      }
-    }
-  }
-
-
-  getPatient(fk){
-    this.service.getCountries().subscribe(countries => {
-      this.dropdown = countries.countries;
-      this.getDropDownList(this.dropdown, fk);
+  // Loads data from server to render dropdowns
+  loadData(data, fk, pk){
+    this.dropdownLists = [];
+    this.service.getData(fk).subscribe(dropDownData => {
+      this.dropdown = (dropDownData as any).data;
+      this.getDropDownList(this.dropdown, fk, pk);
     });
   }
 
-  getLastContacts(fk){
-    this.service.getMeasures().subscribe(measures => {
-      this.dropdown = measures.measures;
-      this.getDropDownList(this.dropdown, fk);
-    });
-  }
 }

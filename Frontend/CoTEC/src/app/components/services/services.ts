@@ -16,24 +16,10 @@ export class Services {
     return this.http.get('/assets/world-map.json');
   }
 
-  // Returns a json object with health measures
-  getMeasures(): Observable<any> {
-    return this.http.get('/assets/measures.json');
+
+  // Returns data from the server
+  getData(type){
+    return this.http.get('/assets/' + type + '.json');
   }
 
-  getCountries(): Observable<any> {
-    return this.http.get('/assets/countries.json');
-  }
-
-  getGlobalAccumulated(): Observable<any>{
-    return this.http.get('/assets/accumulated.json');
-  }
-
-  getCountryAccumulated(): Observable<any>{
-    return this.http.get('/assets/CountryAccumulated.json');
-  }
-
-  getRegions(): Observable<any>{
-    return this.http.get(this.url + 'values');
-  }
 }

@@ -32,12 +32,12 @@ export class MapComponent implements AfterViewInit {
       this.countries = countries;
       this.initCountriesLayer();
     });
-    this.service.getCountries().subscribe(countries => {
-      this.countriesGet = countries.countries;
+    this.service.getData('countries').subscribe(countries => {
+      this.countriesGet = (countries as any).countries;
       this.getCountriesList();
     });
-    this.service.getCountryAccumulated().subscribe(countryAccumulated => {
-      this.countryAccumulated = countryAccumulated.acumuladoPais;
+    this.service.getData('countryAccumulated').subscribe(countryAccumulated => {
+      this.countryAccumulated = (countryAccumulated as any).acumuladoPais;
     });
   }
 

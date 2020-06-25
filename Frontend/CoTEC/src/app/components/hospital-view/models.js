@@ -1,23 +1,23 @@
-export const patient = [
-  {"column":"SSN","PK":1},
+export const patients = [
+  {"column":"SSN","PK":"SSN"},
   {"column":"First_Name"},
   {"column":"Last_Name"},
   {"column":"Hospitalized"},
   {"column":"ICU"},
   {"column":"Age"},
-  {"column":"Residence","FK":"Countries"},
-  {"column":"Country_Birth","FK":"Countries"},
-  {"column":"Hospital_Id","FK":"Hospitals"},
-  {"column":"Status","FK":"Patient_Status"}
+  {"column":"Residence","FK":"countries"},
+  {"column":"Country_Birth","FK":"countries"},
+  {"column":"Hospital_Id","FK":"hospitals"},
+  {"column":"Status","FK":"status"}
 ];
 
 
-export const lastContacts = [
-  {"column":"SSN","PK":1},
+export const contacts = [
+  {"column":"SSN","PK":"SSN"},
   {"column":"First_Name"},
   {"column":"Last_Name"},
   {"column":"Adress"},
   {"column":"Email"},
   {"column":"Age"},
-  {"column":"Patient_SSN","PK":1, "FK": "Patients"}
+  {"column":"Patient_SSN","PK":"SSN", "FK": "patients"}
 ];

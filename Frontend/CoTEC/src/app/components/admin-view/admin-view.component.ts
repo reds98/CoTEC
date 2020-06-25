@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  country_location,
-  pathology,
-  patient_status,
-  hospital,
-  sanity_measurements,
-  enforced_measurements,
+  countryLocations,
+  pathologies,
+  status,
+  hospitals,
+  measures,
   medication
-} from './models.js';
+} from './models';
 import {Services} from '../services/services';
 
 @Component({
@@ -19,47 +18,8 @@ export class AdminViewComponent implements OnInit {
   objectKeys = Object.keys;
   objectValues = Object.values;
 
-  pathData =   [    {
-    Name: 'covid',
-    Symptoms: 'tos',
-    Description: 'F',
-    Treatment: 'F'
-  },
-    {
-      Name: 'covid',
-      Symptoms: 'tos',
-      Description: 'F',
-      Treatment: 'F'
-    }
-  ];
 
-  regionsData =   [
-    {Name: 'Cartago', Country_Name: 'Costa_Rica'},
-    {Name: 'Alajuela', Country_Name: 'Costa_Rica'}
-  ];
-
-  hospitalData =   [
-    {
-      Id: '12345',
-      Name: 'Juan Santamaria',
-      ICU_Capacity: '589',
-      Capacity: '2458',
-      Manager_name: 'Karen',
-      Phone: '852963741',
-      Country_Name: 'Costa Rica'
-    },
-    {
-      Id: '9875',
-      Name: 'Mexico',
-      ICU_Capacity: '799',
-      Capacity: '6958',
-      Manager_name: 'John',
-      Phone: '85489641',
-      Country_Name: 'Costa Rica'
-    },
-  ];
-
-  currentData: any = this.hospitalData;
+  currentData: any;
   columns;
   currentModel;
   currentTitle = 'Regiones';
@@ -68,62 +28,35 @@ export class AdminViewComponent implements OnInit {
   public dropdownList: any = [];
   public dropdownLists = [];
   public dropdown;
-  public measures: any;
+  public measures: any = measures;
+  public hospitals: any = hospitals;
+  public countryLocations: any = countryLocations;
+  public pathologies: any = pathologies;
+  public status: any = status;
+  public medication: any = medication;
+  private data: any;
 
 
   constructor(private service: Services) { }
 
   ngOnInit(): void {
-    this.service.getMeasures().subscribe(measures => {
-      this.measures = measures.measures;
-    });
   }
 
   // Allows change of admin view models
-  changeModels(type){
+  changeModels(type, model){
     this.currentData = [];
-    switch (type) {
-      case 'country_location':
-        this.currentModel = country_location;
-        this.columns = this.getColumns();
-        this.currentTitle = 'Regions';
-        this.currentData = this.regionsData;
-        break;
-      case 'pathology':
-        this.currentModel = pathology;
-        this.currentTitle = 'Patologies';
-        this.currentData = this.pathData;
-        this.columns = this.getColumns();
-        break;
-      case 'patient_status':
-        this.currentModel = patient_status;
-        this.currentTitle = 'Patient Status';
-        this.columns = this.getColumns();
-        break;
-      case 'hospital':
-        this.currentModel = hospital;
-        this.currentTitle = 'Hospitals';
-        this.currentData = this.hospitalData;
-        this.columns = this.getColumns();
-        break;
-      case 'sanity_measurements':
-        this.currentModel = sanity_measurements;
-        this.currentTitle = 'Sanitary Measurements';
-        break;
-      case 'enforced_measurements':
-        this.currentModel = enforced_measurements;
-        this.currentTitle = 'Country Measurements';
-        break;
-      case 'medication':
-        this.currentModel = medication;
-        this.currentTitle = 'Medication';
-        break;
-      default:
-        this.currentModel = country_location;
-        this.currentTitle = 'Regions';
-        break;
-    }
-    this.getData();
+    console.log(type);
+    this.service.getData(type).subscribe(data => {
+      this.data = (data as any).data;
+      this.currentData = this.data;
+      this.currentModel = model;
+      this.columns = this.getColumns();
+      for (const key of this.currentModel){
+        if (key.FK){
+          this.loadData(this.data, key.FK);
+        }
+      }
+    });
   }
 
 
@@ -187,7 +120,12 @@ export class AdminViewComponent implements OnInit {
     let list;
     if (dropdown){
       dropdown.forEach(e => {
-        this.dropdownList.push(e.Name);
+        if (e.Name){
+          this.dropdownList.push(e.Name);
+        }
+        else{
+          this.dropdownList.push(e.SSN);
+        }
       });
     }
     list = [fk, this.dropdownList];
@@ -205,37 +143,11 @@ export class AdminViewComponent implements OnInit {
     return result;
   }
 
-  getData(){
-    for (const key of this.currentModel){
-      if (key.FK){
-        this.dropdownLists = [];
-        switch (key.FK) {
-          case 'SanityMeasurements':
-            this.getMeasures(key.FK);
-            break;
-          case 'Countries':
-            this.getCountries(key.FK);
-            break;
-          default:
-            this.getCountries(key.FK);
-            break;
-        }
-
-      }
-    }
-  }
-
-
-  getCountries(fk){
-    this.service.getCountries().subscribe(countries => {
-      this.dropdown = countries.countries;
-      this.getDropDownList(this.dropdown, fk);
-    });
-  }
-
-  getMeasures(fk){
-    this.service.getMeasures().subscribe(measures => {
-      this.dropdown = measures.measures;
+  // Loads data from server to render dropdowns
+  loadData(data, fk){
+    this.dropdownLists = [];
+    this.service.getData(fk).subscribe(dropDownData => {
+      this.dropdown = (dropDownData as any).data;
       this.getDropDownList(this.dropdown, fk);
     });
   }

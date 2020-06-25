@@ -28,11 +28,11 @@ export class MeasuresComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.service.getMeasures().subscribe(measures => {
-      this.measures = measures.measures;
+    this.service.getData('measures').subscribe(measures => {
+      this.measures = (measures as any).data;
     });
-    this.service.getCountries().subscribe(countries => {
-      this.countries = countries.countries;
+    this.service.getData('countries').subscribe(countries => {
+      this.countries = (countries as any).data;
       this.getCountriesList();
     });
   }
