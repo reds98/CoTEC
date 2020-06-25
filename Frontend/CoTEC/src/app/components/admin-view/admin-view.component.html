@@ -1,14 +1,14 @@
 <div class="container mt-5" align="center">
-  <button class="switchBtn" (click)="changeModels('country_location')">Regiones</button>
-  <button class="switchBtn" (click)="changeModels('pathology')">Patologías</button>
-  <button class="switchBtn" (click)="changeModels('patient_status')">Estados de pacientes</button>
+  <button class="switchBtn" (click)="changeModels('country_location')">Regions</button>
+  <button class="switchBtn" (click)="changeModels('pathology')">Patologies</button>
+  <button class="switchBtn" (click)="changeModels('patient_status')">Patient Status</button>
   <button class="switchBtn" (click)="changeModels('hospital')">Hospital</button>
-  <button class="switchBtn" (click)="changeModels('sanity_measurements')">Medidas Sanitarias</button>
-  <button class="switchBtn" (click)="changeModels('enforced_measurements')">Medidas por país</button>
-  <button class="switchBtn" (click)="changeModels('medication')">Medicamentos</button>
+  <button class="switchBtn" (click)="changeModels('sanity_measurements')">Sanitary Measurements</button>
+  <button class="switchBtn" (click)="changeModels('enforced_measurements')">Country Measurements</button>
+  <button class="switchBtn" (click)="changeModels('medication')">Medication</button>
 </div>
 <div class="container jumbotron customJumbotron mt-5 mb-5">
-  <h1 align="center" class="N-Primary text--blue mb-5">Administración de {{currentTitle}}</h1>
+  <h1 align="center" class="N-Primary text--blue mb-5">{{currentTitle}} Administration</h1>
 
   <table class="table table-striped">
   <thead>

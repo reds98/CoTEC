@@ -1,1 +1,54 @@
-<p>hospital-view works!</p>
+<div class="container mt-5" align="center">
+  <button class="switchBtn" (click)="changeModels('Patient')">Patient</button>
+  <button class="switchBtn" (click)="changeModels('LastContacts')">Last Contacts</button>
+</div>
+<div class="container jumbotron customJumbotron mt-5 mb-5">
+  <h1 align="center" class="N-Primary text--blue mb-5">{{currentTitle}} Administration</h1>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th *ngFor="let field of columns">{{field}}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of currentData">
+      <td *ngFor="let key of currentModel">{{item[key.column]}}</td>
+      <td>
+        <button class="customBtn" (click)="onDelete(item)"><i class="icon fa fa-trash"></i></button>
+        <button class="customBtn" (click)="onUpdate(item)"><i class="icon fa fa-edit"></i></button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <button class="btn customBtn" (click)="onCreate()"><i class="icon fa fa-plus"></i></button>
+  <br>
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div *ngIf="editStatus">
+          <div *ngFor="let key of currentModel">
+            <input class="form-control customInput" type="text" *ngIf="!key.FK" value="{{currentItem[key.column]}}" placeholder="{{key.column}}"/>
+            <div *ngIf="key.FK">
+              <div class="mb-5">
+                <mat-form-field>
+                  <mat-label>{{key.column}}</mat-label>
+                  <mat-select>
+                    <div *ngFor="let option of getOptionsList(key.FK)">
+                      <mat-option [value]="option">{{option}}</mat-option>
+                    </div>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <button class="customBtn" (click)="onClose()">Finish</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+

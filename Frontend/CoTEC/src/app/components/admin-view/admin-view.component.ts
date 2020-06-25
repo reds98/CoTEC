@@ -8,7 +8,7 @@ import {
   enforced_measurements,
   medication
 } from './models.js';
-import {Services} from "../services/services";
+import {Services} from '../services/services';
 
 @Component({
   selector: 'app-admin-view',
@@ -18,7 +18,6 @@ import {Services} from "../services/services";
 export class AdminViewComponent implements OnInit {
   objectKeys = Object.keys;
   objectValues = Object.values;
-
 
   pathData =   [    {
     Name: 'covid',
@@ -66,13 +65,10 @@ export class AdminViewComponent implements OnInit {
   currentTitle = 'Regiones';
   editStatus = false;
   currentItem = null;
-  public countries;
   public dropdownList: any = [];
   public dropdownLists = [];
   public dropdown;
   public measures: any;
-  public index = -1;
-  public i = 0;
 
 
   constructor(private service: Services) { }
@@ -90,37 +86,37 @@ export class AdminViewComponent implements OnInit {
       case 'country_location':
         this.currentModel = country_location;
         this.columns = this.getColumns();
-        this.currentTitle = 'Regiones';
+        this.currentTitle = 'Regions';
         this.currentData = this.regionsData;
         break;
       case 'pathology':
         this.currentModel = pathology;
-        this.currentTitle = 'Patologias';
+        this.currentTitle = 'Patologies';
         this.currentData = this.pathData;
         this.columns = this.getColumns();
         break;
       case 'patient_status':
         this.currentModel = patient_status;
-        this.currentTitle = 'Estados de pacientes';
+        this.currentTitle = 'Patient Status';
         this.columns = this.getColumns();
         break;
       case 'hospital':
         this.currentModel = hospital;
-        this.currentTitle = 'Centros Hospitalarios';
+        this.currentTitle = 'Hospitals';
         this.currentData = this.hospitalData;
         this.columns = this.getColumns();
         break;
       case 'sanity_measurements':
         this.currentModel = sanity_measurements;
-        this.currentTitle = 'Medidas sanitarias';
+        this.currentTitle = 'Sanitary Measurements';
         break;
       case 'enforced_measurements':
         this.currentModel = enforced_measurements;
-        this.currentTitle = 'Medidas por pais';
+        this.currentTitle = 'Country Measurements';
         break;
       case 'medication':
         this.currentModel = medication;
-        this.currentTitle = 'Medicamentos';
+        this.currentTitle = 'Medication';
         break;
       default:
         this.currentModel = country_location;
@@ -177,7 +173,7 @@ export class AdminViewComponent implements OnInit {
 
   // Gets current columns and adds options column
   getColumns(){
-    let cols: any = [];
+    const cols: any = [];
     for (const i of this.currentModel){
       cols.push(i.column);
     }
@@ -190,13 +186,12 @@ export class AdminViewComponent implements OnInit {
     this.dropdownList = [];
     let list;
     if (dropdown){
-      for (let i = 0; i < dropdown.length; i++){
-        this.dropdownList.push(dropdown[i].Name);
-      }
+      dropdown.forEach(e => {
+        this.dropdownList.push(e.Name);
+      });
     }
     list = [fk, this.dropdownList];
     this.dropdownLists.push(list);
-    console.log(this.dropdownLists);
   }
 
   // Gets the specific list for each dropdown, according to FK
@@ -211,7 +206,7 @@ export class AdminViewComponent implements OnInit {
   }
 
   getData(){
-    for (let key of this.currentModel){
+    for (const key of this.currentModel){
       if (key.FK){
         this.dropdownLists = [];
         switch (key.FK) {

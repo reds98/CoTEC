@@ -8,6 +8,7 @@
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker [startAt]="consultDay"></mat-datepicker>
       </mat-form-field>
+      <br>
       <mat-form-field class="form">
         <mat-label>Seleccione un país</mat-label>
         <mat-select (selectionChange)="getMeasurements()" [(ngModel)]="countrySelected" name="food">

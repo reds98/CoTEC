@@ -67,7 +67,7 @@ export class MeasuresComponent implements OnInit {
           if (this.measures[i].Date == this.consultDay){
             this.todayMeasures = this.measures[i].Description;
           }
-          if (this.measures[i].date == this.nextWeek){
+          if (this.measures[i].Date == this.nextWeek){
             this.nextMeasures = this.measures[i].Description;
           }
         }
