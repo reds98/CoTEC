@@ -14,7 +14,12 @@ export class HospitalViewComponent implements OnInit {
   objectKeys = Object.keys;
   objectValues = Object.values;
 
-
+  emptyField = false;
+  category = '';
+  reportsSelectData: any = [
+    { id: '1', name: 'Patients by status' },
+    { id: '2', name: 'New cases and deaths last week' }
+  ];
 
   // Attributes
   currentData: any;

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {observable, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -22,4 +22,16 @@ export class Services {
     return this.http.get('/assets/' + type + '.json');
   }
 
+  // Selects report to return
+  getReports(type){
+    let observableItem;
+    switch (type) {
+      case 'patientStatus':
+        observableItem = this.getData(type);
+        break;
+      case 'newCasesWeek':
+        observableItem = this.getData(type);
+        break;
+    }
+  }
 }
