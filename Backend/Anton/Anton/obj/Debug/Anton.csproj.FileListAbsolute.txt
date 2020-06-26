@@ -97,3 +97,6 @@ C:\Users\sahid\Documents\CoTEC\Backend\Anton\Anton\bin\EntityFramework.dll
 C:\Users\sahid\Documents\CoTEC\Backend\Anton\Anton\bin\EntityFramework.SqlServer.dll
 C:\Users\sahid\Documents\CoTEC\Backend\Anton\Anton\bin\EntityFramework.xml
 C:\Users\sahid\Documents\CoTEC\Backend\Anton\Anton\bin\EntityFramework.SqlServer.xml
+C:\Users\sahid\Documents\CoTEC\Backend\Anton\Anton\bin\System.Web.Cors.dll
+C:\Users\sahid\Documents\CoTEC\Backend\Anton\Anton\bin\System.Web.Http.Cors.dll
+C:\Users\sahid\Documents\CoTEC\Backend\Anton\Anton\bin\System.Web.Http.Cors.xml
