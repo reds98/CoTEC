@@ -122,7 +122,7 @@ CREATE TABLE Contacted_Person (
 
 
 CREATE TABLE Events (
-    Id int NOT NULL PRIMARY KEY,
+    Id int IDENTITY(1,1) NOT NULL PRIMARY KEY,
     Event varchar(255),
     Date varchar(255),
     Country_Name varchar(255) FOREIGN KEY REFERENCES Countries(Name)
