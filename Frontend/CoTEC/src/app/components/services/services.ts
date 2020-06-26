@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {observable, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,24 +17,21 @@ export class Services {
   }
 
 
-  // Returns a json object with health measures
-  getMeasures(): Observable<any> {
-    return this.http.get('/assets/measures.json');
+  // Returns data from the server
+  getData(type){
+    return this.http.get('/assets/' + type + '.json');
   }
 
-  getCountries(): Observable<any> {
-    return this.http.get('/assets/countries.json');
-  }
-
-  getGlobalAccumulated(): Observable<any>{
-    return this.http.get('/assets/accumulated.json');
-  }
-
-  getCountryAccumulated(): Observable<any>{
-    return this.http.get('/assets/CountryAccumulated.json');
-  }
-
-  getRegions(): Observable<any>{
-    return this.http.get(this.url + 'values');
+  // Selects report to return
+  getReports(type){
+    let observableItem;
+    switch (type) {
+      case 'patientStatus':
+        observableItem = this.getData(type);
+        break;
+      case 'newCasesWeek':
+        observableItem = this.getData(type);
+        break;
+    }
   }
 }

@@ -1,0 +1,22 @@
+{
+  "data": [
+    {
+      "SSN": "89564",
+      "First_Name": "Juan",
+      "Last_Name": "Solano",
+      "Adress": "Cartago",
+      "Email": "juan.solano@gmail.com",
+      "Age": 24,
+      "Patient_SSN": "123456"
+    },
+    {
+      "SSN": "79364",
+      "First_Name": "Jorge",
+      "Last_Name": "Mata",
+      "Adress": "Alajuela",
+      "Email": "jorgetemata@gmail.com",
+      "Age": 24,
+      "Patient_SSN": "123457"
+    }
+  ]
+}

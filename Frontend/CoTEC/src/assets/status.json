@@ -1,0 +1,17 @@
+{
+  "data": [
+    {
+      "Name": "Dead"
+    },
+    {
+      "Name": "Recovered"
+    },
+    {
+      "Name": "Infected"
+    },
+    {
+      "Name": "Active"
+    }
+
+  ]
+}

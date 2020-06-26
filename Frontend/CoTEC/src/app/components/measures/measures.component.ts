@@ -28,11 +28,11 @@ export class MeasuresComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.service.getMeasures().subscribe(measures => {
-      this.measures = measures.measures;
+    this.service.getData('measures').subscribe(measures => {
+      this.measures = (measures as any).data;
     });
-    this.service.getCountries().subscribe(countries => {
-      this.countries = countries.countries;
+    this.service.getData('countries').subscribe(countries => {
+      this.countries = (countries as any).data;
       this.getCountriesList();
     });
   }
@@ -63,12 +63,12 @@ export class MeasuresComponent implements OnInit {
     const country = this.countrySelected;
     if (this.measures && this.countries){
       for (let i = 0; i < this.measures.length; i++){
-        if (this.measures[i].country == country){
-          if (this.measures[i].date == this.consultDay){
-            this.todayMeasures = this.measures[i].description;
+        if (this.measures[i].Country == country){
+          if (this.measures[i].Date == this.consultDay){
+            this.todayMeasures = this.measures[i].Description;
           }
-          if (this.measures[i].date == this.nextWeek){
-            this.nextMeasures = this.measures[i].description;
+          if (this.measures[i].Date == this.nextWeek){
+            this.nextMeasures = this.measures[i].Description;
           }
         }
       }

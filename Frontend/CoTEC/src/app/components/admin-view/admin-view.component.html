@@ -1,14 +1,14 @@
 <div class="container mt-5" align="center">
-  <button class="switchBtn" (click)="changeModels('country_location')">Regiones</button>
-  <button class="switchBtn" (click)="changeModels('pathology')">Patologías</button>
-  <button class="switchBtn" (click)="changeModels('patient_status')">Estados de pacientes</button>
-  <button class="switchBtn" (click)="changeModels('hospital')">Hospital</button>
-  <button class="switchBtn" (click)="changeModels('sanity_measurements')">Medidas Sanitarias</button>
-  <button class="switchBtn" (click)="changeModels('enforced_measurements')">Medidas por país</button>
-  <button class="switchBtn" (click)="changeModels('medication')">Medicamentos</button>
+  <button class="switchBtn" (click)="changeModels('countryLocations', countryLocations)">Regions</button>
+  <button class="switchBtn" (click)="changeModels('pathologies', pathologies)">Patologies</button>
+  <button class="switchBtn" (click)="changeModels('status', status)">Patient Status</button>
+  <button class="switchBtn" (click)="changeModels('hospitals', hospitals)">Hospital</button>
+  <button class="switchBtn" (click)="changeModels('measures', measures)">Sanitary Measurements</button>
+  <button class="switchBtn" (click)="changeModels('measures', measures)">Country Measurements</button>
+  <button class="switchBtn" (click)="changeModels('medication', medication)">Medication</button>
 </div>
 <div class="container jumbotron customJumbotron mt-5 mb-5">
-  <h1 align="center" class="N-Primary text--blue mb-5">Administración de {{currentTitle}}</h1>
+  <h1 align="center" class="N-Primary text--blue mb-5">{{currentTitle}} Administration</h1>
 
   <table class="table table-striped">
   <thead>
@@ -35,12 +35,18 @@
       <div *ngIf="editStatus">
         <div *ngFor="let key of currentModel">
           <input class="form-control customInput" type="text" *ngIf="!key.FK" value="{{currentItem[key.column]}}" placeholder="{{key.column}}"/>
-          <mat-form-field *ngIf="key.FK">
-            <mat-label>{{key.column}}</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let country of countriesList" [value]="country">{{country}}</mat-option>
-            </mat-select>
-          </mat-form-field>
+          <div *ngIf="key.FK">
+            <div class="mb-5">
+              <mat-form-field>
+                <mat-label>{{key.column}}</mat-label>
+                <mat-select>
+                  <div *ngFor="let option of getOptionsList(key.FK)">
+                    <mat-option [value]="option">{{option}}</mat-option>
+                  </div>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
         </div>
         <button class="customBtn" (click)="onClose()">Finish</button>
       </div>

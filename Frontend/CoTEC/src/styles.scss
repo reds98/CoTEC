@@ -139,6 +139,10 @@ $CoTEC-theme: mat-light-theme($CoTEC-primary, $CoTEC-accent, $CoTEC-warn);
   color: $--paleGray;
 }
 
+.text--navy-1 {
+  color: $--color-navy-1;
+}
+
 .text--center {
   text-align: center;
 }
@@ -172,4 +176,63 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background: $--color-navy-5 !important;
+}
+
+
+
+.customJumbotron{
+  background: white;
+  border-radius: 20px;
+  border: white solid 10px;
+  width: border-box;
+  height: auto;
+}
+
+.customBtn{
+  border-radius: 5px;
+  margin-right: 3px;
+  background: $--stat-blue;
+  color: white;
+  border: none;
+  outline: none;
+}
+
+.customBtn:hover{
+  border-radius: 5px;
+  margin-right: 3px;
+  background: $--stat-green;
+  color: white;
+  border: none;
+  outline: none;
+}
+
+.customBtn:focus {
+  outline: none;
+  border: 0;
+}
+
+.switchBtn{
+  font-size: 20px;
+  background: $--stat-green;
+  border: none;
+  outline: none;
+  height: 50px;
+  border-radius: 10px;
+  margin-right: 5px;
+}
+
+.switchBtn:focus {
+  outline: none;
+  border: 0;
+}
+
+.icon{
+  color: white;
+}
+
+.customInput{
+  width: 35%;
+  height: 35px;
+  margin-bottom: 20px;
+  text-align: justify;
 }
