@@ -7,40 +7,37 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Anton.Models
+using System;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+
+public partial class CoTecDBEntities : DbContext
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Infrastructure;
-    
-    public partial class CoTecDBEntities : DbContext
+    public CoTecDBEntities()
+        : base("name=CoTecDBEntities")
     {
-        public CoTecDBEntities()
-            : base("name=CoTecDBEntities")
-        {
-        }
-    
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            throw new UnintentionalCodeFirstException();
-        }
-    
-        public virtual DbSet<Contacted_Person> Contacted_Person { get; set; }
-        public virtual DbSet<Continents> Continents { get; set; }
-        public virtual DbSet<Countries> Countries { get; set; }
-        public virtual DbSet<CountryLocations> CountryLocations { get; set; }
-        public virtual DbSet<EnforcedMeasurements> EnforcedMeasurements { get; set; }
-        public virtual DbSet<Events> Events { get; set; }
-        public virtual DbSet<Hospital_ICUs> Hospital_ICUs { get; set; }
-        public virtual DbSet<Hospital_Medications> Hospital_Medications { get; set; }
-        public virtual DbSet<Hospital_Patients> Hospital_Patients { get; set; }
-        public virtual DbSet<Hospitals> Hospitals { get; set; }
-        public virtual DbSet<Medications> Medications { get; set; }
-        public virtual DbSet<Pathologies> Pathologies { get; set; }
-        public virtual DbSet<Patient_Medications> Patient_Medications { get; set; }
-        public virtual DbSet<Patient_Pathologies> Patient_Pathologies { get; set; }
-        public virtual DbSet<Patient_Status> Patient_Status { get; set; }
-        public virtual DbSet<Patients> Patients { get; set; }
-        public virtual DbSet<SanityMeasurements> SanityMeasurements { get; set; }
     }
+
+    protected override void OnModelCreating(DbModelBuilder modelBuilder)
+    {
+        throw new UnintentionalCodeFirstException();
+    }
+
+    public virtual DbSet<Contacted_Person> Contacted_Person { get; set; }
+    public virtual DbSet<Continents> Continents { get; set; }
+    public virtual DbSet<Countries> Countries { get; set; }
+    public virtual DbSet<CountryLocations> CountryLocations { get; set; }
+    public virtual DbSet<EnforcedMeasurements> EnforcedMeasurements { get; set; }
+    public virtual DbSet<Events> Events { get; set; }
+    public virtual DbSet<Hospital_ICUs> Hospital_ICUs { get; set; }
+    public virtual DbSet<Hospital_Medications> Hospital_Medications { get; set; }
+    public virtual DbSet<Hospital_Patients> Hospital_Patients { get; set; }
+    public virtual DbSet<Hospitals> Hospitals { get; set; }
+    public virtual DbSet<Medications> Medications { get; set; }
+    public virtual DbSet<Pathologies> Pathologies { get; set; }
+    public virtual DbSet<Patient_Medications> Patient_Medications { get; set; }
+    public virtual DbSet<Patient_Pathologies> Patient_Pathologies { get; set; }
+    public virtual DbSet<Patient_Status> Patient_Status { get; set; }
+    public virtual DbSet<Patients> Patients { get; set; }
+    public virtual DbSet<SanityMeasurements> SanityMeasurements { get; set; }
 }

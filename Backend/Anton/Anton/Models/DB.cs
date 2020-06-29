@@ -7,3 +7,272 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+
+public partial class Contacted_Person
+{
+    public int Id { get; set; }
+    public string SSN { get; set; }
+    public string Patient_SSN { get; set; }
+    public string First_Name { get; set; }
+    public string Last_Name { get; set; }
+    public string Adress { get; set; }
+    public string Email { get; set; }
+    public Nullable<int> Age { get; set; }
+
+    public virtual Patients Patients { get; set; }
+}
+
+public partial class Continents
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public Continents()
+    {
+        this.Countries = new HashSet<Countries>();
+    }
+
+    public string Name { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Countries> Countries { get; set; }
+}
+
+public partial class Countries
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public Countries()
+    {
+        this.CountryLocations = new HashSet<CountryLocations>();
+        this.EnforcedMeasurements = new HashSet<EnforcedMeasurements>();
+        this.Events = new HashSet<Events>();
+        this.Hospitals = new HashSet<Hospitals>();
+        this.Patients = new HashSet<Patients>();
+        this.Patients1 = new HashSet<Patients>();
+    }
+
+    public string Name { get; set; }
+    public string Continent_Name { get; set; }
+
+    public virtual Continents Continents { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<CountryLocations> CountryLocations { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<EnforcedMeasurements> EnforcedMeasurements { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Events> Events { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Hospitals> Hospitals { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Patients> Patients { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Patients> Patients1 { get; set; }
+}
+
+public partial class CountryLocations
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string Country_Name { get; set; }
+
+    public virtual Countries Countries { get; set; }
+}
+
+public partial class EnforcedMeasurements
+{
+    public int Id { get; set; }
+    public string Country_Name { get; set; }
+    public Nullable<int> Measurement_Id { get; set; }
+    public string Start_Date { get; set; }
+    public string End_Date { get; set; }
+
+    public virtual Countries Countries { get; set; }
+    public virtual SanityMeasurements SanityMeasurements { get; set; }
+}
+
+public partial class Events
+{
+    public int Id { get; set; }
+    public string Event { get; set; }
+    public string Date { get; set; }
+    public string Country_Name { get; set; }
+
+    public virtual Countries Countries { get; set; }
+}
+
+public partial class Hospital_ICUs
+{
+    public int Id { get; set; }
+    public string ICU_Patient { get; set; }
+    public Nullable<int> Hospital_Id { get; set; }
+
+    public virtual Hospitals Hospitals { get; set; }
+}
+
+public partial class Hospital_Medications
+{
+    public int Id { get; set; }
+    public Nullable<int> Hospital_Id { get; set; }
+    public Nullable<int> Medication_Id { get; set; }
+
+    public virtual Hospitals Hospitals { get; set; }
+    public virtual Medications Medications { get; set; }
+}
+
+public partial class Hospital_Patients
+{
+    public int Id { get; set; }
+    public string Patient { get; set; }
+    public Nullable<int> Hospital_Id { get; set; }
+
+    public virtual Hospitals Hospitals { get; set; }
+}
+
+public partial class Hospitals
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public Hospitals()
+    {
+        this.Hospital_ICUs = new HashSet<Hospital_ICUs>();
+        this.Hospital_Medications = new HashSet<Hospital_Medications>();
+        this.Hospital_Patients = new HashSet<Hospital_Patients>();
+        this.Patients = new HashSet<Patients>();
+    }
+
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public Nullable<int> ICU_Capacity { get; set; }
+    public Nullable<int> Capacity { get; set; }
+    public string Manager_Name { get; set; }
+    public string Phone { get; set; }
+    public string Country_Name { get; set; }
+
+    public virtual Countries Countries { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Hospital_ICUs> Hospital_ICUs { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Hospital_Medications> Hospital_Medications { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Hospital_Patients> Hospital_Patients { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Patients> Patients { get; set; }
+}
+
+public partial class Medications
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public Medications()
+    {
+        this.Hospital_Medications = new HashSet<Hospital_Medications>();
+        this.Patient_Medications = new HashSet<Patient_Medications>();
+    }
+
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string Provider { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Hospital_Medications> Hospital_Medications { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Patient_Medications> Patient_Medications { get; set; }
+}
+
+public partial class Pathologies
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public Pathologies()
+    {
+        this.Patient_Pathologies = new HashSet<Patient_Pathologies>();
+    }
+
+    public string Name { get; set; }
+    public string Symptoms { get; set; }
+    public string Description { get; set; }
+    public string Treatment { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Patient_Pathologies> Patient_Pathologies { get; set; }
+}
+
+public partial class Patient_Medications
+{
+    public int Id { get; set; }
+    public string Patient_SSN { get; set; }
+    public Nullable<int> Medication_Id { get; set; }
+
+    public virtual Medications Medications { get; set; }
+    public virtual Patients Patients { get; set; }
+}
+
+public partial class Patient_Pathologies
+{
+    public int Id { get; set; }
+    public string Patient_SSN { get; set; }
+    public string Pathology_Name { get; set; }
+
+    public virtual Pathologies Pathologies { get; set; }
+    public virtual Patients Patients { get; set; }
+}
+
+public partial class Patient_Status
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public Patient_Status()
+    {
+        this.Patients = new HashSet<Patients>();
+    }
+
+    public string Name { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Patients> Patients { get; set; }
+}
+
+public partial class Patients
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public Patients()
+    {
+        this.Contacted_Person = new HashSet<Contacted_Person>();
+        this.Patient_Medications = new HashSet<Patient_Medications>();
+        this.Patient_Pathologies = new HashSet<Patient_Pathologies>();
+    }
+
+    public string SSN { get; set; }
+    public string First_Name { get; set; }
+    public string Last_Name { get; set; }
+    public string Hospitalized { get; set; }
+    public string ICU { get; set; }
+    public Nullable<int> Age { get; set; }
+    public string Residence { get; set; }
+    public string Country_Birth { get; set; }
+    public Nullable<int> Hospital_Id { get; set; }
+    public string Status { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Contacted_Person> Contacted_Person { get; set; }
+    public virtual Countries Countries { get; set; }
+    public virtual Countries Countries1 { get; set; }
+    public virtual Hospitals Hospitals { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Patient_Medications> Patient_Medications { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Patient_Pathologies> Patient_Pathologies { get; set; }
+    public virtual Patient_Status Patient_Status { get; set; }
+}
+
+public partial class SanityMeasurements
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public SanityMeasurements()
+    {
+        this.EnforcedMeasurements = new HashSet<EnforcedMeasurements>();
+    }
+
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string Description { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<EnforcedMeasurements> EnforcedMeasurements { get; set; }
+}
