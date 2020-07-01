@@ -292,47 +292,47 @@ VALUES
 (3,'Hospital del norte',10,200,'Pepito','22224444'),
 (4,'Hospital del este',5,150,'Pepito','33332222');
 
-INSERT INTO Hospital_ICUs 
+INSERT INTO Hospital_ICUs (ICU_Patient,Hospital_Id)
 VALUES
 ('225225',1),
 ('334334',3),
 ('554554',3);
 
-INSERT INTO Hospital_Patients 
+INSERT INTO Hospital_Patients (Patient,Hospital_Id)
 VALUES
 ('225225',1),
 ('334334',4),
 ('554554',4);
 
-INSERT INTO Medications 
+INSERT INTO Medications (Id,Name,Provider)
 VALUES
 (22,'paracetamol','pulpería'),
 (23,'sopita','pulpería'),
 (24,'hierba','farmacia');
 
-INSERT INTO Hospital_Medications 
+INSERT INTO Hospital_Medications (Hospital_Id,Medication_Id)
 VALUES
 (1,22),
 (3,23),
 (4,24);
 
-INSERT INTO Pathologies 
+INSERT INTO Pathologies (Name,Symptoms,Description,Treatment)
 VALUES
 ('Ebola','hemorragia','solo en africa','no hay'),
 ('Covid','tos','mundial','respirador'),
 ('Denge','fiebre','mosquitos','antiinflamatorios');
 
-INSERT INTO Patient_Status 
+INSERT INTO Patient_Status (Name)
 VALUES
 ('Muerto'),
 ('Activo'),
 ('Recuperado');
 
-INSERT INTO Patients 
+INSERT INTO Patients (SSN,First_Name,Last_Name,Hospitalized,ICU,Age,Residence,Country_Birth,Hospital_Id,Status)
 VALUES
-(100000,'pepito1','papu',1,1,25,'Costa Rica','Costa Rica',1,'Activo'),
-(100001,'pepito2','papu',0,0,35,'Costa Rica','Spain',1,'Recuperado'),
-(100002,'pepito3','papu',0,0,45,'Spain','Costa Rica',1,'Activo');
+(100000,'pepito1','tortilla1',1,1,25,'Costa Rica','Costa Rica',1,'Activo'),
+(100001,'pepito2','tortilla2',0,0,35,'Costa Rica','Spain',1,'Recuperado'),
+(100002,'pepito3','tortilla3',0,0,45,'Spain','Costa Rica',1,'Activo');
 
 INSERT INTO Patients VALUES (491804,'pepito10','tortilla16',1,1,36,'Spain','United States',1,'Muerto');
 INSERT INTO Patients VALUES (234815,'pepito8','tortilla1',1,1,28,'Spain','United States',1,'Recuperado');
@@ -1336,25 +1336,26 @@ INSERT INTO Patients VALUES (774435,'pepito14','tortilla17',1,1,90,'United State
 INSERT INTO Patients VALUES (338705,'pepito19','tortilla17',1,1,85,'Brazil','Brazil',3,'Recuperado');
 
 
-INSERT INTO Patient_Pathologies 
+INSERT INTO Patient_Pathologies (Patient_SSN,Pathology_Name)
 VALUES
 (100001,'Covid'),
 (100002,'Denge'),
 (100000,'Covid');
 
-INSERT INTO Patient_Medications 
+INSERT INTO Patient_Medications (Patient_SSN,Medication_Id)
 VALUES
 (100001,22),
 (100002,22),
 (100000,24);
 
-INSERT INTO Contacted_Person 
+INSERT INTO Contacted_Person (SSN,Patient_SSN,First_Name,Last_Name,Address,Email,Age)
 VALUES
-(100003,100001,'colateral1','papu','mi casa','tortilla@gmail.com',20),
-(100004,100001,'colateral1','papu','mi casa x2','tortillita@gmail.com',21),
-(100005,100000,'colateral1','papu','mi casa x3','tortillon@gmail.com',22);
+(100003,100001,'colateral1','papita1','mi casa','tortilla@gmail.com',20),
+(100004,100001,'colateral2','papita2','mi casa x2','tortillita@gmail.com',21),
+(100005,100000,'colateral3','papita3','mi casa x3','tortillon@gmail.com',22);
 
-INSERT INTO Patients VALUES 
+INSERT INTO Events (Status_Event,Date,Patient_SSN)
+VALUES 
 ('Activo','2020-07-14',419928),
 ('Activo','2020-06-18',506482),
 ('Activo','2020-06-24',541294),
