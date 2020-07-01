@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Anton {
+namespace Anton.Reports {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -41,7 +41,7 @@ namespace Anton {
         
         public override string FullResourceName {
             get {
-                return "Anton.WeekCasesAndDeaths.rpt";
+                return "Anton.Reports.WeekCasesAndDeaths.rpt";
             }
             set {
                 // Do nothing
