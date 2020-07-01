@@ -10,8 +10,6 @@ namespace Anton
     {
         public static void Register(HttpConfiguration config)
         {
-            // Configuración y servicios de API web
-
             // Rutas de API web
             config.MapHttpAttributeRoutes();
             var cors = new EnableCorsAttribute("*", "*", "*");

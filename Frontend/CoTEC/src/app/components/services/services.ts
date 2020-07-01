@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {observable, Observable} from 'rxjs';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class Services {
-  private url = 'http://localhost:53122/api/';
+  private url = 'http://localhost:55789/api/';
 
   constructor(private http: HttpClient) { }
 
@@ -25,13 +25,26 @@ export class Services {
   // Selects report to return
   getReports(type){
     let observableItem;
+    let reportUrl;
     switch (type) {
       case 'patientStatus':
-        observableItem = this.getData(type);
+        reportUrl = 'Reports/patientStatus';
+        observableItem = this.getHttp(reportUrl);
         break;
       case 'newCasesWeek':
-        observableItem = this.getData(type);
+        reportUrl = 'Reports/newCasesWeek';
+        observableItem = this.getHttp(reportUrl);
         break;
     }
+  }
+
+  getHttp(type){
+    const responseType = 'arraybuffer';
+    const mediaType = 'application/pdf';
+    return this.http.get(this.url + type, { responseType }).subscribe(content => {
+      const blob = new Blob([content as BlobPart], {type: mediaType});
+      const fileURL = URL.createObjectURL(blob);
+      window.open(fileURL);
+    });
   }
 }

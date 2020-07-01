@@ -54,7 +54,7 @@
         <h5>Select a report type to generate report</h5>
         <div *ngIf="emptyField" style="color:red" >Please select a type</div>
         <fieldset class="form-group">
-          <select class="custom-select d-block w-100" id="category" [(ngModel)]="category"  name="category" required placeholder="d.ff">
+          <select (change)="loadReport()" class="custom-select d-block w-100" id="category" [(ngModel)]="category"  name="category" required placeholder="d.ff">
             <option hidden value="" disabled selected>Select a category:</option>
             <option *ngFor="let item of reportsSelectData" [value]="item.id">{{item.name}}</option>
           </select>

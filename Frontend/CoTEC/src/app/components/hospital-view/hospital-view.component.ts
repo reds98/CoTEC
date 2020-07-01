@@ -17,8 +17,8 @@ export class HospitalViewComponent implements OnInit {
   emptyField = false;
   category = '';
   reportsSelectData: any = [
-    { id: '1', name: 'Patients by status' },
-    { id: '2', name: 'New cases and deaths last week' }
+    { id: 'patientStatus', name: 'Patients by status' },
+    { id: 'newCasesWeek', name: 'New cases and deaths last week' }
   ];
 
   // Attributes
@@ -146,4 +146,7 @@ export class HospitalViewComponent implements OnInit {
     });
   }
 
+  loadReport(){
+    this.service.getReports(this.category);
+  }
 }
