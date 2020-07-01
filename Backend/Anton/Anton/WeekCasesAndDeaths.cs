@@ -16,14 +16,14 @@ namespace Anton {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class CrystalReport1 : ReportClass {
+    public class WeekCasesAndDeaths : ReportClass {
         
-        public CrystalReport1() {
+        public WeekCasesAndDeaths() {
         }
         
         public override string ResourceName {
             get {
-                return "CrystalReport1.rpt";
+                return "WeekCasesAndDeaths.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace Anton {
         
         public override string FullResourceName {
             get {
-                return "Anton.CrystalReport1.rpt";
+                return "Anton.WeekCasesAndDeaths.rpt";
             }
             set {
                 // Do nothing
@@ -90,9 +90,9 @@ namespace Anton {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedCrystalReport1 : Component, ICachedReport {
+    public class CachedWeekCasesAndDeaths : Component, ICachedReport {
         
-        public CachedCrystalReport1() {
+        public CachedWeekCasesAndDeaths() {
         }
         
         [Browsable(false)]
@@ -129,7 +129,7 @@ namespace Anton {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            CrystalReport1 rpt = new CrystalReport1();
+            WeekCasesAndDeaths rpt = new WeekCasesAndDeaths();
             rpt.Site = this.Site;
             return rpt;
         }
