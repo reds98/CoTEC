@@ -29,24 +29,28 @@ namespace Anton.Controllers
         // GET: api/Acumulado
         public Acumulado Get()
         {
+
+            var lects = db.Database.SqlQuery<Patients>("get");
+
+
             var eventos = from events in db.Events select events;
             foreach (Events evento in eventos)
             {
                 this.ingresarArr(evento);
 
-                if (evento.Event == "nuevo activo")
+                if (evento.Status_Event == "nuevo activo")
                 {
                     activos=activos+1;
                     //System.Diagnostics.Debug.WriteLine("ES UN ACTIVO");
 
                 }
-                else if (evento.Event == "nuevo recuperado")
+                else if (evento.Status_Event == "nuevo recuperado")
                 {
                     recuperados = recuperados + 1;
                     activos = activos - 1;
                     //System.Diagnostics.Debug.WriteLine("ES UN RECUPERADO");
                 }
-                else if (evento.Event == "nuevo muerto")
+                else if (evento.Status_Event == "nuevo muerto")
                 {
                     muertos = muertos + 1;
                     activos = activos - 1;
@@ -58,15 +62,15 @@ namespace Anton.Controllers
             }
 
             contagiados = activos + recuperados + muertos ;
-            acumulado.activos = activos;
-            acumulado.muertos = muertos;
-            acumulado.recuperados = recuperados;
-            acumulado.contagiados = contagiados;
-            acumulado.contagiados_dia =null;
-            acumulado.activos_dia = activosArr.ToArray();
-            acumulado.recuperados_dia = recuperadosArr.ToArray();
-            acumulado.muertos_dia = muertosArr.ToArray();
-            acumulado.Fechas = FechasArr.ToArray();
+            acumulado.active = activos;
+            acumulado.dead = muertos;
+            acumulado.recovered = recuperados;
+            acumulado.infected = contagiados;
+            acumulado.infected_day =null;
+            acumulado.active_day = activosArr.ToArray();
+            acumulado.recovered_day = recuperadosArr.ToArray();
+            acumulado.dead_day = muertosArr.ToArray();
+            acumulado.Dates = FechasArr.ToArray();
             System.Diagnostics.Debug.WriteLine(string.Format("ACTIVOS: {0} MUERTOS: {1} RECUPERADOS:{2} CONTAGIADOS:{3} "
                 , activos,muertos,recuperados,contagiados));
             System.Diagnostics.Debug.WriteLine(string.Format("ACTIVOSARR: {0} FECHASARR: {1} "
@@ -78,54 +82,6 @@ namespace Anton.Controllers
         // GET: api/Acumulado/5
         public Acumulado Get(string id)
         {
-            var eventos = from events in db.Events select events;
-            System.Diagnostics.Debug.WriteLine("ESTE ES EL ID"+id);
-            foreach (Events evento in eventos)
-            {
-               
-                System.Diagnostics.Debug.WriteLine("DENTRO DEL FOR" + evento.Country_Name);
-                if (evento.Country_Name == id)
-                {
-                    this.ingresarArr(evento);
-
-                    if (evento.Event == "nuevo activo")
-                    {
-                        activos = activos + 1;
-                        //System.Diagnostics.Debug.WriteLine("ES UN ACTIVO");
-
-                    }
-                    else if (evento.Event == "nuevo recuperado")
-                    {
-                        recuperados = recuperados + 1;
-                        activos = activos - 1;
-                        //System.Diagnostics.Debug.WriteLine("ES UN RECUPERADO");
-                    }
-                    else if (evento.Event == "nuevo muerto")
-                    {
-                        muertos = muertos + 1;
-                        activos = activos - 1;
-                        //System.Diagnostics.Debug.WriteLine("ES UN MUERTO");
-                    }
-
-                }
-                else {
-                    System.Diagnostics.Debug.WriteLine("POS NO ES IGUAL");
-
-                }
-
-
-            }
-
-            contagiados = activos + recuperados + muertos;
-            acumulado.activos = activos;
-            acumulado.muertos = muertos;
-            acumulado.recuperados = recuperados;
-            acumulado.contagiados = contagiados;
-            acumulado.contagiados_dia = null;
-            acumulado.activos_dia = activosArr.ToArray();
-            acumulado.recuperados_dia = recuperadosArr.ToArray();
-            acumulado.muertos_dia = muertosArr.ToArray();
-            acumulado.Fechas = FechasArr.ToArray();
             return acumulado;
         }
 
@@ -146,37 +102,37 @@ namespace Anton.Controllers
         }
 
         public void ingresarArr(Events evento) {
-            if (evento.Event == "nuevo activo") {
+            if (evento.Status_Event == "nuevo activo") {
 
 
                 System.Diagnostics.Debug.WriteLine("SI ES HORA DE INSERTAR ACTIVO");
-                if (!FechasArr.Contains(evento.Date))
+                if (!FechasArr.Contains(evento.Date.ToString()))
                 {
-                    FechasArr.Add(evento.Date);
+                    FechasArr.Add(evento.Date.ToString());
                     activosArr.Add(1);
                     muertosArr.Add(0);
                     recuperadosArr.Add(0);
                 }
                 else {
-                    int posicion = FechasArr.IndexOf(evento.Date);
+                    int posicion = FechasArr.IndexOf(evento.Date.ToString());
                     int numeroActivos = activosArr[posicion];
                     numeroActivos = numeroActivos + 1;
                     activosArr[posicion] = numeroActivos;
                 }
             }
-            else if(evento.Event=="nuevo muerto"){
+            else if(evento.Status_Event =="nuevo muerto"){
 
                 System.Diagnostics.Debug.WriteLine("************MUERTO**************");
-                if (!FechasArr.Contains(evento.Date))
+                if (!FechasArr.Contains(evento.Date.ToString()))
                 {
-                    FechasArr.Add(evento.Date);
+                    FechasArr.Add(evento.Date.ToString());
                     activosArr.Add(-1);
                     muertosArr.Add(1);
                     recuperadosArr.Add(0);
                 }
                 else
                 {
-                    int posicion = FechasArr.IndexOf(evento.Date);
+                    int posicion = FechasArr.IndexOf(evento.Date.ToString());
                     int numeroActivos = activosArr[posicion];
                     numeroActivos = numeroActivos - 1;
                     activosArr[posicion] = numeroActivos;
@@ -187,20 +143,20 @@ namespace Anton.Controllers
                 }
 
             }
-            else if (evento.Event == "nuevo recuperado")
+            else if (evento.Status_Event == "nuevo recuperado")
             {
 
                 System.Diagnostics.Debug.WriteLine("//////////RECUPERADO////////////");
-                if (!FechasArr.Contains(evento.Date))
+                if (!FechasArr.Contains(evento.Date.ToString()))
                 {
-                    FechasArr.Add(evento.Date);
+                    FechasArr.Add(evento.Date.ToString());
                     activosArr.Add(-1);
                     muertosArr.Add(0);
                     recuperadosArr.Add(1);
                 }
                 else
                 {
-                    int posicion = FechasArr.IndexOf(evento.Date);
+                    int posicion = FechasArr.IndexOf(evento.Date.ToString());
                     int numeroActivos = activosArr[posicion];
                     numeroActivos = numeroActivos - 1;
                     activosArr[posicion] = numeroActivos;

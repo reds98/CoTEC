@@ -27,7 +27,7 @@ namespace Anton.Controllers
                 cont.Name = continente.Name;
                 nombres.Add(cont);
 
-                System.Diagnostics.Debug.WriteLine(string.Format("NOMBRE: {0}",continente.Name));
+                System.Diagnostics.Debug.WriteLine(string.Format("NOMBRE: {0}", continente.Name));
             }
             
             return nombres;

@@ -15,7 +15,7 @@ namespace Anton.Models
     public partial class Patient_Medications
     {
         public int Id { get; set; }
-        public string Patient_SSN { get; set; }
+        public Nullable<int> Patient_SSN { get; set; }
         public Nullable<int> Medication_Id { get; set; }
     
         public virtual Medications Medications { get; set; }

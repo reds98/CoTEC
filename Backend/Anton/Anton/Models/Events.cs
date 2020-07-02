@@ -15,10 +15,11 @@ namespace Anton.Models
     public partial class Events
     {
         public int Id { get; set; }
-        public string Event { get; set; }
-        public string Date { get; set; }
-        public string Country_Name { get; set; }
+        public string Status_Event { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
+        public Nullable<int> Patient_SSN { get; set; }
     
-        public virtual Countries Countries { get; set; }
+        public virtual Patients Patients { get; set; }
+        public virtual Patient_Status Patient_Status { get; set; }
     }
 }

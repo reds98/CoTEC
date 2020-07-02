@@ -7,22 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Anton.Models
+namespace Anton
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Contacted_Person
+    public partial class Continent
     {
-        public int Id { get; set; }
-        public Nullable<int> SSN { get; set; }
-        public Nullable<int> Patient_SSN { get; set; }
-        public string First_Name { get; set; }
-        public string Last_Name { get; set; }
-        public string Address { get; set; }
-        public string Email { get; set; }
-        public Nullable<int> Age { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Continent()
+        {
+            this.Countries = new HashSet<Country>();
+        }
     
-        public virtual Patients Patients { get; set; }
+        public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Country> Countries { get; set; }
     }
 }

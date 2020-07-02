@@ -5,6 +5,8 @@ export const patients = [
   {"column":"Hospitalized"},
   {"column":"ICU"},
   {"column":"Age"},
+  {"column":"Medication"},
+  {"column":"Pathology"},
   {"column":"Residence","FK":"countries"},
   {"column":"Country_Birth","FK":"countries"},
   {"column":"Hospital_Id","FK":"hospitals"},

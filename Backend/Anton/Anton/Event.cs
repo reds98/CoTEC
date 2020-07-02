@@ -7,22 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Anton.Models
+namespace Anton
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Contacted_Person
+    public partial class Event
     {
         public int Id { get; set; }
-        public Nullable<int> SSN { get; set; }
+        public string Status_Event { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
         public Nullable<int> Patient_SSN { get; set; }
-        public string First_Name { get; set; }
-        public string Last_Name { get; set; }
-        public string Address { get; set; }
-        public string Email { get; set; }
-        public Nullable<int> Age { get; set; }
     
-        public virtual Patients Patients { get; set; }
+        public virtual Patient Patient { get; set; }
+        public virtual Patient_Status Patient_Status { get; set; }
     }
 }

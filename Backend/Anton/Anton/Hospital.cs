@@ -7,36 +7,38 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Anton.Models
+namespace Anton
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Countries
+    public partial class Hospital
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Countries()
+        public Hospital()
         {
-            this.CountryLocations = new HashSet<CountryLocations>();
-            this.EnforcedMeasurements = new HashSet<EnforcedMeasurements>();
-            this.Hospitals = new HashSet<Hospitals>();
-            this.Patients = new HashSet<Patients>();
-            this.Patients1 = new HashSet<Patients>();
+            this.Hospital_ICUs = new HashSet<Hospital_ICUs>();
+            this.Hospital_Medications = new HashSet<Hospital_Medications>();
+            this.Hospital_Patients = new HashSet<Hospital_Patients>();
+            this.Patients = new HashSet<Patient>();
         }
     
+        public int Id { get; set; }
         public string Name { get; set; }
-        public string Continent_Name { get; set; }
+        public Nullable<int> ICU_Capacity { get; set; }
+        public Nullable<int> Capacity { get; set; }
+        public string Manager_Name { get; set; }
+        public string Phone { get; set; }
+        public string Country_Name { get; set; }
     
-        public virtual Continents Continents { get; set; }
+        public virtual Country Country { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CountryLocations> CountryLocations { get; set; }
+        public virtual ICollection<Hospital_ICUs> Hospital_ICUs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EnforcedMeasurements> EnforcedMeasurements { get; set; }
+        public virtual ICollection<Hospital_Medications> Hospital_Medications { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Hospitals> Hospitals { get; set; }
+        public virtual ICollection<Hospital_Patients> Hospital_Patients { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Patients> Patients { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Patients> Patients1 { get; set; }
+        public virtual ICollection<Patient> Patients { get; set; }
     }
 }

@@ -7,18 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Anton.Models
+namespace Anton
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Patients
+    public partial class Patient
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Patients()
+        public Patient()
         {
             this.Contacted_Person = new HashSet<Contacted_Person>();
-            this.Events = new HashSet<Events>();
+            this.Events = new HashSet<Event>();
             this.Patient_Medications = new HashSet<Patient_Medications>();
             this.Patient_Pathologies = new HashSet<Patient_Pathologies>();
         }
@@ -36,11 +36,11 @@ namespace Anton.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Contacted_Person> Contacted_Person { get; set; }
-        public virtual Countries Countries { get; set; }
-        public virtual Countries Countries1 { get; set; }
+        public virtual Country Country { get; set; }
+        public virtual Country Country1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Events> Events { get; set; }
-        public virtual Hospitals Hospitals { get; set; }
+        public virtual ICollection<Event> Events { get; set; }
+        public virtual Hospital Hospital { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Patient_Medications> Patient_Medications { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

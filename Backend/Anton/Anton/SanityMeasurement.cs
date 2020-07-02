@@ -7,25 +7,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Anton.Models
+namespace Anton
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Patient_Status
+    public partial class SanityMeasurement
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Patient_Status()
+        public SanityMeasurement()
         {
-            this.Events = new HashSet<Events>();
-            this.Patients = new HashSet<Patients>();
+            this.EnforcedMeasurements = new HashSet<EnforcedMeasurement>();
         }
     
+        public int Id { get; set; }
         public string Name { get; set; }
+        public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Events> Events { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Patients> Patients { get; set; }
+        public virtual ICollection<EnforcedMeasurement> EnforcedMeasurements { get; set; }
     }
 }

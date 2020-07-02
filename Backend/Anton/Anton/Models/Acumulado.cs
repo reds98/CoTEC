@@ -7,14 +7,14 @@ namespace Anton.Models
 {
     public class Acumulado
     {
-        public int contagiados { get; set; }
-        public int activos { get; set; }
-        public int recuperados { get; set; }
-        public int muertos { get; set; }
-        public int[] contagiados_dia { get; set; }
-        public int[] activos_dia { get; set; }
-        public int[] recuperados_dia { get; set; }
-        public int[] muertos_dia { get; set; }
-        public string[] Fechas { get; set; }
+        public int infected { get; set; }
+        public int active { get; set; }
+        public int recovered { get; set; }
+        public int dead { get; set; }
+        public int[] infected_day { get; set; }
+        public int[] active_day { get; set; }
+        public int[] recovered_day { get; set; }
+        public int[] dead_day { get; set; }
+        public string[] Dates { get; set; }
     }
 }
