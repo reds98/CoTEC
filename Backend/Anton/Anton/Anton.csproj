@@ -166,6 +166,7 @@
     <Compile Include="Controllers\ContinentsController.cs" />
     <Compile Include="Controllers\CountriesController.cs" />
     <Compile Include="Controllers\CountryLocationsController.cs" />
+    <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\EnforcedMeasurementsController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -212,6 +213,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\EmailClass.cs" />
     <Compile Include="Models\EnforcedMeasurement.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
