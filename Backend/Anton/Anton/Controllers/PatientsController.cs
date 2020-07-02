@@ -22,8 +22,8 @@ namespace Anton.Controllers
 
             foreach (PatientsSP item in sp)
             {
-
                 PatientsSP PSP = new PatientsSP();
+
                 PSP.First_Name = item.First_Name;
                 PSP.Last_Name = item.Last_Name;
                 PSP.SSN = item.SSN;
@@ -35,13 +35,9 @@ namespace Anton.Controllers
                 PSP.ICU = item.ICU;
                 PSP.Medication = item.Medication;
                 PSP.Pathology = item.Pathology;
+
                 list.Add(PSP);
 
-                System.Diagnostics.Debug.WriteLine(string.Format("NAME: {0} LAST_NAME: {1} SSN: {2} AGE: {3}" +
-                    "BIRTH_COUNTRY: {4} RESIDENCE: {5} STATUS: {6} HOSPITALIZED: {7} ICU: {8} MEDICATION: {9} PATHOLOGY: {10}",
-                    item.First_Name, item.Last_Name,
-                    item.SSN, item.Age, item.Country_Birth, item.Residence, item.Status, item.Hospitalized,
-                    item.ICU, item.Medication, item.Pathology));
             }
             return list;
 

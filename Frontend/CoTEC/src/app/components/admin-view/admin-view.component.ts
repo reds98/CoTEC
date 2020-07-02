@@ -22,7 +22,7 @@ export class AdminViewComponent implements OnInit {
   currentData: any;
   columns;
   currentModel;
-  currentTitle = 'Regiones';
+  currentTitle = 'Regions';
   editStatus = false;
   currentItem = null;
   public dropdownList: any = [];
@@ -45,12 +45,12 @@ export class AdminViewComponent implements OnInit {
   // Allows change of admin view models
   changeModels(type, model){
     this.currentData = [];
-    console.log(type);
-    this.service.getData(type).subscribe(data => {
-      this.data = (data as any).data;
+    this.service.getElements(type).subscribe(data => {
+      this.data = (data as any);
       this.currentData = this.data;
       this.currentModel = model;
       this.columns = this.getColumns();
+      console.log(data);
       for (const key of this.currentModel){
         if (key.FK){
           this.loadData(this.data, key.FK);

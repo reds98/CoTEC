@@ -140,6 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\PatientsController.cs" />
+    <Compile Include="Controllers\RegionsController.cs" />
     <Compile Include="Models\AcumulatedProcedure_Result.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -223,6 +224,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\getRegionsProcedure_Result.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Hospitals.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -256,6 +260,7 @@
     <Compile Include="Models\Patient_Status.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RegionsSP.cs" />
     <Compile Include="Reports\PatientStatusReport1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

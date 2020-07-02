@@ -405,6 +405,7 @@
         </Association>
         <Function Name="AcumulatedProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getPatientsProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getRegionsProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="CoTecDBModelStoreContainer">
           <EntitySet Name="Calendar" EntityType="Self.Calendar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contacted_Person" EntityType="Self.Contacted_Person" Schema="dbo" store:Type="Tables" />
@@ -1048,6 +1049,7 @@
           </AssociationSet>
           <FunctionImport Name="AcumulatedProcedure" ReturnType="Collection(CoTecDBModel.AcumulatedProcedure_Result)" />
           <FunctionImport Name="getPatientsProcedure" EntitySet="Patients" ReturnType="Collection(CoTecDBModel.Patients)" />
+          <FunctionImport Name="getRegionsProcedure" ReturnType="Collection(CoTecDBModel.getRegionsProcedure_Result)" />
         </EntityContainer>
         <ComplexType Name="AcumulatedProcedure_Result">
           <Property Type="Int32" Name="Deaths" Nullable="true" />
@@ -1067,6 +1069,10 @@
           <Property Type="Boolean" Name="ICU" Nullable="true" />
           <Property Type="String" Name="Name" Nullable="true" MaxLength="60" />
           <Property Type="String" Name="Name1" Nullable="false" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="getRegionsProcedure_Result">
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Country_Name" Nullable="true" MaxLength="45" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1261,6 +1267,14 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="getPatientsProcedure" FunctionName="CoTecDBModel.Store.getPatientsProcedure">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getRegionsProcedure" FunctionName="CoTecDBModel.Store.getRegionsProcedure">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CoTecDBModel.getRegionsProcedure_Result">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Country_Name" ColumnName="Country_Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
           </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>

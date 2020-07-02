@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {IPatient} from '../Interfaces/IPatient';
+import {IRegions} from '../Interfaces/IRegions';
 
 @Injectable({
   providedIn: 'root'
@@ -56,8 +57,8 @@ export class Services {
       case 'Patients':
         observable =  this.httpGet<IPatient>(type);
         break;
-      case 'Hospital':
-        observable =  this.httpGet<IPatient>(type);
+      case 'Regions':
+        observable =  this.httpGet<IRegions>(type);
         break;
       default:
         observable = {};

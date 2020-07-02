@@ -60,5 +60,10 @@ namespace Anton.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Patients>("getPatientsProcedure", mergeOption);
         }
+    
+        public virtual ObjectResult<getRegionsProcedure_Result> getRegionsProcedure()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getRegionsProcedure_Result>("getRegionsProcedure");
+        }
     }
 }
