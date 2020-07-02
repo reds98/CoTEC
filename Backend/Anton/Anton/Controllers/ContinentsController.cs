@@ -17,50 +17,39 @@ namespace Anton.Controllers
         private CoTecDBEntities db = new CoTecDBEntities();
 
         // GET: api/Continents
-        public IList<Continent> GetContinents()
+        public IQueryable<Continent> GetContinents()
         {
-            IList<Continent> nombres = new List<Continent>();
-            var continentes = from continents in db.Continents select continents;
-            Continent cont = new Continent();
-            foreach (Continents continente in continentes) {
-
-                cont.Name = continente.Name;
-                nombres.Add(cont);
-
-                System.Diagnostics.Debug.WriteLine(string.Format("NOMBRE: {0}",continente.Name));
-            }
-            
-            return nombres;
+            return db.Continents;
         }
 
         // GET: api/Continents/5
-        [ResponseType(typeof(Continents))]
-        public IHttpActionResult GetContinents(string id)
+        [ResponseType(typeof(Continent))]
+        public IHttpActionResult GetContinent(string id)
         {
-            Continents continents = db.Continents.Find(id);
-            if (continents == null)
+            Continent continent = db.Continents.Find(id);
+            if (continent == null)
             {
                 return NotFound();
             }
 
-            return Ok(continents);
+            return Ok(continent);
         }
 
         // PUT: api/Continents/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutContinents(string id, Continents continents)
+        public IHttpActionResult PutContinent(string id, Continent continent)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != continents.Name)
+            if (id != continent.Name)
             {
                 return BadRequest();
             }
 
-            db.Entry(continents).State = EntityState.Modified;
+            db.Entry(continent).State = EntityState.Modified;
 
             try
             {
@@ -68,7 +57,7 @@ namespace Anton.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ContinentsExists(id))
+                if (!ContinentExists(id))
                 {
                     return NotFound();
                 }
@@ -82,15 +71,15 @@ namespace Anton.Controllers
         }
 
         // POST: api/Continents
-        [ResponseType(typeof(Continents))]
-        public IHttpActionResult PostContinents(Continents continents)
+        [ResponseType(typeof(Continent))]
+        public IHttpActionResult PostContinent(Continent continent)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Continents.Add(continents);
+            db.Continents.Add(continent);
 
             try
             {
@@ -98,7 +87,7 @@ namespace Anton.Controllers
             }
             catch (DbUpdateException)
             {
-                if (ContinentsExists(continents.Name))
+                if (ContinentExists(continent.Name))
                 {
                     return Conflict();
                 }
@@ -108,23 +97,23 @@ namespace Anton.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = continents.Name }, continents);
+            return CreatedAtRoute("DefaultApi", new { id = continent.Name }, continent);
         }
 
         // DELETE: api/Continents/5
-        [ResponseType(typeof(Continents))]
-        public IHttpActionResult DeleteContinents(string id)
+        [ResponseType(typeof(Continent))]
+        public IHttpActionResult DeleteContinent(string id)
         {
-            Continents continents = db.Continents.Find(id);
-            if (continents == null)
+            Continent continent = db.Continents.Find(id);
+            if (continent == null)
             {
                 return NotFound();
             }
 
-            db.Continents.Remove(continents);
+            db.Continents.Remove(continent);
             db.SaveChanges();
 
-            return Ok(continents);
+            return Ok(continent);
         }
 
         protected override void Dispose(bool disposing)
@@ -136,7 +125,7 @@ namespace Anton.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ContinentsExists(string id)
+        private bool ContinentExists(string id)
         {
             return db.Continents.Count(e => e.Name == id) > 0;
         }
