@@ -139,6 +139,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\EmailController.cs" />
+    <Compile Include="Controllers\FileUploadingController.cs" />
     <Compile Include="Controllers\MedidasController.cs" />
     <Compile Include="Controllers\PatientsSPController.cs" />
     <Compile Include="Controllers\RegionsController.cs" />
@@ -210,6 +212,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\EmailClass.cs" />
     <Compile Include="Models\EnforcedMeasurements.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
