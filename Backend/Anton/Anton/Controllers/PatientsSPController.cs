@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace Anton.Controllers
 {
-    public class PatientsController : ApiController
+    public class PatientsSPController : ApiController
     {
         // GET: api/Patients
         public IList<PatientsSP> Get()

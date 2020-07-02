@@ -27,7 +27,6 @@ namespace Anton.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Calendar> Calendar { get; set; }
         public virtual DbSet<Contacted_Person> Contacted_Person { get; set; }
         public virtual DbSet<Continents> Continents { get; set; }
         public virtual DbSet<Countries> Countries { get; set; }

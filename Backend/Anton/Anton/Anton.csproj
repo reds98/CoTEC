@@ -139,7 +139,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\PatientsController.cs" />
+    <Compile Include="Controllers\MedidasController.cs" />
+    <Compile Include="Controllers\PatientsSPController.cs" />
     <Compile Include="Controllers\RegionsController.cs" />
     <Compile Include="Models\AcumulatedProcedure_Result.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
@@ -176,9 +177,6 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Models\Calendar.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Contacted_Person.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -244,6 +242,7 @@
     </Compile>
     <Compile Include="Models\Acumulado.cs" />
     <Compile Include="Models\Continent.cs" />
+    <Compile Include="Models\Medidas.cs" />
     <Compile Include="Models\Pathologies.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>

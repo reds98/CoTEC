@@ -6,7 +6,6 @@ AS
 	SELECT P.Residence,
 	SUM(IIF(P.Status = 'Activo', 1, 0)) AS ACTIVE,
 	SUM(IIF(P.Status = 'Recuperado', 1, 0)) AS RECOVERED,
-	SUM(IIF(P.Status = 'Recuperado', 1, 0) + IIF(P.Status = 'Activo', 1, 0)) AS INFECTED,
 	SUM(IIF(P.Status = 'Muerto', 1, 0)) AS DEAD
 	FROM  dbo.Patients as P
 	GROUP BY P.Residence

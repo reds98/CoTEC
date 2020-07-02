@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="dcfd97012bc84f6b8108d46290c6e783" Name="Diagram1">
-        <EntityTypeShape EntityType="CoTecDBModel.Calendar" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CoTecDBModel.Contacted_Person" Width="1.5" PointX="8.25" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="CoTecDBModel.Continents" Width="1.5" PointX="1.5" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="CoTecDBModel.Countries" Width="1.5" PointX="3.75" PointY="3.625" IsExpanded="true" />

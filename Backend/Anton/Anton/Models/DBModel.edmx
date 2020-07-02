@@ -5,13 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="CoTecDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Calendar">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Date" Type="date" Nullable="false" />
-        </EntityType>
         <EntityType Name="Contacted_Person">
           <Key>
             <PropertyRef Name="Id" />
@@ -163,6 +156,22 @@
           <Property Name="Name" Type="varchar" MaxLength="50" />
           <Property Name="Description" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'CoTecDB.dbo.PatientSatusView' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="PatientSatusView">
+          <Property Name="Residence" Type="varchar" MaxLength="45" />
+          <Property Name="ACTIVE" Type="int" />
+          <Property Name="RECOVERED" Type="int" />
+          <Property Name="DEAD" Type="int" />
+        </EntityType>-->
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'CoTecDB.dbo.WeeklyCases' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="WeeklyCases">
+          <Property Name="Residence" Type="varchar" MaxLength="45" />
+          <Property Name="Date" Type="date" />
+          <Property Name="DEATHS" Type="int" />
+          <Property Name="NEW_CASES" Type="int" />
+        </EntityType>-->
         <Association Name="FK__Contacted__Patie__5165187F">
           <End Role="Patients" Type="Self.Patients" Multiplicity="0..1" />
           <End Role="Contacted_Person" Type="Self.Contacted_Person" Multiplicity="*" />
@@ -199,7 +208,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__EnforcedM__Count__2E1BDC42">
+        <Association Name="FK__EnforcedM__Count__2F10007B">
           <End Role="Countries" Type="Self.Countries" Multiplicity="0..1" />
           <End Role="EnforcedMeasurements" Type="Self.EnforcedMeasurements" Multiplicity="*" />
           <ReferentialConstraint>
@@ -211,7 +220,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__EnforcedM__Measu__2F10007B">
+        <Association Name="FK__EnforcedM__Measu__2E1BDC42">
           <End Role="SanityMeasurements" Type="Self.SanityMeasurements" Multiplicity="0..1" />
           <End Role="EnforcedMeasurements" Type="Self.EnforcedMeasurements" Multiplicity="*" />
           <ReferentialConstraint>
@@ -223,7 +232,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Events__Patient___5535A963">
+        <Association Name="FK__Events__Patient___5441852A">
           <End Role="Patients" Type="Self.Patients" Multiplicity="0..1" />
           <End Role="Events" Type="Self.Events" Multiplicity="*" />
           <ReferentialConstraint>
@@ -235,7 +244,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Events__Status_E__5441852A">
+        <Association Name="FK__Events__Status_E__5535A963">
           <End Role="Patient_Status" Type="Self.Patient_Status" Multiplicity="0..1" />
           <End Role="Events" Type="Self.Events" Multiplicity="*" />
           <ReferentialConstraint>
@@ -271,7 +280,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Hospital___Hospi__3C69FB99">
+        <Association Name="FK__Hospital___Hospi__3D5E1FD2">
           <End Role="Hospitals" Type="Self.Hospitals" Multiplicity="0..1" />
           <End Role="Hospital_Medications" Type="Self.Hospital_Medications" Multiplicity="*" />
           <ReferentialConstraint>
@@ -283,7 +292,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Hospital___Medic__3D5E1FD2">
+        <Association Name="FK__Hospital___Medic__3C69FB99">
           <End Role="Medications" Type="Self.Medications" Multiplicity="0..1" />
           <End Role="Hospital_Medications" Type="Self.Hospital_Medications" Multiplicity="*" />
           <ReferentialConstraint>
@@ -403,11 +412,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="AcumulatedProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getPatientsProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getRegionsProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="CoTecDBModelStoreContainer">
-          <EntitySet Name="Calendar" EntityType="Self.Calendar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contacted_Person" EntityType="Self.Contacted_Person" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Continents" EntityType="Self.Continents" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
@@ -437,19 +444,19 @@
             <End Role="Countries" EntitySet="Countries" />
             <End Role="CountryLocations" EntitySet="CountryLocations" />
           </AssociationSet>
-          <AssociationSet Name="FK__EnforcedM__Count__2E1BDC42" Association="Self.FK__EnforcedM__Count__2E1BDC42">
+          <AssociationSet Name="FK__EnforcedM__Count__2F10007B" Association="Self.FK__EnforcedM__Count__2F10007B">
             <End Role="Countries" EntitySet="Countries" />
             <End Role="EnforcedMeasurements" EntitySet="EnforcedMeasurements" />
           </AssociationSet>
-          <AssociationSet Name="FK__EnforcedM__Measu__2F10007B" Association="Self.FK__EnforcedM__Measu__2F10007B">
+          <AssociationSet Name="FK__EnforcedM__Measu__2E1BDC42" Association="Self.FK__EnforcedM__Measu__2E1BDC42">
             <End Role="SanityMeasurements" EntitySet="SanityMeasurements" />
             <End Role="EnforcedMeasurements" EntitySet="EnforcedMeasurements" />
           </AssociationSet>
-          <AssociationSet Name="FK__Events__Patient___5535A963" Association="Self.FK__Events__Patient___5535A963">
+          <AssociationSet Name="FK__Events__Patient___5441852A" Association="Self.FK__Events__Patient___5441852A">
             <End Role="Patients" EntitySet="Patients" />
             <End Role="Events" EntitySet="Events" />
           </AssociationSet>
-          <AssociationSet Name="FK__Events__Status_E__5441852A" Association="Self.FK__Events__Status_E__5441852A">
+          <AssociationSet Name="FK__Events__Status_E__5535A963" Association="Self.FK__Events__Status_E__5535A963">
             <End Role="Patient_Status" EntitySet="Patient_Status" />
             <End Role="Events" EntitySet="Events" />
           </AssociationSet>
@@ -461,11 +468,11 @@
             <End Role="Hospitals" EntitySet="Hospitals" />
             <End Role="Hospital_ICUs" EntitySet="Hospital_ICUs" />
           </AssociationSet>
-          <AssociationSet Name="FK__Hospital___Hospi__3C69FB99" Association="Self.FK__Hospital___Hospi__3C69FB99">
+          <AssociationSet Name="FK__Hospital___Hospi__3D5E1FD2" Association="Self.FK__Hospital___Hospi__3D5E1FD2">
             <End Role="Hospitals" EntitySet="Hospitals" />
             <End Role="Hospital_Medications" EntitySet="Hospital_Medications" />
           </AssociationSet>
-          <AssociationSet Name="FK__Hospital___Medic__3D5E1FD2" Association="Self.FK__Hospital___Medic__3D5E1FD2">
+          <AssociationSet Name="FK__Hospital___Medic__3C69FB99" Association="Self.FK__Hospital___Medic__3C69FB99">
             <End Role="Medications" EntitySet="Medications" />
             <End Role="Hospital_Medications" EntitySet="Hospital_Medications" />
           </AssociationSet>
@@ -510,13 +517,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CoTecDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Calendar">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-        </EntityType>
         <EntityType Name="Contacted_Person">
           <Key>
             <PropertyRef Name="Id" />
@@ -949,7 +949,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="CoTecDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Calendar" EntityType="Self.Calendar" />
           <EntitySet Name="Contacted_Person" EntityType="Self.Contacted_Person" />
           <EntitySet Name="Continents" EntityType="Self.Continents" />
           <EntitySet Name="Countries" EntityType="Self.Countries" />
@@ -1080,14 +1079,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="CoTecDBModelStoreContainer" CdmEntityContainer="CoTecDBEntities">
-          <EntitySetMapping Name="Calendar">
-            <EntityTypeMapping TypeName="CoTecDBModel.Calendar">
-              <MappingFragment StoreEntitySet="Calendar">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Contacted_Person">
             <EntityTypeMapping TypeName="CoTecDBModel.Contacted_Person">
               <MappingFragment StoreEntitySet="Contacted_Person">
@@ -1256,16 +1247,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="AcumulatedProcedure" FunctionName="CoTecDBModel.Store.AcumulatedProcedure">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="CoTecDBModel.AcumulatedProcedure_Result">
-                <ScalarProperty Name="Deaths" ColumnName="Deaths" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="Recovered" ColumnName="Recovered" />
-                <ScalarProperty Name="Infected" ColumnName="Infected" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="getPatientsProcedure" FunctionName="CoTecDBModel.Store.getPatientsProcedure">
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="getRegionsProcedure" FunctionName="CoTecDBModel.Store.getRegionsProcedure">
