@@ -21,6 +21,12 @@ namespace Anton.Controllers
             return "value";
         }
 
+        [Route("api/values/{paramOne}/{paramTwo}")]
+        public string Get(int paramOne, int paramTwo)
+        {
+            return "The [Route] with multiple params worked";
+        }
+
         // POST api/values
         public void Post([FromBody] string value)
         {

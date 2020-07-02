@@ -163,7 +163,9 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\ContinentsController.cs" />
+    <Compile Include="Controllers\EnforcedMeasurementsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MedidasController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -216,6 +218,7 @@
     <Compile Include="Models\Medication.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Medidas.cs" />
     <Compile Include="Models\Pathology.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
