@@ -47,9 +47,10 @@ export class HospitalViewComponent implements OnInit {
     if (!type) {
       return;
     }
-    this.service.getData(type).subscribe(data => {
-      this.data = (data as any).data;
+    this.service.getElements(type).subscribe(data => {
+      this.data = (data as any);
       this.currentData = this.data;
+      console.log(data);
       this.currentModel = model;
       this.columns = this.getColumns();
       for (const key of this.currentModel){

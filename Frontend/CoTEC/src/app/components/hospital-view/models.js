@@ -9,7 +9,6 @@ export const patients = [
   {"column":"Pathology"},
   {"column":"Residence","FK":"countries"},
   {"column":"Country_Birth","FK":"countries"},
-  {"column":"Hospital_Id","FK":"hospitals"},
   {"column":"Status","FK":"status"}
 ];
 

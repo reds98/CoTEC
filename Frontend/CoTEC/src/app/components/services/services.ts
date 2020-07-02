@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {IPatient} from '../Interfaces/IPatient';
 
 @Injectable({
   providedIn: 'root'
@@ -29,16 +30,16 @@ export class Services {
     switch (type) {
       case 'patientStatus':
         reportUrl = 'Reports/patientStatus';
-        observableItem = this.getHttp(reportUrl);
+        observableItem = this.getReportHttp(reportUrl);
         break;
       case 'newCasesWeek':
         reportUrl = 'Reports/newCasesWeek';
-        observableItem = this.getHttp(reportUrl);
+        observableItem = this.getReportHttp(reportUrl);
         break;
     }
   }
 
-  getHttp(type){
+  getReportHttp(type){
     const responseType = 'arraybuffer';
     const mediaType = 'application/pdf';
     return this.http.get(this.url + type, { responseType }).subscribe(content => {
@@ -46,5 +47,27 @@ export class Services {
       const fileURL = URL.createObjectURL(blob);
       window.open(fileURL);
     });
+  }
+
+
+  getElements(type: string): Observable<any> {
+    let observable;
+    switch (type) {
+      case 'Patients':
+        observable =  this.httpGet<IPatient>(type);
+        break;
+      case 'Hospital':
+        observable =  this.httpGet<IPatient>(type);
+        break;
+      default:
+        observable = {};
+    }
+
+    return observable;
+  }
+
+  // calls http.get() with the corresponding resource url.
+  private httpGet<T>(resource: string): Observable<T> {
+    return this.http.get<T>(this.url + resource);
   }
 }

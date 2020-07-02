@@ -20,10 +20,10 @@ namespace Anton.Controllers
 
             IList<PatientsSP> list = new List<PatientsSP>();
 
-            PatientsSP PSP = new PatientsSP();
             foreach (PatientsSP item in sp)
             {
 
+                PatientsSP PSP = new PatientsSP();
                 PSP.First_Name = item.First_Name;
                 PSP.Last_Name = item.Last_Name;
                 PSP.SSN = item.SSN;
