@@ -279,18 +279,18 @@ VALUES
 (2,'Mascara obligatoria','Se obliga a todos los ciudadanos a llevar máscara para salir'),
 (3,'Restricción vehicular','Se prohibe circular a ciertos vehículos dependiendo del día y la placa');
 
-INSERT INTO EnforcedMeasurements (Country_Name,Measurement_Id,Start_Date,End_Date)
+INSERT INTO EnforcedMeasurements (Country_Name,Measurement_Id,Start_Date,End_Date,State)
 VALUES
-('Spain',1,'2020-01-20','2020-03-20'),
-('Spain',3,'2020-02-20','2020-03-20'),
-('Spain',2,'2020-02-25','2020-03-20'),
-('Costa Rica',1,'2020-03-20','2020-05-20');
+('Spain',1,'2020-01-20','2020-03-20',1),
+('Spain',3,'2020-02-20','2020-03-20',1),
+('Spain',2,'2020-02-25','2020-03-20',1),
+('Costa Rica',1,'2020-03-20','2020-05-20',1);
 
-INSERT INTO Hospitals (Id,Name,ICU_Capacity,Capacity,Manager_Name,Phone)
+INSERT INTO Hospitals (Id,Name,ICU_Capacity,Capacity,Manager_Name,Phone,Country_Name,Country_Location_Id)
 VALUES
-(1,'Hospital del sur',7,80,'Pepito','22223333'),
-(3,'Hospital del norte',10,200,'Pepito','22224444'),
-(4,'Hospital del este',5,150,'Pepito','33332222');
+(1,'Hospital del sur',7,80,'Pepito','22223333','Costa Rica',1),
+(3,'Hospital del norte',10,200,'Pepito','22224444','Costa Rica',1),
+(4,'Hospital del este',5,150,'Pepito','33332222','Costa Rica',1);
 
 INSERT INTO Hospital_ICUs (ICU_Patient,Hospital_Id)
 VALUES
@@ -1348,11 +1348,11 @@ VALUES
 (100002,22),
 (100000,24);
 
-INSERT INTO Contacted_Person (SSN,Patient_SSN,First_Name,Last_Name,Address,Email,Age)
+INSERT INTO Contacted_Person (SSN,Patient_SSN,First_Name,Last_Name,Address,Email,Age,Country_Birth)
 VALUES
-(100003,100001,'colateral1','papita1','mi casa','tortilla@gmail.com',20),
-(100004,100001,'colateral2','papita2','mi casa x2','tortillita@gmail.com',21),
-(100005,100000,'colateral3','papita3','mi casa x3','tortillon@gmail.com',22);
+(100003,100001,'colateral1','papita1','mi casa','tortilla@gmail.com',20,'Costa Rica'),
+(100004,100001,'colateral2','papita2','mi casa x2','tortillita@gmail.com',21,'Costa Rica'),
+(100005,100000,'colateral3','papita3','mi casa x3','tortillon@gmail.com',22,'Costa Rica');
 
 INSERT INTO Events (Status_Event,Date,Patient_SSN)
 VALUES 

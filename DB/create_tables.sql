@@ -37,6 +37,7 @@ CREATE TABLE EnforcedMeasurements (
     Measurement_Id int,
     Start_Date DATE,
     End_Date DATE,
+    State BIT,
     FOREIGN KEY (Measurement_Id) REFERENCES SanityMeasurements(Id),
     FOREIGN KEY (Country_Name) REFERENCES Countries(Name)
 );
@@ -49,7 +50,9 @@ CREATE TABLE Hospitals (
     Manager_Name varchar(60),
     Phone varchar(12),
     Country_Name varchar(45),
-    FOREIGN KEY (Country_Name) REFERENCES Countries(Name)
+    Country_Location_Id int,
+    FOREIGN KEY (Country_Name) REFERENCES Countries(Name),
+    FOREIGN KEY (Country_Location_Id) REFERENCES CountryLocations(Id)
 );
 
 CREATE TABLE Hospital_Patients (
@@ -135,7 +138,9 @@ CREATE TABLE Contacted_Person (
     Address varchar(60),
     Email varchar(60),
     Age int,
-    FOREIGN KEY (Patient_SSN) REFERENCES Patients(SSN)
+    Country_Birth varchar(45),
+    FOREIGN KEY (Patient_SSN) REFERENCES Patients(SSN),
+    FOREIGN KEY (Country_Birth) REFERENCES Countries(Name),
 );
 
 
