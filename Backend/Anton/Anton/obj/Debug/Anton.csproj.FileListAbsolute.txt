@@ -197,7 +197,6 @@ D:\jessi\Documentos\TEC\CoTEC\Backend\Anton\Anton\bin\es\System.Web.Razor.resour
 D:\jessi\Documentos\TEC\CoTEC\Backend\Anton\Anton\bin\es\System.Web.WebPages.resources.dll
 D:\jessi\Documentos\TEC\CoTEC\Backend\Anton\Anton\bin\es\System.Web.WebPages.Deployment.resources.dll
 D:\jessi\Documentos\TEC\CoTEC\Backend\Anton\Anton\bin\es\System.Web.WebPages.Razor.resources.dll
-D:\jessi\Documentos\TEC\CoTEC\Backend\Anton\Anton\obj\Debug\Anton.csprojAssemblyReference.cache
 D:\jessi\Documentos\TEC\CoTEC\Backend\Anton\Anton\obj\Debug\Anton.csproj.CoreCompileInputs.cache
 D:\jessi\Documentos\TEC\CoTEC\Backend\Anton\Anton\obj\Debug\Anton.csproj.CopyComplete
 D:\jessi\Documentos\TEC\CoTEC\Backend\Anton\Anton\obj\Debug\Anton.dll
@@ -336,3 +335,4 @@ C:\Users\sahid\Documents\Code\CoTEC\Backend\Anton\Anton\obj\Debug\Anton.csproj.C
 C:\Users\sahid\Documents\Code\CoTEC\Backend\Anton\Anton\obj\Debug\Anton.csproj.CopyComplete
 C:\Users\sahid\Documents\Code\CoTEC\Backend\Anton\Anton\obj\Debug\Anton.dll
 C:\Users\sahid\Documents\Code\CoTEC\Backend\Anton\Anton\obj\Debug\Anton.pdb
+D:\jessi\Documentos\TEC\CoTEC\Backend\Anton\Anton\obj\Debug\Anton.csprojAssemblyReference.cache

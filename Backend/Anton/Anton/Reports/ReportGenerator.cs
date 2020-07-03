@@ -30,6 +30,8 @@ namespace Anton.Reports
                 ExportFormatOptions = formatOpt
             };
 
+            crReport.SetDatabaseLogon("sa", "sabroso123");
+
             crReport.Export(ex);
         }
 

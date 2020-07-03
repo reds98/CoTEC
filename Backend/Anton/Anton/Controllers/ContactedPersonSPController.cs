@@ -15,6 +15,7 @@ namespace Anton.Controllers
         {
             CoTecDBEntities db = new CoTecDBEntities();
 
+            // Access stored procedure from data base
             var sp = db.Database.SqlQuery<ContactedPersonSP>("getContactedPersonProcedure");
 
 
@@ -24,6 +25,7 @@ namespace Anton.Controllers
             {
                 ContactedPersonSP PSP = new ContactedPersonSP();
 
+                // Sets values in list to be returned
                 PSP.First_Name = item.First_Name;
                 PSP.Last_Name = item.Last_Name;
                 PSP.SSN = item.SSN;

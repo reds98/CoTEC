@@ -19,9 +19,11 @@ namespace Anton.Controllers
         {
             CoTecDBEntities db = new CoTecDBEntities();
 
+            // Access stored procedure from data base
             var sp = db.Database.SqlQuery<EnforcedMeasurementsSP>("getEnforcedMeasurementsProcedure");
 
 
+            // Sets values in list to be returned
             IList<EnforcedMeasurementsSP> list = new List<EnforcedMeasurementsSP>();
 
             foreach (EnforcedMeasurementsSP item in sp)

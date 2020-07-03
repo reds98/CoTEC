@@ -20,11 +20,13 @@ namespace Anton.Controllers
         {
             CoTecDBEntities db = new CoTecDBEntities();
 
+            // Access stored procedure from data base
             var sp = db.Database.SqlQuery<PatientStatusSP>("getPacientStatusProcedure");
 
 
             IList<PatientStatusSP> list = new List<PatientStatusSP>();
 
+            // Sets values in list to be returned
             foreach (PatientStatusSP item in sp)
             {
                 PatientStatusSP PSP = new PatientStatusSP();

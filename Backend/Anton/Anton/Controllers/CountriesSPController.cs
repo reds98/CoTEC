@@ -15,11 +15,13 @@ namespace Anton.Controllers
         {
             CoTecDBEntities db = new CoTecDBEntities();
 
+            // Access stored procedure from data base
             var sp = db.Database.SqlQuery<CountriesSP>("getCountriesProcedure");
 
 
             IList<CountriesSP> list = new List<CountriesSP>();
 
+            // Sets values in list to be returned
             foreach (CountriesSP item in sp)
             {
                 CountriesSP PSP = new CountriesSP();
