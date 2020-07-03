@@ -141,6 +141,7 @@
   <ItemGroup>
     <Compile Include="Controllers\ContactedPersonSPController.cs" />
     <Compile Include="Controllers\CountriesSPController.cs" />
+    <Compile Include="Controllers\PatientsSPController.cs" />
     <Compile Include="Models\ContactedPersonSP.cs" />
     <Compile Include="Models\Contacted_Person.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
@@ -274,6 +275,7 @@
     <Compile Include="Models\MedicationSP.cs" />
     <Compile Include="Models\Medidas.cs" />
     <Compile Include="Models\PathologiesSP.cs" />
+    <Compile Include="Models\PatientsSP.cs" />
     <Compile Include="Models\PatientStatusSP.cs" />
     <Compile Include="Models\RegionsSP.cs" />
     <Compile Include="Models\SanitaryMeasurementsSP.cs" />

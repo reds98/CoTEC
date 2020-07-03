@@ -21,7 +21,7 @@ AS
 
 CREATE PROCEDURE getHospitalsProcedure
 AS
-	SELECT H.Id, H.Name, H.Manager_Name, H.Phone, H.Capacity, H.ICU_Capacity, H.Country_Name, CL.Name as Region
+	SELECT H.Id, H.Name, H.Manager_Name, H.Phone, H.Capacity, H.ICU_Capacity, H.Country_Name, H.Country_Location_Id, CL.Name as Region
 	FROM Hospitals as H
 	INNER JOIN CountryLocations as CL ON CL.Id = H.Country_Location_Id
 
@@ -44,9 +44,10 @@ AS
 	FROM Pathologies as P
 
 
+
 CREATE PROCEDURE getPacientsProcedure
 AS
-	SELECT P.First_Name, P.Last_Name, P.SSN, P.Age, P.Country_Birth, P.Residence, P.Status, P.Hospitalized, P.ICU, M.Name AS Medication, Pt.Name AS Pathology
+	SELECT P.First_Name, P.Last_Name, P.SSN, P.Age, P.Country_Birth, P.Residence, P.Status, P.Hospital_Id, P.Hospitalized, P.ICU, M.Name AS Medication, Pt.Name AS Pathology
 	FROM Patients as P
 	INNER JOIN Patient_Medications as PM ON P.SSN = PM.Patient_SSN
 	INNER JOIN Medications as M ON M.Id = PM.Medication_Id
@@ -54,7 +55,7 @@ AS
 	INNER JOIN Pathologies as Pt ON Pt.Name = PP.Pathology_Name
 
 	UNION
-	SELECT P.First_Name, P.Last_Name, P.SSN, P.Age, P.Country_Birth, P.Residence, P.Status, P.Hospitalized, P.ICU, 'No tiene' AS Medication, 'No tiene' AS Pathology
+	SELECT P.First_Name, P.Last_Name, P.SSN, P.Age, P.Country_Birth, P.Residence, P.Status, P.Hospital_Id, P.Hospitalized, P.ICU, 'No tiene' AS Medication, 'No tiene' AS Pathology
 	FROM Patients as P
 
 

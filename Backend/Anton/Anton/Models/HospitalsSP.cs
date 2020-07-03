@@ -16,5 +16,7 @@ namespace Anton.Models
         public string Phone { get; set; }
         public string Country_Name { get; set; }
         public string Region { get; set; }
+
+        public Nullable<int> Country_Location_Id { get; set; }
     }
 }

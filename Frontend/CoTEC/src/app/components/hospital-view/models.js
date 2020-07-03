@@ -2,6 +2,7 @@ export const Patients = [
   {"column":"SSN","PK":"SSN"},
   {"column":"First_Name"},
   {"column":"Last_Name"},
+  {"column":"Hospital_Id"},
   {"column":"Hospitalized"},
   {"column":"ICU"},
   {"column":"Age"},

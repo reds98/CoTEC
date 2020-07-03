@@ -10,6 +10,7 @@ interface IPatient {
   Status: string;
   Medication: string;
   Pathology: string;
+  Hospital_Id: number;
 }
 
 export {

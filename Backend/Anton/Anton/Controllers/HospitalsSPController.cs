@@ -37,6 +37,7 @@ namespace Anton.Controllers
                 PSP.ICU_Capacity = item.ICU_Capacity;
                 PSP.Country_Name = item.Country_Name;
                 PSP.Region = item.Region;
+                PSP.Country_Location_Id = item.Country_Location_Id;
 
                 list.Add(PSP);
 
