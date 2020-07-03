@@ -53,6 +53,7 @@ export class AdminViewComponent implements OnInit {
       this.currentData = this.data;
       this.currentModel = model;
       this.columns = this.getColumns();
+      console.log("DATA");
       console.log(data);
       for (const key of this.currentModel){
         if (key.FK){
@@ -88,6 +89,11 @@ export class AdminViewComponent implements OnInit {
     }
     if(this.currentModel==Medication){
       this.service.DeleteMedication(item[PK]).subscribe(respuesta => {
+        console.log(respuesta)
+      });
+    }
+    if(this.currentModel==PatientStatus){
+      this.service.DeletePatientStatus(item[PK]).subscribe(respuesta => {
         console.log(respuesta)
       });
     }
@@ -145,6 +151,32 @@ export class AdminViewComponent implements OnInit {
       
 
     }
+    if(this.currentModel==PatientStatus){
+      console.log("vamos a crear una Estado jajaja perro")
+      this.service.CreatePatientStatus(this.currentItem).subscribe(respuesta => {
+        console.log(respuesta)
+      });
+      
+
+    }
+    if(this.currentModel==EnforcedMeasurements){
+      let medida = { 
+        Id : Number(this.currentItem["Id"]), //scalar value 
+        Country_Name: this.currentItem.Country_Name,  
+        Measurement_Id:this.currentItem.MeasurementId, 
+        Start_Date: this.currentItem.Start_Date, 
+        End_Date: this.currentItem.End_Date, 
+        State: 1//collection  
+     };
+      console.log(medida);
+      console.log("vamos a crear una Medida forzada perro")
+      this.service.CreateEnforcedMeasurements(medida).subscribe(respuesta => {
+        console.log(respuesta)
+      });
+      
+
+    }
+    
     console.log(this.currentItem);
     
   }
@@ -165,7 +197,12 @@ export class AdminViewComponent implements OnInit {
     let list;
     if (dropdown){
       dropdown.forEach(e => {
+        if(e.Id) {
+          this.dropdownList.push(e.Id);
+        }
+        else{
           this.dropdownList.push(e.Name);
+        }
       });
     }
     list = [fk, this.dropdownList];
