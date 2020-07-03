@@ -81,6 +81,16 @@ export class AdminViewComponent implements OnInit {
         console.log(respuesta)
       });
     }
+    if(this.currentModel==Pathologies){
+      this.service.DeleteEnfermedad(item[PK]).subscribe(respuesta => {
+        console.log(respuesta)
+      });
+    }
+    if(this.currentModel==Medication){
+      this.service.DeleteMedication(item[PK]).subscribe(respuesta => {
+        console.log(respuesta)
+      });
+    }
   }
 
 
@@ -113,7 +123,23 @@ export class AdminViewComponent implements OnInit {
     this.editStatus = false;
     if(this.currentModel==CountryLocations){
       console.log("vamos a crear una region perro")
-      this.service.CraeteRegion(this.currentItem).subscribe(respuesta => {
+      this.service.CreateRegion(this.currentItem).subscribe(respuesta => {
+        console.log(respuesta)
+      });
+      
+
+    }
+    if(this.currentModel==Pathologies){
+      console.log("vamos a crear una region perro")
+      this.service.CreateEnfermedad(this.currentItem).subscribe(respuesta => {
+        console.log(respuesta)
+      });
+      
+
+    }
+    if(this.currentModel==Medication){
+      console.log("vamos a crear una region perro")
+      this.service.CreateMedication(this.currentItem).subscribe(respuesta => {
         console.log(respuesta)
       });
       
