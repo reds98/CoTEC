@@ -42,6 +42,7 @@
         <AssociationConnector Association="CoTecDBModel.FK__Patient_M__Patie__4D94879B" ManuallyRouted="false" />
         <AssociationConnector Association="CoTecDBModel.FK__Patient_P__Patie__49C3F6B7" ManuallyRouted="false" />
         <AssociationConnector Association="CoTecDBModel.FK__Patients__Status__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="CoTecDBModel.FK_RegionId" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

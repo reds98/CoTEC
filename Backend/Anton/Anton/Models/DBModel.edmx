@@ -93,6 +93,7 @@
           <Property Name="Manager_Name" Type="varchar" MaxLength="60" />
           <Property Name="Phone" Type="varchar" MaxLength="12" />
           <Property Name="Country_Name" Type="varchar" MaxLength="45" />
+          <Property Name="RegionId" Type="int" />
         </EntityType>
         <EntityType Name="Medications">
           <Key>
@@ -156,22 +157,6 @@
           <Property Name="Name" Type="varchar" MaxLength="50" />
           <Property Name="Description" Type="varchar" MaxLength="255" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'CoTecDB.dbo.PatientSatusView' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="PatientSatusView">
-          <Property Name="Residence" Type="varchar" MaxLength="45" />
-          <Property Name="ACTIVE" Type="int" />
-          <Property Name="RECOVERED" Type="int" />
-          <Property Name="DEAD" Type="int" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'CoTecDB.dbo.WeeklyCases' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="WeeklyCases">
-          <Property Name="Residence" Type="varchar" MaxLength="45" />
-          <Property Name="Date" Type="date" />
-          <Property Name="DEATHS" Type="int" />
-          <Property Name="NEW_CASES" Type="int" />
-        </EntityType>-->
         <Association Name="FK__Contacted__Patie__5165187F">
           <End Role="Patients" Type="Self.Patients" Multiplicity="0..1" />
           <End Role="Contacted_Person" Type="Self.Contacted_Person" Multiplicity="*" />
@@ -412,8 +397,26 @@ advertencia 6013: La tabla o vista 'CoTecDB.dbo.WeeklyCases' no tiene definida u
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_RegionId">
+          <End Role="CountryLocations" Type="Self.CountryLocations" Multiplicity="0..1" />
+          <End Role="Hospitals" Type="Self.Hospitals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountryLocations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Hospitals">
+              <PropertyRef Name="RegionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="getEnforcedMeasurementsProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getHospitalsProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getMedicationProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getPathologiesProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getPatientsProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getPatientStatusProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getRegionsProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getSanitaryMeasurementsProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="CoTecDBModelStoreContainer">
           <EntitySet Name="Contacted_Person" EntityType="Self.Contacted_Person" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Continents" EntityType="Self.Continents" Schema="dbo" store:Type="Tables" />
@@ -512,6 +515,10 @@ advertencia 6013: La tabla o vista 'CoTecDB.dbo.WeeklyCases' no tiene definida u
             <End Role="Patient_Status" EntitySet="Patient_Status" />
             <End Role="Patients" EntitySet="Patients" />
           </AssociationSet>
+          <AssociationSet Name="FK_RegionId" Association="Self.FK_RegionId">
+            <End Role="CountryLocations" EntitySet="CountryLocations" />
+            <End Role="Hospitals" EntitySet="Hospitals" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -559,6 +566,7 @@ advertencia 6013: La tabla o vista 'CoTecDB.dbo.WeeklyCases' no tiene definida u
           <Property Name="Name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Name="Country_Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Countries" Relationship="Self.FK__CountryLo__Count__29572725" FromRole="CountryLocations" ToRole="Countries" />
+          <NavigationProperty Name="Hospitals" Relationship="CoTecDBModel.FK_RegionId" FromRole="CountryLocations" ToRole="Hospitals" />
         </EntityType>
         <EntityType Name="EnforcedMeasurements">
           <Key>
@@ -627,6 +635,8 @@ advertencia 6013: La tabla o vista 'CoTecDB.dbo.WeeklyCases' no tiene definida u
           <NavigationProperty Name="Hospital_Medications" Relationship="Self.FK__Hospital___Hospi__3C69FB99" FromRole="Hospitals" ToRole="Hospital_Medications" />
           <NavigationProperty Name="Hospital_Patients" Relationship="Self.FK__Hospital___Hospi__34C8D9D1" FromRole="Hospitals" ToRole="Hospital_Patients" />
           <NavigationProperty Name="Patients" Relationship="Self.FK__Patients__Hospit__45F365D3" FromRole="Hospitals" ToRole="Patients" />
+          <Property Name="RegionId" Type="Int32" />
+          <NavigationProperty Name="CountryLocations" Relationship="CoTecDBModel.FK_RegionId" FromRole="Hospitals" ToRole="CountryLocations" />
         </EntityType>
         <EntityType Name="Medications">
           <Key>
@@ -1049,6 +1059,17 @@ advertencia 6013: La tabla o vista 'CoTecDB.dbo.WeeklyCases' no tiene definida u
           <FunctionImport Name="AcumulatedProcedure" ReturnType="Collection(CoTecDBModel.AcumulatedProcedure_Result)" />
           <FunctionImport Name="getPatientsProcedure" EntitySet="Patients" ReturnType="Collection(CoTecDBModel.Patients)" />
           <FunctionImport Name="getRegionsProcedure" ReturnType="Collection(CoTecDBModel.getRegionsProcedure_Result)" />
+          <AssociationSet Name="FK_RegionId" Association="CoTecDBModel.FK_RegionId">
+            <End Role="CountryLocations" EntitySet="CountryLocations" />
+            <End Role="Hospitals" EntitySet="Hospitals" />
+          </AssociationSet>
+          <FunctionImport Name="getHospitalsProcedure" ReturnType="Collection(CoTecDBModel.getHospitalsProcedure_Result)" />
+          <FunctionImport Name="getEnforcedMeasurements" ReturnType="Collection(CoTecDBModel.getEnforcedMeasurements_Result)" />
+          <FunctionImport Name="getMedicationProcedure" ReturnType="Collection(CoTecDBModel.getMedicationProcedure_Result)" />
+          <FunctionImport Name="getPathologiesProcedure" ReturnType="Collection(CoTecDBModel.getPathologiesProcedure_Result)" />
+          <FunctionImport Name="getPatientStatusProcedure" ReturnType="Collection(String)" />
+          <FunctionImport Name="getSanitaryMeasurementsProcedure" ReturnType="Collection(CoTecDBModel.getSanitaryMeasurementsProcedure_Result)" />
+          <FunctionImport Name="getEnforcedMeasurementsProcedure" ReturnType="Collection(CoTecDBModel.getEnforcedMeasurementsProcedure_Result)" />
         </EntityContainer>
         <ComplexType Name="AcumulatedProcedure_Result">
           <Property Type="Int32" Name="Deaths" Nullable="true" />
@@ -1072,6 +1093,54 @@ advertencia 6013: La tabla o vista 'CoTecDB.dbo.WeeklyCases' no tiene definida u
         <ComplexType Name="getRegionsProcedure_Result">
           <Property Type="String" Name="Name" Nullable="true" MaxLength="60" />
           <Property Type="String" Name="Country_Name" Nullable="true" MaxLength="45" />
+        </ComplexType>
+        <Association Name="FK_RegionId">
+          <End Type="CoTecDBModel.CountryLocations" Role="CountryLocations" Multiplicity="0..1" />
+          <End Type="CoTecDBModel.Hospitals" Role="Hospitals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountryLocations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Hospitals">
+              <PropertyRef Name="RegionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="getHospitalsProcedure_Result">
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="Manager_Name" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Phone" Nullable="true" MaxLength="12" />
+          <Property Type="Int32" Name="Capacity" Nullable="true" />
+          <Property Type="Int32" Name="ICU_Capacity" Nullable="true" />
+          <Property Type="String" Name="Country_Name" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="Region" Nullable="true" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="getEnforcedMeasurements_Result">
+          <Property Type="String" Name="Country_Name" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="Start_Date" Nullable="true" />
+          <Property Type="DateTime" Name="End_Date" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getMedicationProcedure_Result">
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Provider" Nullable="true" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="getPathologiesProcedure_Result">
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Symptoms" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Treatment" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="getSanitaryMeasurementsProcedure_Result">
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="getEnforcedMeasurementsProcedure_Result">
+          <Property Type="String" Name="Country_Name" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="Start_Date" Nullable="true" />
+          <Property Type="DateTime" Name="End_Date" Nullable="true" />
+          <Property Type="Int32" Name="MeasurementId" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1168,6 +1237,7 @@ advertencia 6013: La tabla o vista 'CoTecDB.dbo.WeeklyCases' no tiene definida u
           <EntitySetMapping Name="Hospitals">
             <EntityTypeMapping TypeName="CoTecDBModel.Hospitals">
               <MappingFragment StoreEntitySet="Hospitals">
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ICU_Capacity" ColumnName="ICU_Capacity" />
@@ -1254,6 +1324,57 @@ advertencia 6013: La tabla o vista 'CoTecDB.dbo.WeeklyCases' no tiene definida u
               <ComplexTypeMapping TypeName="CoTecDBModel.getRegionsProcedure_Result">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Country_Name" ColumnName="Country_Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getHospitalsProcedure" FunctionName="CoTecDBModel.Store.getHospitalsProcedure">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CoTecDBModel.getHospitalsProcedure_Result">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Manager_Name" ColumnName="Manager_Name" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+                <ScalarProperty Name="ICU_Capacity" ColumnName="ICU_Capacity" />
+                <ScalarProperty Name="Country_Name" ColumnName="Country_Name" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getMedicationProcedure" FunctionName="CoTecDBModel.Store.getMedicationProcedure">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CoTecDBModel.getMedicationProcedure_Result">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Provider" ColumnName="Provider" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getPathologiesProcedure" FunctionName="CoTecDBModel.Store.getPathologiesProcedure">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CoTecDBModel.getPathologiesProcedure_Result">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Symptoms" ColumnName="Symptoms" />
+                <ScalarProperty Name="Treatment" ColumnName="Treatment" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getPatientStatusProcedure" FunctionName="CoTecDBModel.Store.getPatientStatusProcedure" />
+          <FunctionImportMapping FunctionImportName="getSanitaryMeasurementsProcedure" FunctionName="CoTecDBModel.Store.getSanitaryMeasurementsProcedure">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CoTecDBModel.getSanitaryMeasurementsProcedure_Result">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getEnforcedMeasurementsProcedure" FunctionName="CoTecDBModel.Store.getEnforcedMeasurementsProcedure">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CoTecDBModel.getEnforcedMeasurementsProcedure_Result">
+                <ScalarProperty Name="Country_Name" ColumnName="Country_Name" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Start_Date" ColumnName="Start_Date" />
+                <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+                <ScalarProperty Name="MeasurementId" ColumnName="MeasurementId" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

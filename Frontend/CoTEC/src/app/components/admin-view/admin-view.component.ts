@@ -4,7 +4,8 @@ import {
   pathologies,
   status,
   hospitals,
-  measures,
+  sanity_measurements,
+  enforced_measurements,
   medication
 } from './models';
 import {Services} from '../services/services';
@@ -28,12 +29,13 @@ export class AdminViewComponent implements OnInit {
   public dropdownList: any = [];
   public dropdownLists = [];
   public dropdown;
-  public measures: any = measures;
   public hospitals: any = hospitals;
   public countryLocations: any = countryLocations;
   public pathologies: any = pathologies;
   public status: any = status;
   public medication: any = medication;
+  public sanity_measurements: any = sanity_measurements;
+  public enforced_measurements: any = enforced_measurements;
   private data: any;
 
 
@@ -110,7 +112,7 @@ export class AdminViewComponent implements OnInit {
     for (const i of this.currentModel){
       cols.push(i.column);
     }
-    cols.push('Acciones');
+    cols.push('Accions');
     return cols;
   }
 

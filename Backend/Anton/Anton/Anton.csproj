@@ -140,10 +140,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\EmailController.cs" />
+    <Compile Include="Controllers\EnforcedMeasurementsSPController.cs" />
     <Compile Include="Controllers\FileUploadingController.cs" />
+    <Compile Include="Controllers\HospitalsSPController.cs" />
+    <Compile Include="Controllers\MedicationSPController.cs" />
     <Compile Include="Controllers\MedidasController.cs" />
+    <Compile Include="Controllers\PathologiesSPController.cs" />
     <Compile Include="Controllers\PatientsSPController.cs" />
-    <Compile Include="Controllers\RegionsController.cs" />
+    <Compile Include="Controllers\PatientStatusSPController.cs" />
+    <Compile Include="Controllers\RegionsSPController.cs" />
+    <Compile Include="Controllers\SanitaryMeasurementsSPController.cs" />
     <Compile Include="Models\AcumulatedProcedure_Result.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -216,7 +222,23 @@
     <Compile Include="Models\EnforcedMeasurements.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EnforcedMeasurementsSP.cs" />
     <Compile Include="Models\Events.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getEnforcedMeasurementsProcedure_Result.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getEnforcedMeasurements_Result.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getHospitalsProcedure_Result.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getMedicationProcedure_Result.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getPathologiesProcedure_Result.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\getPatientsProcedure_Result.cs">
@@ -228,9 +250,13 @@
     <Compile Include="Models\getRegionsProcedure_Result.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\getSanitaryMeasurementsProcedure_Result.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Hospitals.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\HospitalsSP.cs" />
     <Compile Include="Models\Hospital_ICUs.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -245,14 +271,17 @@
     </Compile>
     <Compile Include="Models\Acumulado.cs" />
     <Compile Include="Models\Continent.cs" />
+    <Compile Include="Models\MedicationSP.cs" />
     <Compile Include="Models\Medidas.cs" />
     <Compile Include="Models\Pathologies.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PathologiesSP.cs" />
     <Compile Include="Models\Patients.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PatientsSP.cs" />
+    <Compile Include="Models\PatientStatusSP.cs" />
     <Compile Include="Models\Patient_Medications.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -263,6 +292,7 @@
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RegionsSP.cs" />
+    <Compile Include="Models\SanitaryMeasurementsSP.cs" />
     <Compile Include="Reports\PatientStatusReport1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -64,5 +64,40 @@ namespace Anton.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getRegionsProcedure_Result>("getRegionsProcedure");
         }
+    
+        public virtual ObjectResult<getHospitalsProcedure_Result> getHospitalsProcedure()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getHospitalsProcedure_Result>("getHospitalsProcedure");
+        }
+    
+        public virtual ObjectResult<getEnforcedMeasurements_Result> getEnforcedMeasurements()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getEnforcedMeasurements_Result>("getEnforcedMeasurements");
+        }
+    
+        public virtual ObjectResult<getMedicationProcedure_Result> getMedicationProcedure()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getMedicationProcedure_Result>("getMedicationProcedure");
+        }
+    
+        public virtual ObjectResult<getPathologiesProcedure_Result> getPathologiesProcedure()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getPathologiesProcedure_Result>("getPathologiesProcedure");
+        }
+    
+        public virtual ObjectResult<string> getPatientStatusProcedure()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("getPatientStatusProcedure");
+        }
+    
+        public virtual ObjectResult<getSanitaryMeasurementsProcedure_Result> getSanitaryMeasurementsProcedure()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getSanitaryMeasurementsProcedure_Result>("getSanitaryMeasurementsProcedure");
+        }
+    
+        public virtual ObjectResult<getEnforcedMeasurementsProcedure_Result> getEnforcedMeasurementsProcedure()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getEnforcedMeasurementsProcedure_Result>("getEnforcedMeasurementsProcedure");
+        }
     }
 }

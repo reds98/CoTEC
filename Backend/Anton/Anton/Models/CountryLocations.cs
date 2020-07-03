@@ -14,10 +14,18 @@ namespace Anton.Models
     
     public partial class CountryLocations
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CountryLocations()
+        {
+            this.Hospitals = new HashSet<Hospitals>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
         public string Country_Name { get; set; }
     
         public virtual Countries Countries { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Hospitals> Hospitals { get; set; }
     }
 }

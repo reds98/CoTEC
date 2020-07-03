@@ -3,6 +3,12 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {IPatient} from '../Interfaces/IPatient';
 import {IRegions} from '../Interfaces/IRegions';
+import {IHospital} from '../Interfaces/IHospital';
+import {IPathologies} from '../Interfaces/IPathologies';
+import {IPatientStatus} from '../Interfaces/IPatientStatus';
+import {IMedication} from '../Interfaces/IMedication';
+import {ISanitaryMeasurements} from '../Interfaces/SanitaryMeasurements';
+import {IEnforcedMeasurements} from '../Interfaces/IEnforcedMeasurements';
 
 @Injectable({
   providedIn: 'root'
@@ -54,11 +60,29 @@ export class Services {
   getElements(type: string): Observable<any> {
     let observable;
     switch (type) {
-      case 'Patients':
+      case 'PatientsSP':
         observable =  this.httpGet<IPatient>(type);
         break;
-      case 'Regions':
+      case 'RegionsSP':
         observable =  this.httpGet<IRegions>(type);
+        break;
+      case 'HospitalsSP':
+        observable =  this.httpGet<IHospital>(type);
+        break;
+      case 'PathologiesSP':
+        observable =  this.httpGet<IPathologies>(type);
+        break;
+      case 'PatientStatusSP':
+        observable =  this.httpGet<IPatientStatus>(type);
+        break;
+      case 'MedicationSP':
+        observable =  this.httpGet<IMedication>(type);
+        break;
+      case 'SanitaryMeasurementsSP':
+        observable =  this.httpGet<ISanitaryMeasurements>(type);
+        break;
+      case 'EnforcedMeasurementsSP':
+        observable =  this.httpGet<IEnforcedMeasurements>(type);
         break;
       default:
         observable = {};
