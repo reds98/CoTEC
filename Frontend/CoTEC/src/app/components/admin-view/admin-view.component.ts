@@ -64,15 +64,16 @@ export class AdminViewComponent implements OnInit {
 
   // Deletes item
   onDelete(item): void {
-    const PKs = [];
+    let PK: any;
     for (const field of this.currentModel){
       if (field.PK) {
-        PKs.push(field.column);
+        PK = field.column;
         break;
       }
     }
 
-    console.log(PKs);
+    // PK value
+    console.log(item[PK]);
   }
 
 

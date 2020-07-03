@@ -7,6 +7,8 @@ namespace Anton.Models
 {
     public class HospitalsSP
     {
+
+        public int Id { get; set; }
         public string Name { get; set; }
         public Nullable<int> ICU_Capacity { get; set; }
         public Nullable<int> Capacity { get; set; }

@@ -13,11 +13,12 @@ export const Patients = [
 ];
 
 
-export const contacts = [
+export const Contacted_Person = [
   {"column":"SSN","PK":"SSN"},
   {"column":"First_Name"},
   {"column":"Last_Name"},
-  {"column":"Adress"},
+  {"column":"Address"},
+  {"column":"Country_Birth"},
   {"column":"Email"},
   {"column":"Age"},
   {"column":"Patient_SSN","PK":"SSN", "FK": "Patients"}

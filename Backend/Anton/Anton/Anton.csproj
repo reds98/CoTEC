@@ -139,7 +139,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ContactedPersonSPController.cs" />
     <Compile Include="Controllers\CountriesSPController.cs" />
+    <Compile Include="Models\ContactedPersonSP.cs" />
     <Compile Include="Models\Contacted_Person.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -153,7 +155,6 @@
     <Compile Include="Controllers\MedicationSPController.cs" />
     <Compile Include="Controllers\MedidasController.cs" />
     <Compile Include="Controllers\PathologiesSPController.cs" />
-    <Compile Include="Controllers\PatientsSPController.cs" />
     <Compile Include="Controllers\PatientStatusSPController.cs" />
     <Compile Include="Controllers\RegionsSPController.cs" />
     <Compile Include="Controllers\SanitaryMeasurementsSPController.cs" />
@@ -223,6 +224,9 @@
     <Compile Include="Models\Events.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\getContactedPersonProcedure_Result.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\getEnforcedMeasurementsProcedure_Result.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -270,7 +274,6 @@
     <Compile Include="Models\MedicationSP.cs" />
     <Compile Include="Models\Medidas.cs" />
     <Compile Include="Models\PathologiesSP.cs" />
-    <Compile Include="Models\PatientsSP.cs" />
     <Compile Include="Models\PatientStatusSP.cs" />
     <Compile Include="Models\RegionsSP.cs" />
     <Compile Include="Models\SanitaryMeasurementsSP.cs" />

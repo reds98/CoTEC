@@ -24,6 +24,7 @@ namespace Anton.Controllers
             {
                 RegionsSP PSP = new RegionsSP();
 
+                PSP.Id = item.Id;
                 PSP.Name = item.Name;
                 PSP.Country_Name = item.Country_Name;
 

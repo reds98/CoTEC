@@ -24,6 +24,7 @@ namespace Anton.Controllers
             {
                 SanitaryMeasurementsSP PSP = new SanitaryMeasurementsSP();
 
+                PSP.Id = item.Id;
                 PSP.Name = item.Name;
                 PSP.Description = item.Description;
 

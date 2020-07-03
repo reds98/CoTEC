@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Services} from '../services/services';
 import {
   Patients,
-  contacts
+  Contacted_Person
 } from '../hospital-view/models';
 
 @Component({
@@ -32,7 +32,7 @@ export class HospitalViewComponent implements OnInit {
   public dropdownLists = [];
   public dropdown;
   public Patients: any = Patients;
-  public contactsModel: any = contacts;
+  public Contacted_Person: any = Contacted_Person;
   private data: any;
 
 
@@ -142,6 +142,7 @@ export class HospitalViewComponent implements OnInit {
   loadData(data, fk, pk){
     this.dropdownLists = [];
     const type = (fk + 'SP');
+    console.log(type);
     this.service.getElements(type).subscribe(dropDownData => {
       this.dropdown = (dropDownData as any);
       this.getDropDownList(this.dropdown, fk, pk);

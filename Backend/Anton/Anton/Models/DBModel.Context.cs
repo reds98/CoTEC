@@ -84,5 +84,15 @@ namespace Anton.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getSanitaryMeasurementsProcedure_Result>("getSanitaryMeasurementsProcedure");
         }
+    
+        public virtual ObjectResult<getContactedPersonProcedure_Result> getContactedPersonProcedure()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getContactedPersonProcedure_Result>("getContactedPersonProcedure");
+        }
+    
+        public virtual ObjectResult<string> getCountriesProcedure()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("getCountriesProcedure");
+        }
     }
 }

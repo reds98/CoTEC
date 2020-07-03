@@ -24,6 +24,7 @@ namespace Anton.Controllers
             {
                 EnforcedMeasurementsSP PSP = new EnforcedMeasurementsSP();
 
+                PSP.Id = item.Id;
                 PSP.Country_Name = item.Country_Name;
                 PSP.Name = item.Name;
                 PSP.Start_Date = item.Start_Date;

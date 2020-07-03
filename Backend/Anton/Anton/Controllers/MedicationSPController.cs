@@ -24,6 +24,7 @@ namespace Anton.Controllers
             {
                 MedicationSP PSP = new MedicationSP();
 
+                PSP.Id = item.Id;
                 PSP.Name = item.Name;
                 PSP.Provider = item.Provider;
 

@@ -10,6 +10,7 @@ import {IMedication} from '../Interfaces/IMedication';
 import {ISanitaryMeasurements} from '../Interfaces/SanitaryMeasurements';
 import {IEnforcedMeasurements} from '../Interfaces/IEnforcedMeasurements';
 import {ICountries} from '../Interfaces/ICountries';
+import {IContacts} from '../Interfaces/IContacts';
 
 @Injectable({
   providedIn: 'root'
@@ -61,6 +62,9 @@ export class Services {
   getElements(type: string): Observable<any> {
     let observable;
     switch (type) {
+      case 'ContactedPersonSP':
+        observable =  this.httpGet<IContacts>(type);
+        break;
       case 'PatientsSP':
         observable =  this.httpGet<IPatient>(type);
         break;

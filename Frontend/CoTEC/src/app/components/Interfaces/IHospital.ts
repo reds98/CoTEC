@@ -1,7 +1,8 @@
 interface IHospital {
+  Id: number;
   Name: string;
   Manager_Name: string;
-  Phone: number;
+  Phone: string;
   Capacity: number;
   ICU_Capacity: number;
   Country_Name: string;

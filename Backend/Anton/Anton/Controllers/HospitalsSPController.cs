@@ -24,6 +24,7 @@ namespace Anton.Controllers
             {
                 HospitalsSP PSP = new HospitalsSP();
 
+                PSP.Id = item.Id;
                 PSP.Name = item.Name;
                 PSP.Manager_Name = item.Manager_Name;
                 PSP.Phone = item.Phone;

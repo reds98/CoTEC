@@ -20,7 +20,7 @@ export const Hospitals = [
     {"column":"Manager_Name"},
     {"column":"Phone"},
     {"column":"Country_Name","FK":"Countries"},
-    {"column":"Region","FK":"CountryLocations"}
+    {"column":"Region","FK":"Regions"}
 ];
 export const SanitaryMeasurements = [
     {"column":"Id","PK":1},

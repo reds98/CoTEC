@@ -159,6 +159,22 @@
           <Property Name="Name" Type="varchar" MaxLength="50" />
           <Property Name="Description" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'CoTecDB.dbo.PatientSatusView' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="PatientSatusView">
+          <Property Name="Residence" Type="varchar" MaxLength="45" />
+          <Property Name="ACTIVE" Type="int" />
+          <Property Name="RECOVERED" Type="int" />
+          <Property Name="DEAD" Type="int" />
+        </EntityType>-->
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'CoTecDB.dbo.WeeklyCases' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="WeeklyCases">
+          <Property Name="Residence" Type="varchar" MaxLength="45" />
+          <Property Name="Date" Type="date" />
+          <Property Name="DEATHS" Type="int" />
+          <Property Name="NEW_CASES" Type="int" />
+        </EntityType>-->
         <Association Name="FK__Contacted__Count__534D60F1">
           <End Role="Countries" Type="Self.Countries" Multiplicity="0..1" />
           <End Role="Contacted_Person" Type="Self.Contacted_Person" Multiplicity="*" />
@@ -423,6 +439,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="getContactedPersonProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getCountriesProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getEnforcedMeasurementsProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getHospitalsProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getMedicationProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -1118,6 +1136,8 @@
           <FunctionImport Name="getPathologiesProcedure" ReturnType="Collection(CoTecDBModel.getPathologiesProcedure_Result)" />
           <FunctionImport Name="getRegionsProcedure" ReturnType="Collection(CoTecDBModel.getRegionsProcedure_Result)" />
           <FunctionImport Name="getSanitaryMeasurementsProcedure" ReturnType="Collection(CoTecDBModel.getSanitaryMeasurementsProcedure_Result)" />
+          <FunctionImport Name="getContactedPersonProcedure" ReturnType="Collection(CoTecDBModel.getContactedPersonProcedure_Result)" />
+          <FunctionImport Name="getCountriesProcedure" ReturnType="Collection(String)" />
         </EntityContainer>
         <ComplexType Name="getEnforcedMeasurementsProcedure_Result">
           <Property Type="String" Name="Country_Name" Nullable="true" MaxLength="45" />
@@ -1165,6 +1185,16 @@
         <ComplexType Name="getSanitaryMeasurementsProcedure_Result">
           <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Description" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="getContactedPersonProcedure_Result">
+          <Property Type="String" Name="First_Name" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Last_Name" Nullable="true" MaxLength="60" />
+          <Property Type="Int32" Name="SSN" Nullable="true" />
+          <Property Type="Int32" Name="Age" Nullable="true" />
+          <Property Type="String" Name="Country_Birth" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="60" />
+          <Property Type="Int32" Name="Patient_SSN" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1419,6 +1449,21 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getContactedPersonProcedure" FunctionName="CoTecDBModel.Store.getContactedPersonProcedure">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CoTecDBModel.getContactedPersonProcedure_Result">
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="SSN" ColumnName="SSN" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Country_Birth" ColumnName="Country_Birth" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Patient_SSN" ColumnName="Patient_SSN" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getCountriesProcedure" FunctionName="CoTecDBModel.Store.getCountriesProcedure" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
