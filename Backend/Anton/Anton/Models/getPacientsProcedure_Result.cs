@@ -11,7 +11,7 @@ namespace Anton.Models
 {
     using System;
     
-    public partial class getPatientsProcedure_Result
+    public partial class getPacientsProcedure_Result
     {
         public string First_Name { get; set; }
         public string Last_Name { get; set; }
@@ -22,7 +22,7 @@ namespace Anton.Models
         public string Status { get; set; }
         public Nullable<bool> Hospitalized { get; set; }
         public Nullable<bool> ICU { get; set; }
-        public string Name { get; set; }
-        public string Name1 { get; set; }
+        public string Medication { get; set; }
+        public string Pathology { get; set; }
     }
 }

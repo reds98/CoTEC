@@ -19,6 +19,7 @@ namespace Anton.Models
         public Nullable<int> Measurement_Id { get; set; }
         public Nullable<System.DateTime> Start_Date { get; set; }
         public Nullable<System.DateTime> End_Date { get; set; }
+        public Nullable<bool> State { get; set; }
     
         public virtual Countries Countries { get; set; }
         public virtual SanityMeasurements SanityMeasurements { get; set; }

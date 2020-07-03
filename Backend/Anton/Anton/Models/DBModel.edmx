@@ -17,6 +17,7 @@
           <Property Name="Address" Type="varchar" MaxLength="60" />
           <Property Name="Email" Type="varchar" MaxLength="60" />
           <Property Name="Age" Type="int" />
+          <Property Name="Country_Birth" Type="varchar" MaxLength="45" />
         </EntityType>
         <EntityType Name="Continents">
           <Key>
@@ -48,6 +49,7 @@
           <Property Name="Measurement_Id" Type="int" />
           <Property Name="Start_Date" Type="date" />
           <Property Name="End_Date" Type="date" />
+          <Property Name="State" Type="bit" />
         </EntityType>
         <EntityType Name="Events">
           <Key>
@@ -93,7 +95,7 @@
           <Property Name="Manager_Name" Type="varchar" MaxLength="60" />
           <Property Name="Phone" Type="varchar" MaxLength="12" />
           <Property Name="Country_Name" Type="varchar" MaxLength="45" />
-          <Property Name="RegionId" Type="int" />
+          <Property Name="Country_Location_Id" Type="int" />
         </EntityType>
         <EntityType Name="Medications">
           <Key>
@@ -157,7 +159,19 @@
           <Property Name="Name" Type="varchar" MaxLength="50" />
           <Property Name="Description" Type="varchar" MaxLength="255" />
         </EntityType>
-        <Association Name="FK__Contacted__Patie__5165187F">
+        <Association Name="FK__Contacted__Count__534D60F1">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="0..1" />
+          <End Role="Contacted_Person" Type="Self.Contacted_Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Contacted_Person">
+              <PropertyRef Name="Country_Birth" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Contacted__Patie__52593CB8">
           <End Role="Patients" Type="Self.Patients" Multiplicity="0..1" />
           <End Role="Contacted_Person" Type="Self.Contacted_Person" Multiplicity="*" />
           <ReferentialConstraint>
@@ -217,7 +231,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Events__Patient___5441852A">
+        <Association Name="FK__Events__Patient___5629CD9C">
           <End Role="Patients" Type="Self.Patients" Multiplicity="0..1" />
           <End Role="Events" Type="Self.Events" Multiplicity="*" />
           <ReferentialConstraint>
@@ -229,7 +243,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Events__Status_E__5535A963">
+        <Association Name="FK__Events__Status_E__571DF1D5">
           <End Role="Patient_Status" Type="Self.Patient_Status" Multiplicity="0..1" />
           <End Role="Events" Type="Self.Events" Multiplicity="*" />
           <ReferentialConstraint>
@@ -241,7 +255,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Hospital___Hospi__34C8D9D1">
+        <Association Name="FK__Hospital___Hospi__35BCFE0A">
           <End Role="Hospitals" Type="Self.Hospitals" Multiplicity="0..1" />
           <End Role="Hospital_Patients" Type="Self.Hospital_Patients" Multiplicity="*" />
           <ReferentialConstraint>
@@ -253,7 +267,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Hospital___Hospi__37A5467C">
+        <Association Name="FK__Hospital___Hospi__38996AB5">
           <End Role="Hospitals" Type="Self.Hospitals" Multiplicity="0..1" />
           <End Role="Hospital_ICUs" Type="Self.Hospital_ICUs" Multiplicity="*" />
           <ReferentialConstraint>
@@ -265,7 +279,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Hospital___Hospi__3D5E1FD2">
+        <Association Name="FK__Hospital___Hospi__3E52440B">
           <End Role="Hospitals" Type="Self.Hospitals" Multiplicity="0..1" />
           <End Role="Hospital_Medications" Type="Self.Hospital_Medications" Multiplicity="*" />
           <ReferentialConstraint>
@@ -277,7 +291,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Hospital___Medic__3C69FB99">
+        <Association Name="FK__Hospital___Medic__3D5E1FD2">
           <End Role="Medications" Type="Self.Medications" Multiplicity="0..1" />
           <End Role="Hospital_Medications" Type="Self.Hospital_Medications" Multiplicity="*" />
           <ReferentialConstraint>
@@ -301,7 +315,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Patient_M__Medic__4E88ABD4">
+        <Association Name="FK__Hospitals__Count__32E0915F">
+          <End Role="CountryLocations" Type="Self.CountryLocations" Multiplicity="0..1" />
+          <End Role="Hospitals" Type="Self.Hospitals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountryLocations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Hospitals">
+              <PropertyRef Name="Country_Location_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Patient_M__Medic__4F7CD00D">
           <End Role="Medications" Type="Self.Medications" Multiplicity="0..1" />
           <End Role="Patient_Medications" Type="Self.Patient_Medications" Multiplicity="*" />
           <ReferentialConstraint>
@@ -313,7 +339,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Patient_M__Patie__4D94879B">
+        <Association Name="FK__Patient_M__Patie__4E88ABD4">
           <End Role="Patients" Type="Self.Patients" Multiplicity="0..1" />
           <End Role="Patient_Medications" Type="Self.Patient_Medications" Multiplicity="*" />
           <ReferentialConstraint>
@@ -325,7 +351,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Patient_P__Patho__4AB81AF0">
+        <Association Name="FK__Patient_P__Patho__4BAC3F29">
           <End Role="Pathologies" Type="Self.Pathologies" Multiplicity="0..1" />
           <End Role="Patient_Pathologies" Type="Self.Patient_Pathologies" Multiplicity="*" />
           <ReferentialConstraint>
@@ -337,7 +363,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Patient_P__Patie__49C3F6B7">
+        <Association Name="FK__Patient_P__Patie__4AB81AF0">
           <End Role="Patients" Type="Self.Patients" Multiplicity="0..1" />
           <End Role="Patient_Pathologies" Type="Self.Patient_Pathologies" Multiplicity="*" />
           <ReferentialConstraint>
@@ -349,7 +375,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Patients__Countr__44FF419A">
+        <Association Name="FK__Patients__Countr__45F365D3">
           <End Role="Countries" Type="Self.Countries" Multiplicity="0..1" />
           <End Role="Patients" Type="Self.Patients" Multiplicity="*" />
           <ReferentialConstraint>
@@ -361,7 +387,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Patients__Hospit__45F365D3">
+        <Association Name="FK__Patients__Hospit__46E78A0C">
           <End Role="Hospitals" Type="Self.Hospitals" Multiplicity="0..1" />
           <End Role="Patients" Type="Self.Patients" Multiplicity="*" />
           <ReferentialConstraint>
@@ -373,7 +399,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Patients__Reside__440B1D61">
+        <Association Name="FK__Patients__Reside__44FF419A">
           <End Role="Countries" Type="Self.Countries" Multiplicity="0..1" />
           <End Role="Patients" Type="Self.Patients" Multiplicity="*" />
           <ReferentialConstraint>
@@ -385,7 +411,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Patients__Status__46E78A0C">
+        <Association Name="FK__Patients__Status__47DBAE45">
           <End Role="Patient_Status" Type="Self.Patient_Status" Multiplicity="0..1" />
           <End Role="Patients" Type="Self.Patients" Multiplicity="*" />
           <ReferentialConstraint>
@@ -397,24 +423,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RegionId">
-          <End Role="CountryLocations" Type="Self.CountryLocations" Multiplicity="0..1" />
-          <End Role="Hospitals" Type="Self.Hospitals" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CountryLocations">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Hospitals">
-              <PropertyRef Name="RegionId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Function Name="getEnforcedMeasurementsProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getHospitalsProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getMedicationProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getPacientsProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getPacientStatusProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getPathologiesProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="getPatientsProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="getPatientStatusProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getRegionsProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getSanitaryMeasurementsProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="CoTecDBModelStoreContainer">
@@ -435,7 +449,11 @@
           <EntitySet Name="Patient_Status" EntityType="Self.Patient_Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Patients" EntityType="Self.Patients" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SanityMeasurements" EntityType="Self.SanityMeasurements" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Contacted__Patie__5165187F" Association="Self.FK__Contacted__Patie__5165187F">
+          <AssociationSet Name="FK__Contacted__Count__534D60F1" Association="Self.FK__Contacted__Count__534D60F1">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="Contacted_Person" EntitySet="Contacted_Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Contacted__Patie__52593CB8" Association="Self.FK__Contacted__Patie__52593CB8">
             <End Role="Patients" EntitySet="Patients" />
             <End Role="Contacted_Person" EntitySet="Contacted_Person" />
           </AssociationSet>
@@ -455,27 +473,27 @@
             <End Role="SanityMeasurements" EntitySet="SanityMeasurements" />
             <End Role="EnforcedMeasurements" EntitySet="EnforcedMeasurements" />
           </AssociationSet>
-          <AssociationSet Name="FK__Events__Patient___5441852A" Association="Self.FK__Events__Patient___5441852A">
+          <AssociationSet Name="FK__Events__Patient___5629CD9C" Association="Self.FK__Events__Patient___5629CD9C">
             <End Role="Patients" EntitySet="Patients" />
             <End Role="Events" EntitySet="Events" />
           </AssociationSet>
-          <AssociationSet Name="FK__Events__Status_E__5535A963" Association="Self.FK__Events__Status_E__5535A963">
+          <AssociationSet Name="FK__Events__Status_E__571DF1D5" Association="Self.FK__Events__Status_E__571DF1D5">
             <End Role="Patient_Status" EntitySet="Patient_Status" />
             <End Role="Events" EntitySet="Events" />
           </AssociationSet>
-          <AssociationSet Name="FK__Hospital___Hospi__34C8D9D1" Association="Self.FK__Hospital___Hospi__34C8D9D1">
+          <AssociationSet Name="FK__Hospital___Hospi__35BCFE0A" Association="Self.FK__Hospital___Hospi__35BCFE0A">
             <End Role="Hospitals" EntitySet="Hospitals" />
             <End Role="Hospital_Patients" EntitySet="Hospital_Patients" />
           </AssociationSet>
-          <AssociationSet Name="FK__Hospital___Hospi__37A5467C" Association="Self.FK__Hospital___Hospi__37A5467C">
+          <AssociationSet Name="FK__Hospital___Hospi__38996AB5" Association="Self.FK__Hospital___Hospi__38996AB5">
             <End Role="Hospitals" EntitySet="Hospitals" />
             <End Role="Hospital_ICUs" EntitySet="Hospital_ICUs" />
           </AssociationSet>
-          <AssociationSet Name="FK__Hospital___Hospi__3D5E1FD2" Association="Self.FK__Hospital___Hospi__3D5E1FD2">
+          <AssociationSet Name="FK__Hospital___Hospi__3E52440B" Association="Self.FK__Hospital___Hospi__3E52440B">
             <End Role="Hospitals" EntitySet="Hospitals" />
             <End Role="Hospital_Medications" EntitySet="Hospital_Medications" />
           </AssociationSet>
-          <AssociationSet Name="FK__Hospital___Medic__3C69FB99" Association="Self.FK__Hospital___Medic__3C69FB99">
+          <AssociationSet Name="FK__Hospital___Medic__3D5E1FD2" Association="Self.FK__Hospital___Medic__3D5E1FD2">
             <End Role="Medications" EntitySet="Medications" />
             <End Role="Hospital_Medications" EntitySet="Hospital_Medications" />
           </AssociationSet>
@@ -483,41 +501,41 @@
             <End Role="Countries" EntitySet="Countries" />
             <End Role="Hospitals" EntitySet="Hospitals" />
           </AssociationSet>
-          <AssociationSet Name="FK__Patient_M__Medic__4E88ABD4" Association="Self.FK__Patient_M__Medic__4E88ABD4">
+          <AssociationSet Name="FK__Hospitals__Count__32E0915F" Association="Self.FK__Hospitals__Count__32E0915F">
+            <End Role="CountryLocations" EntitySet="CountryLocations" />
+            <End Role="Hospitals" EntitySet="Hospitals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Patient_M__Medic__4F7CD00D" Association="Self.FK__Patient_M__Medic__4F7CD00D">
             <End Role="Medications" EntitySet="Medications" />
             <End Role="Patient_Medications" EntitySet="Patient_Medications" />
           </AssociationSet>
-          <AssociationSet Name="FK__Patient_M__Patie__4D94879B" Association="Self.FK__Patient_M__Patie__4D94879B">
+          <AssociationSet Name="FK__Patient_M__Patie__4E88ABD4" Association="Self.FK__Patient_M__Patie__4E88ABD4">
             <End Role="Patients" EntitySet="Patients" />
             <End Role="Patient_Medications" EntitySet="Patient_Medications" />
           </AssociationSet>
-          <AssociationSet Name="FK__Patient_P__Patho__4AB81AF0" Association="Self.FK__Patient_P__Patho__4AB81AF0">
+          <AssociationSet Name="FK__Patient_P__Patho__4BAC3F29" Association="Self.FK__Patient_P__Patho__4BAC3F29">
             <End Role="Pathologies" EntitySet="Pathologies" />
             <End Role="Patient_Pathologies" EntitySet="Patient_Pathologies" />
           </AssociationSet>
-          <AssociationSet Name="FK__Patient_P__Patie__49C3F6B7" Association="Self.FK__Patient_P__Patie__49C3F6B7">
+          <AssociationSet Name="FK__Patient_P__Patie__4AB81AF0" Association="Self.FK__Patient_P__Patie__4AB81AF0">
             <End Role="Patients" EntitySet="Patients" />
             <End Role="Patient_Pathologies" EntitySet="Patient_Pathologies" />
           </AssociationSet>
-          <AssociationSet Name="FK__Patients__Countr__44FF419A" Association="Self.FK__Patients__Countr__44FF419A">
+          <AssociationSet Name="FK__Patients__Countr__45F365D3" Association="Self.FK__Patients__Countr__45F365D3">
             <End Role="Countries" EntitySet="Countries" />
             <End Role="Patients" EntitySet="Patients" />
           </AssociationSet>
-          <AssociationSet Name="FK__Patients__Hospit__45F365D3" Association="Self.FK__Patients__Hospit__45F365D3">
+          <AssociationSet Name="FK__Patients__Hospit__46E78A0C" Association="Self.FK__Patients__Hospit__46E78A0C">
             <End Role="Hospitals" EntitySet="Hospitals" />
             <End Role="Patients" EntitySet="Patients" />
           </AssociationSet>
-          <AssociationSet Name="FK__Patients__Reside__440B1D61" Association="Self.FK__Patients__Reside__440B1D61">
+          <AssociationSet Name="FK__Patients__Reside__44FF419A" Association="Self.FK__Patients__Reside__44FF419A">
             <End Role="Countries" EntitySet="Countries" />
             <End Role="Patients" EntitySet="Patients" />
           </AssociationSet>
-          <AssociationSet Name="FK__Patients__Status__46E78A0C" Association="Self.FK__Patients__Status__46E78A0C">
+          <AssociationSet Name="FK__Patients__Status__47DBAE45" Association="Self.FK__Patients__Status__47DBAE45">
             <End Role="Patient_Status" EntitySet="Patient_Status" />
             <End Role="Patients" EntitySet="Patients" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RegionId" Association="Self.FK_RegionId">
-            <End Role="CountryLocations" EntitySet="CountryLocations" />
-            <End Role="Hospitals" EntitySet="Hospitals" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -536,7 +554,9 @@
           <Property Name="Address" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Name="Age" Type="Int32" />
-          <NavigationProperty Name="Patients" Relationship="Self.FK__Contacted__Patie__5165187F" FromRole="Contacted_Person" ToRole="Patients" />
+          <Property Name="Country_Birth" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Countries" Relationship="Self.FK__Contacted__Count__534D60F1" FromRole="Contacted_Person" ToRole="Countries" />
+          <NavigationProperty Name="Patients" Relationship="Self.FK__Contacted__Patie__52593CB8" FromRole="Contacted_Person" ToRole="Patients" />
         </EntityType>
         <EntityType Name="Continents">
           <Key>
@@ -551,12 +571,13 @@
           </Key>
           <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Continent_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Contacted_Person" Relationship="Self.FK__Contacted__Count__534D60F1" FromRole="Countries" ToRole="Contacted_Person" />
           <NavigationProperty Name="Continents" Relationship="Self.FK__Countries__Conti__267ABA7A" FromRole="Countries" ToRole="Continents" />
           <NavigationProperty Name="CountryLocations" Relationship="Self.FK__CountryLo__Count__29572725" FromRole="Countries" ToRole="CountryLocations" />
-          <NavigationProperty Name="EnforcedMeasurements" Relationship="Self.FK__EnforcedM__Count__2E1BDC42" FromRole="Countries" ToRole="EnforcedMeasurements" />
+          <NavigationProperty Name="EnforcedMeasurements" Relationship="Self.FK__EnforcedM__Count__2F10007B" FromRole="Countries" ToRole="EnforcedMeasurements" />
           <NavigationProperty Name="Hospitals" Relationship="Self.FK__Hospitals__Count__31EC6D26" FromRole="Countries" ToRole="Hospitals" />
-          <NavigationProperty Name="Patients" Relationship="Self.FK__Patients__Countr__44FF419A" FromRole="Countries" ToRole="Patients" />
-          <NavigationProperty Name="Patients1" Relationship="Self.FK__Patients__Reside__440B1D61" FromRole="Countries" ToRole="Patients" />
+          <NavigationProperty Name="Patients" Relationship="Self.FK__Patients__Countr__45F365D3" FromRole="Countries" ToRole="Patients" />
+          <NavigationProperty Name="Patients1" Relationship="Self.FK__Patients__Reside__44FF419A" FromRole="Countries" ToRole="Patients" />
         </EntityType>
         <EntityType Name="CountryLocations">
           <Key>
@@ -566,7 +587,7 @@
           <Property Name="Name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Name="Country_Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Countries" Relationship="Self.FK__CountryLo__Count__29572725" FromRole="CountryLocations" ToRole="Countries" />
-          <NavigationProperty Name="Hospitals" Relationship="CoTecDBModel.FK_RegionId" FromRole="CountryLocations" ToRole="Hospitals" />
+          <NavigationProperty Name="Hospitals" Relationship="Self.FK__Hospitals__Count__32E0915F" FromRole="CountryLocations" ToRole="Hospitals" />
         </EntityType>
         <EntityType Name="EnforcedMeasurements">
           <Key>
@@ -577,8 +598,9 @@
           <Property Name="Measurement_Id" Type="Int32" />
           <Property Name="Start_Date" Type="DateTime" Precision="0" />
           <Property Name="End_Date" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Countries" Relationship="Self.FK__EnforcedM__Count__2E1BDC42" FromRole="EnforcedMeasurements" ToRole="Countries" />
-          <NavigationProperty Name="SanityMeasurements" Relationship="Self.FK__EnforcedM__Measu__2F10007B" FromRole="EnforcedMeasurements" ToRole="SanityMeasurements" />
+          <Property Name="State" Type="Boolean" />
+          <NavigationProperty Name="Countries" Relationship="Self.FK__EnforcedM__Count__2F10007B" FromRole="EnforcedMeasurements" ToRole="Countries" />
+          <NavigationProperty Name="SanityMeasurements" Relationship="Self.FK__EnforcedM__Measu__2E1BDC42" FromRole="EnforcedMeasurements" ToRole="SanityMeasurements" />
         </EntityType>
         <EntityType Name="Events">
           <Key>
@@ -588,8 +610,8 @@
           <Property Name="Status_Event" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="Date" Type="DateTime" Precision="0" />
           <Property Name="Patient_SSN" Type="Int32" />
-          <NavigationProperty Name="Patients" Relationship="Self.FK__Events__Patient___5535A963" FromRole="Events" ToRole="Patients" />
-          <NavigationProperty Name="Patient_Status" Relationship="Self.FK__Events__Status_E__5441852A" FromRole="Events" ToRole="Patient_Status" />
+          <NavigationProperty Name="Patients" Relationship="Self.FK__Events__Patient___5629CD9C" FromRole="Events" ToRole="Patients" />
+          <NavigationProperty Name="Patient_Status" Relationship="Self.FK__Events__Status_E__571DF1D5" FromRole="Events" ToRole="Patient_Status" />
         </EntityType>
         <EntityType Name="Hospital_ICUs">
           <Key>
@@ -598,7 +620,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ICU_Patient" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Hospital_Id" Type="Int32" />
-          <NavigationProperty Name="Hospitals" Relationship="Self.FK__Hospital___Hospi__37A5467C" FromRole="Hospital_ICUs" ToRole="Hospitals" />
+          <NavigationProperty Name="Hospitals" Relationship="Self.FK__Hospital___Hospi__38996AB5" FromRole="Hospital_ICUs" ToRole="Hospitals" />
         </EntityType>
         <EntityType Name="Hospital_Medications">
           <Key>
@@ -607,7 +629,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Hospital_Id" Type="Int32" />
           <Property Name="Medication_Id" Type="Int32" />
-          <NavigationProperty Name="Hospitals" Relationship="Self.FK__Hospital___Hospi__3C69FB99" FromRole="Hospital_Medications" ToRole="Hospitals" />
+          <NavigationProperty Name="Hospitals" Relationship="Self.FK__Hospital___Hospi__3E52440B" FromRole="Hospital_Medications" ToRole="Hospitals" />
           <NavigationProperty Name="Medications" Relationship="Self.FK__Hospital___Medic__3D5E1FD2" FromRole="Hospital_Medications" ToRole="Medications" />
         </EntityType>
         <EntityType Name="Hospital_Patients">
@@ -617,7 +639,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Patient" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Hospital_Id" Type="Int32" />
-          <NavigationProperty Name="Hospitals" Relationship="Self.FK__Hospital___Hospi__34C8D9D1" FromRole="Hospital_Patients" ToRole="Hospitals" />
+          <NavigationProperty Name="Hospitals" Relationship="Self.FK__Hospital___Hospi__35BCFE0A" FromRole="Hospital_Patients" ToRole="Hospitals" />
         </EntityType>
         <EntityType Name="Hospitals">
           <Key>
@@ -630,13 +652,13 @@
           <Property Name="Manager_Name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Name="Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
           <Property Name="Country_Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Country_Location_Id" Type="Int32" />
           <NavigationProperty Name="Countries" Relationship="Self.FK__Hospitals__Count__31EC6D26" FromRole="Hospitals" ToRole="Countries" />
-          <NavigationProperty Name="Hospital_ICUs" Relationship="Self.FK__Hospital___Hospi__37A5467C" FromRole="Hospitals" ToRole="Hospital_ICUs" />
-          <NavigationProperty Name="Hospital_Medications" Relationship="Self.FK__Hospital___Hospi__3C69FB99" FromRole="Hospitals" ToRole="Hospital_Medications" />
-          <NavigationProperty Name="Hospital_Patients" Relationship="Self.FK__Hospital___Hospi__34C8D9D1" FromRole="Hospitals" ToRole="Hospital_Patients" />
-          <NavigationProperty Name="Patients" Relationship="Self.FK__Patients__Hospit__45F365D3" FromRole="Hospitals" ToRole="Patients" />
-          <Property Name="RegionId" Type="Int32" />
-          <NavigationProperty Name="CountryLocations" Relationship="CoTecDBModel.FK_RegionId" FromRole="Hospitals" ToRole="CountryLocations" />
+          <NavigationProperty Name="CountryLocations" Relationship="Self.FK__Hospitals__Count__32E0915F" FromRole="Hospitals" ToRole="CountryLocations" />
+          <NavigationProperty Name="Hospital_ICUs" Relationship="Self.FK__Hospital___Hospi__38996AB5" FromRole="Hospitals" ToRole="Hospital_ICUs" />
+          <NavigationProperty Name="Hospital_Medications" Relationship="Self.FK__Hospital___Hospi__3E52440B" FromRole="Hospitals" ToRole="Hospital_Medications" />
+          <NavigationProperty Name="Hospital_Patients" Relationship="Self.FK__Hospital___Hospi__35BCFE0A" FromRole="Hospitals" ToRole="Hospital_Patients" />
+          <NavigationProperty Name="Patients" Relationship="Self.FK__Patients__Hospit__46E78A0C" FromRole="Hospitals" ToRole="Patients" />
         </EntityType>
         <EntityType Name="Medications">
           <Key>
@@ -646,7 +668,7 @@
           <Property Name="Name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Name="Provider" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Hospital_Medications" Relationship="Self.FK__Hospital___Medic__3D5E1FD2" FromRole="Medications" ToRole="Hospital_Medications" />
-          <NavigationProperty Name="Patient_Medications" Relationship="Self.FK__Patient_M__Medic__4E88ABD4" FromRole="Medications" ToRole="Patient_Medications" />
+          <NavigationProperty Name="Patient_Medications" Relationship="Self.FK__Patient_M__Medic__4F7CD00D" FromRole="Medications" ToRole="Patient_Medications" />
         </EntityType>
         <EntityType Name="Pathologies">
           <Key>
@@ -656,7 +678,7 @@
           <Property Name="Symptoms" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Treatment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Patient_Pathologies" Relationship="Self.FK__Patient_P__Patho__4AB81AF0" FromRole="Pathologies" ToRole="Patient_Pathologies" />
+          <NavigationProperty Name="Patient_Pathologies" Relationship="Self.FK__Patient_P__Patho__4BAC3F29" FromRole="Pathologies" ToRole="Patient_Pathologies" />
         </EntityType>
         <EntityType Name="Patient_Medications">
           <Key>
@@ -665,8 +687,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Patient_SSN" Type="Int32" />
           <Property Name="Medication_Id" Type="Int32" />
-          <NavigationProperty Name="Medications" Relationship="Self.FK__Patient_M__Medic__4E88ABD4" FromRole="Patient_Medications" ToRole="Medications" />
-          <NavigationProperty Name="Patients" Relationship="Self.FK__Patient_M__Patie__4D94879B" FromRole="Patient_Medications" ToRole="Patients" />
+          <NavigationProperty Name="Medications" Relationship="Self.FK__Patient_M__Medic__4F7CD00D" FromRole="Patient_Medications" ToRole="Medications" />
+          <NavigationProperty Name="Patients" Relationship="Self.FK__Patient_M__Patie__4E88ABD4" FromRole="Patient_Medications" ToRole="Patients" />
         </EntityType>
         <EntityType Name="Patient_Pathologies">
           <Key>
@@ -675,16 +697,16 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Patient_SSN" Type="Int32" />
           <Property Name="Pathology_Name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Pathologies" Relationship="Self.FK__Patient_P__Patho__4AB81AF0" FromRole="Patient_Pathologies" ToRole="Pathologies" />
-          <NavigationProperty Name="Patients" Relationship="Self.FK__Patient_P__Patie__49C3F6B7" FromRole="Patient_Pathologies" ToRole="Patients" />
+          <NavigationProperty Name="Pathologies" Relationship="Self.FK__Patient_P__Patho__4BAC3F29" FromRole="Patient_Pathologies" ToRole="Pathologies" />
+          <NavigationProperty Name="Patients" Relationship="Self.FK__Patient_P__Patie__4AB81AF0" FromRole="Patient_Pathologies" ToRole="Patients" />
         </EntityType>
         <EntityType Name="Patient_Status">
           <Key>
             <PropertyRef Name="Name" />
           </Key>
           <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Events" Relationship="Self.FK__Events__Status_E__5441852A" FromRole="Patient_Status" ToRole="Events" />
-          <NavigationProperty Name="Patients" Relationship="Self.FK__Patients__Status__46E78A0C" FromRole="Patient_Status" ToRole="Patients" />
+          <NavigationProperty Name="Events" Relationship="Self.FK__Events__Status_E__571DF1D5" FromRole="Patient_Status" ToRole="Events" />
+          <NavigationProperty Name="Patients" Relationship="Self.FK__Patients__Status__47DBAE45" FromRole="Patient_Status" ToRole="Patients" />
         </EntityType>
         <EntityType Name="Patients">
           <Key>
@@ -700,14 +722,14 @@
           <Property Name="Country_Birth" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Hospital_Id" Type="Int32" />
           <Property Name="Status" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Contacted_Person" Relationship="Self.FK__Contacted__Patie__5165187F" FromRole="Patients" ToRole="Contacted_Person" />
-          <NavigationProperty Name="Countries" Relationship="Self.FK__Patients__Countr__44FF419A" FromRole="Patients" ToRole="Countries" />
-          <NavigationProperty Name="Countries1" Relationship="Self.FK__Patients__Reside__440B1D61" FromRole="Patients" ToRole="Countries" />
-          <NavigationProperty Name="Events" Relationship="Self.FK__Events__Patient___5535A963" FromRole="Patients" ToRole="Events" />
-          <NavigationProperty Name="Hospitals" Relationship="Self.FK__Patients__Hospit__45F365D3" FromRole="Patients" ToRole="Hospitals" />
-          <NavigationProperty Name="Patient_Medications" Relationship="Self.FK__Patient_M__Patie__4D94879B" FromRole="Patients" ToRole="Patient_Medications" />
-          <NavigationProperty Name="Patient_Pathologies" Relationship="Self.FK__Patient_P__Patie__49C3F6B7" FromRole="Patients" ToRole="Patient_Pathologies" />
-          <NavigationProperty Name="Patient_Status" Relationship="Self.FK__Patients__Status__46E78A0C" FromRole="Patients" ToRole="Patient_Status" />
+          <NavigationProperty Name="Contacted_Person" Relationship="Self.FK__Contacted__Patie__52593CB8" FromRole="Patients" ToRole="Contacted_Person" />
+          <NavigationProperty Name="Countries" Relationship="Self.FK__Patients__Countr__45F365D3" FromRole="Patients" ToRole="Countries" />
+          <NavigationProperty Name="Countries1" Relationship="Self.FK__Patients__Reside__44FF419A" FromRole="Patients" ToRole="Countries" />
+          <NavigationProperty Name="Events" Relationship="Self.FK__Events__Patient___5629CD9C" FromRole="Patients" ToRole="Events" />
+          <NavigationProperty Name="Hospitals" Relationship="Self.FK__Patients__Hospit__46E78A0C" FromRole="Patients" ToRole="Hospitals" />
+          <NavigationProperty Name="Patient_Medications" Relationship="Self.FK__Patient_M__Patie__4E88ABD4" FromRole="Patients" ToRole="Patient_Medications" />
+          <NavigationProperty Name="Patient_Pathologies" Relationship="Self.FK__Patient_P__Patie__4AB81AF0" FromRole="Patients" ToRole="Patient_Pathologies" />
+          <NavigationProperty Name="Patient_Status" Relationship="Self.FK__Patients__Status__47DBAE45" FromRole="Patients" ToRole="Patient_Status" />
         </EntityType>
         <EntityType Name="SanityMeasurements">
           <Key>
@@ -716,9 +738,21 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="EnforcedMeasurements" Relationship="Self.FK__EnforcedM__Measu__2F10007B" FromRole="SanityMeasurements" ToRole="EnforcedMeasurements" />
+          <NavigationProperty Name="EnforcedMeasurements" Relationship="Self.FK__EnforcedM__Measu__2E1BDC42" FromRole="SanityMeasurements" ToRole="EnforcedMeasurements" />
         </EntityType>
-        <Association Name="FK__Contacted__Patie__5165187F">
+        <Association Name="FK__Contacted__Count__534D60F1">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="0..1" />
+          <End Role="Contacted_Person" Type="Self.Contacted_Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Contacted_Person">
+              <PropertyRef Name="Country_Birth" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Contacted__Patie__52593CB8">
           <End Role="Patients" Type="Self.Patients" Multiplicity="0..1" />
           <End Role="Contacted_Person" Type="Self.Contacted_Person" Multiplicity="*" />
           <ReferentialConstraint>
@@ -754,7 +788,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__EnforcedM__Count__2E1BDC42">
+        <Association Name="FK__EnforcedM__Count__2F10007B">
           <End Role="Countries" Type="Self.Countries" Multiplicity="0..1" />
           <End Role="EnforcedMeasurements" Type="Self.EnforcedMeasurements" Multiplicity="*" />
           <ReferentialConstraint>
@@ -778,7 +812,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Patients__Countr__44FF419A">
+        <Association Name="FK__Patients__Countr__45F365D3">
           <End Role="Countries" Type="Self.Countries" Multiplicity="0..1" />
           <End Role="Patients" Type="Self.Patients" Multiplicity="*" />
           <ReferentialConstraint>
@@ -790,7 +824,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Patients__Reside__440B1D61">
+        <Association Name="FK__Patients__Reside__44FF419A">
           <End Role="Countries" Type="Self.Countries" Multiplicity="0..1" />
           <End Role="Patients" Type="Self.Patients" Multiplicity="*" />
           <ReferentialConstraint>
@@ -802,7 +836,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__EnforcedM__Measu__2F10007B">
+        <Association Name="FK__Hospitals__Count__32E0915F">
+          <End Role="CountryLocations" Type="Self.CountryLocations" Multiplicity="0..1" />
+          <End Role="Hospitals" Type="Self.Hospitals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountryLocations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Hospitals">
+              <PropertyRef Name="Country_Location_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EnforcedM__Measu__2E1BDC42">
           <End Role="SanityMeasurements" Type="Self.SanityMeasurements" Multiplicity="0..1" />
           <End Role="EnforcedMeasurements" Type="Self.EnforcedMeasurements" Multiplicity="*" />
           <ReferentialConstraint>
@@ -814,7 +860,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Events__Patient___5535A963">
+        <Association Name="FK__Events__Patient___5629CD9C">
           <End Role="Patients" Type="Self.Patients" Multiplicity="0..1" />
           <End Role="Events" Type="Self.Events" Multiplicity="*" />
           <ReferentialConstraint>
@@ -826,7 +872,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Events__Status_E__5441852A">
+        <Association Name="FK__Events__Status_E__571DF1D5">
           <End Role="Patient_Status" Type="Self.Patient_Status" Multiplicity="0..1" />
           <End Role="Events" Type="Self.Events" Multiplicity="*" />
           <ReferentialConstraint>
@@ -838,7 +884,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Hospital___Hospi__37A5467C">
+        <Association Name="FK__Hospital___Hospi__38996AB5">
           <End Role="Hospitals" Type="Self.Hospitals" Multiplicity="0..1" />
           <End Role="Hospital_ICUs" Type="Self.Hospital_ICUs" Multiplicity="*" />
           <ReferentialConstraint>
@@ -850,7 +896,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Hospital___Hospi__3C69FB99">
+        <Association Name="FK__Hospital___Hospi__3E52440B">
           <End Role="Hospitals" Type="Self.Hospitals" Multiplicity="0..1" />
           <End Role="Hospital_Medications" Type="Self.Hospital_Medications" Multiplicity="*" />
           <ReferentialConstraint>
@@ -874,7 +920,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Hospital___Hospi__34C8D9D1">
+        <Association Name="FK__Hospital___Hospi__35BCFE0A">
           <End Role="Hospitals" Type="Self.Hospitals" Multiplicity="0..1" />
           <End Role="Hospital_Patients" Type="Self.Hospital_Patients" Multiplicity="*" />
           <ReferentialConstraint>
@@ -886,7 +932,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Patients__Hospit__45F365D3">
+        <Association Name="FK__Patients__Hospit__46E78A0C">
           <End Role="Hospitals" Type="Self.Hospitals" Multiplicity="0..1" />
           <End Role="Patients" Type="Self.Patients" Multiplicity="*" />
           <ReferentialConstraint>
@@ -898,7 +944,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Patient_M__Medic__4E88ABD4">
+        <Association Name="FK__Patient_M__Medic__4F7CD00D">
           <End Role="Medications" Type="Self.Medications" Multiplicity="0..1" />
           <End Role="Patient_Medications" Type="Self.Patient_Medications" Multiplicity="*" />
           <ReferentialConstraint>
@@ -910,7 +956,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Patient_P__Patho__4AB81AF0">
+        <Association Name="FK__Patient_P__Patho__4BAC3F29">
           <End Role="Pathologies" Type="Self.Pathologies" Multiplicity="0..1" />
           <End Role="Patient_Pathologies" Type="Self.Patient_Pathologies" Multiplicity="*" />
           <ReferentialConstraint>
@@ -922,7 +968,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Patient_M__Patie__4D94879B">
+        <Association Name="FK__Patient_M__Patie__4E88ABD4">
           <End Role="Patients" Type="Self.Patients" Multiplicity="0..1" />
           <End Role="Patient_Medications" Type="Self.Patient_Medications" Multiplicity="*" />
           <ReferentialConstraint>
@@ -934,7 +980,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Patient_P__Patie__49C3F6B7">
+        <Association Name="FK__Patient_P__Patie__4AB81AF0">
           <End Role="Patients" Type="Self.Patients" Multiplicity="0..1" />
           <End Role="Patient_Pathologies" Type="Self.Patient_Pathologies" Multiplicity="*" />
           <ReferentialConstraint>
@@ -946,7 +992,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Patients__Status__46E78A0C">
+        <Association Name="FK__Patients__Status__47DBAE45">
           <End Role="Patient_Status" Type="Self.Patient_Status" Multiplicity="0..1" />
           <End Role="Patients" Type="Self.Patients" Multiplicity="*" />
           <ReferentialConstraint>
@@ -976,7 +1022,11 @@
           <EntitySet Name="Patient_Status" EntityType="Self.Patient_Status" />
           <EntitySet Name="Patients" EntityType="Self.Patients" />
           <EntitySet Name="SanityMeasurements" EntityType="Self.SanityMeasurements" />
-          <AssociationSet Name="FK__Contacted__Patie__5165187F" Association="Self.FK__Contacted__Patie__5165187F">
+          <AssociationSet Name="FK__Contacted__Count__534D60F1" Association="Self.FK__Contacted__Count__534D60F1">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="Contacted_Person" EntitySet="Contacted_Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Contacted__Patie__52593CB8" Association="Self.FK__Contacted__Patie__52593CB8">
             <End Role="Patients" EntitySet="Patients" />
             <End Role="Contacted_Person" EntitySet="Contacted_Person" />
           </AssociationSet>
@@ -988,7 +1038,7 @@
             <End Role="Countries" EntitySet="Countries" />
             <End Role="CountryLocations" EntitySet="CountryLocations" />
           </AssociationSet>
-          <AssociationSet Name="FK__EnforcedM__Count__2E1BDC42" Association="Self.FK__EnforcedM__Count__2E1BDC42">
+          <AssociationSet Name="FK__EnforcedM__Count__2F10007B" Association="Self.FK__EnforcedM__Count__2F10007B">
             <End Role="Countries" EntitySet="Countries" />
             <End Role="EnforcedMeasurements" EntitySet="EnforcedMeasurements" />
           </AssociationSet>
@@ -996,31 +1046,35 @@
             <End Role="Countries" EntitySet="Countries" />
             <End Role="Hospitals" EntitySet="Hospitals" />
           </AssociationSet>
-          <AssociationSet Name="FK__Patients__Countr__44FF419A" Association="Self.FK__Patients__Countr__44FF419A">
+          <AssociationSet Name="FK__Patients__Countr__45F365D3" Association="Self.FK__Patients__Countr__45F365D3">
             <End Role="Countries" EntitySet="Countries" />
             <End Role="Patients" EntitySet="Patients" />
           </AssociationSet>
-          <AssociationSet Name="FK__Patients__Reside__440B1D61" Association="Self.FK__Patients__Reside__440B1D61">
+          <AssociationSet Name="FK__Patients__Reside__44FF419A" Association="Self.FK__Patients__Reside__44FF419A">
             <End Role="Countries" EntitySet="Countries" />
             <End Role="Patients" EntitySet="Patients" />
           </AssociationSet>
-          <AssociationSet Name="FK__EnforcedM__Measu__2F10007B" Association="Self.FK__EnforcedM__Measu__2F10007B">
+          <AssociationSet Name="FK__Hospitals__Count__32E0915F" Association="Self.FK__Hospitals__Count__32E0915F">
+            <End Role="CountryLocations" EntitySet="CountryLocations" />
+            <End Role="Hospitals" EntitySet="Hospitals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EnforcedM__Measu__2E1BDC42" Association="Self.FK__EnforcedM__Measu__2E1BDC42">
             <End Role="SanityMeasurements" EntitySet="SanityMeasurements" />
             <End Role="EnforcedMeasurements" EntitySet="EnforcedMeasurements" />
           </AssociationSet>
-          <AssociationSet Name="FK__Events__Patient___5535A963" Association="Self.FK__Events__Patient___5535A963">
+          <AssociationSet Name="FK__Events__Patient___5629CD9C" Association="Self.FK__Events__Patient___5629CD9C">
             <End Role="Patients" EntitySet="Patients" />
             <End Role="Events" EntitySet="Events" />
           </AssociationSet>
-          <AssociationSet Name="FK__Events__Status_E__5441852A" Association="Self.FK__Events__Status_E__5441852A">
+          <AssociationSet Name="FK__Events__Status_E__571DF1D5" Association="Self.FK__Events__Status_E__571DF1D5">
             <End Role="Patient_Status" EntitySet="Patient_Status" />
             <End Role="Events" EntitySet="Events" />
           </AssociationSet>
-          <AssociationSet Name="FK__Hospital___Hospi__37A5467C" Association="Self.FK__Hospital___Hospi__37A5467C">
+          <AssociationSet Name="FK__Hospital___Hospi__38996AB5" Association="Self.FK__Hospital___Hospi__38996AB5">
             <End Role="Hospitals" EntitySet="Hospitals" />
             <End Role="Hospital_ICUs" EntitySet="Hospital_ICUs" />
           </AssociationSet>
-          <AssociationSet Name="FK__Hospital___Hospi__3C69FB99" Association="Self.FK__Hospital___Hospi__3C69FB99">
+          <AssociationSet Name="FK__Hospital___Hospi__3E52440B" Association="Self.FK__Hospital___Hospi__3E52440B">
             <End Role="Hospitals" EntitySet="Hospitals" />
             <End Role="Hospital_Medications" EntitySet="Hospital_Medications" />
           </AssociationSet>
@@ -1028,84 +1082,50 @@
             <End Role="Medications" EntitySet="Medications" />
             <End Role="Hospital_Medications" EntitySet="Hospital_Medications" />
           </AssociationSet>
-          <AssociationSet Name="FK__Hospital___Hospi__34C8D9D1" Association="Self.FK__Hospital___Hospi__34C8D9D1">
+          <AssociationSet Name="FK__Hospital___Hospi__35BCFE0A" Association="Self.FK__Hospital___Hospi__35BCFE0A">
             <End Role="Hospitals" EntitySet="Hospitals" />
             <End Role="Hospital_Patients" EntitySet="Hospital_Patients" />
           </AssociationSet>
-          <AssociationSet Name="FK__Patients__Hospit__45F365D3" Association="Self.FK__Patients__Hospit__45F365D3">
+          <AssociationSet Name="FK__Patients__Hospit__46E78A0C" Association="Self.FK__Patients__Hospit__46E78A0C">
             <End Role="Hospitals" EntitySet="Hospitals" />
             <End Role="Patients" EntitySet="Patients" />
           </AssociationSet>
-          <AssociationSet Name="FK__Patient_M__Medic__4E88ABD4" Association="Self.FK__Patient_M__Medic__4E88ABD4">
+          <AssociationSet Name="FK__Patient_M__Medic__4F7CD00D" Association="Self.FK__Patient_M__Medic__4F7CD00D">
             <End Role="Medications" EntitySet="Medications" />
             <End Role="Patient_Medications" EntitySet="Patient_Medications" />
           </AssociationSet>
-          <AssociationSet Name="FK__Patient_P__Patho__4AB81AF0" Association="Self.FK__Patient_P__Patho__4AB81AF0">
+          <AssociationSet Name="FK__Patient_P__Patho__4BAC3F29" Association="Self.FK__Patient_P__Patho__4BAC3F29">
             <End Role="Pathologies" EntitySet="Pathologies" />
             <End Role="Patient_Pathologies" EntitySet="Patient_Pathologies" />
           </AssociationSet>
-          <AssociationSet Name="FK__Patient_M__Patie__4D94879B" Association="Self.FK__Patient_M__Patie__4D94879B">
+          <AssociationSet Name="FK__Patient_M__Patie__4E88ABD4" Association="Self.FK__Patient_M__Patie__4E88ABD4">
             <End Role="Patients" EntitySet="Patients" />
             <End Role="Patient_Medications" EntitySet="Patient_Medications" />
           </AssociationSet>
-          <AssociationSet Name="FK__Patient_P__Patie__49C3F6B7" Association="Self.FK__Patient_P__Patie__49C3F6B7">
+          <AssociationSet Name="FK__Patient_P__Patie__4AB81AF0" Association="Self.FK__Patient_P__Patie__4AB81AF0">
             <End Role="Patients" EntitySet="Patients" />
             <End Role="Patient_Pathologies" EntitySet="Patient_Pathologies" />
           </AssociationSet>
-          <AssociationSet Name="FK__Patients__Status__46E78A0C" Association="Self.FK__Patients__Status__46E78A0C">
+          <AssociationSet Name="FK__Patients__Status__47DBAE45" Association="Self.FK__Patients__Status__47DBAE45">
             <End Role="Patient_Status" EntitySet="Patient_Status" />
             <End Role="Patients" EntitySet="Patients" />
           </AssociationSet>
-          <FunctionImport Name="AcumulatedProcedure" ReturnType="Collection(CoTecDBModel.AcumulatedProcedure_Result)" />
-          <FunctionImport Name="getPatientsProcedure" EntitySet="Patients" ReturnType="Collection(CoTecDBModel.Patients)" />
-          <FunctionImport Name="getRegionsProcedure" ReturnType="Collection(CoTecDBModel.getRegionsProcedure_Result)" />
-          <AssociationSet Name="FK_RegionId" Association="CoTecDBModel.FK_RegionId">
-            <End Role="CountryLocations" EntitySet="CountryLocations" />
-            <End Role="Hospitals" EntitySet="Hospitals" />
-          </AssociationSet>
-          <FunctionImport Name="getHospitalsProcedure" ReturnType="Collection(CoTecDBModel.getHospitalsProcedure_Result)" />
-          <FunctionImport Name="getEnforcedMeasurements" ReturnType="Collection(CoTecDBModel.getEnforcedMeasurements_Result)" />
-          <FunctionImport Name="getMedicationProcedure" ReturnType="Collection(CoTecDBModel.getMedicationProcedure_Result)" />
-          <FunctionImport Name="getPathologiesProcedure" ReturnType="Collection(CoTecDBModel.getPathologiesProcedure_Result)" />
-          <FunctionImport Name="getPatientStatusProcedure" ReturnType="Collection(String)" />
-          <FunctionImport Name="getSanitaryMeasurementsProcedure" ReturnType="Collection(CoTecDBModel.getSanitaryMeasurementsProcedure_Result)" />
           <FunctionImport Name="getEnforcedMeasurementsProcedure" ReturnType="Collection(CoTecDBModel.getEnforcedMeasurementsProcedure_Result)" />
+          <FunctionImport Name="getHospitalsProcedure" ReturnType="Collection(CoTecDBModel.getHospitalsProcedure_Result)" />
+          <FunctionImport Name="getMedicationProcedure" ReturnType="Collection(CoTecDBModel.getMedicationProcedure_Result)" />
+          <FunctionImport Name="getPacientsProcedure" ReturnType="Collection(CoTecDBModel.getPacientsProcedure_Result)" />
+          <FunctionImport Name="getPacientStatusProcedure" ReturnType="Collection(String)" />
+          <FunctionImport Name="getPathologiesProcedure" ReturnType="Collection(CoTecDBModel.getPathologiesProcedure_Result)" />
+          <FunctionImport Name="getRegionsProcedure" ReturnType="Collection(CoTecDBModel.getRegionsProcedure_Result)" />
+          <FunctionImport Name="getSanitaryMeasurementsProcedure" ReturnType="Collection(CoTecDBModel.getSanitaryMeasurementsProcedure_Result)" />
         </EntityContainer>
-        <ComplexType Name="AcumulatedProcedure_Result">
-          <Property Type="Int32" Name="Deaths" Nullable="true" />
-          <Property Type="Int32" Name="Active" Nullable="true" />
-          <Property Type="Int32" Name="Recovered" Nullable="true" />
-          <Property Type="Int32" Name="Infected" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="getPatientsProcedure_Result">
-          <Property Type="String" Name="First_Name" Nullable="true" MaxLength="60" />
-          <Property Type="String" Name="Last_Name" Nullable="true" MaxLength="60" />
-          <Property Type="Int32" Name="SSN" Nullable="false" />
-          <Property Type="Int32" Name="Age" Nullable="true" />
-          <Property Type="String" Name="Country_Birth" Nullable="true" MaxLength="45" />
-          <Property Type="String" Name="Residence" Nullable="true" MaxLength="45" />
-          <Property Type="String" Name="Status" Nullable="true" MaxLength="30" />
-          <Property Type="Boolean" Name="Hospitalized" Nullable="true" />
-          <Property Type="Boolean" Name="ICU" Nullable="true" />
-          <Property Type="String" Name="Name" Nullable="true" MaxLength="60" />
-          <Property Type="String" Name="Name1" Nullable="false" MaxLength="60" />
-        </ComplexType>
-        <ComplexType Name="getRegionsProcedure_Result">
-          <Property Type="String" Name="Name" Nullable="true" MaxLength="60" />
+        <ComplexType Name="getEnforcedMeasurementsProcedure_Result">
           <Property Type="String" Name="Country_Name" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="Start_Date" Nullable="true" />
+          <Property Type="DateTime" Name="End_Date" Nullable="true" />
+          <Property Type="Int32" Name="MeasurementId" Nullable="false" />
         </ComplexType>
-        <Association Name="FK_RegionId">
-          <End Type="CoTecDBModel.CountryLocations" Role="CountryLocations" Multiplicity="0..1" />
-          <End Type="CoTecDBModel.Hospitals" Role="Hospitals" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CountryLocations">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Hospitals">
-              <PropertyRef Name="RegionId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <ComplexType Name="getHospitalsProcedure_Result">
           <Property Type="String" Name="Name" Nullable="true" MaxLength="64" />
           <Property Type="String" Name="Manager_Name" Nullable="true" MaxLength="60" />
@@ -1115,15 +1135,22 @@
           <Property Type="String" Name="Country_Name" Nullable="true" MaxLength="45" />
           <Property Type="String" Name="Region" Nullable="true" MaxLength="60" />
         </ComplexType>
-        <ComplexType Name="getEnforcedMeasurements_Result">
-          <Property Type="String" Name="Country_Name" Nullable="true" MaxLength="45" />
-          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="Start_Date" Nullable="true" />
-          <Property Type="DateTime" Name="End_Date" Nullable="true" />
-        </ComplexType>
         <ComplexType Name="getMedicationProcedure_Result">
           <Property Type="String" Name="Name" Nullable="true" MaxLength="60" />
           <Property Type="String" Name="Provider" Nullable="true" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="getPacientsProcedure_Result">
+          <Property Type="String" Name="First_Name" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Last_Name" Nullable="true" MaxLength="60" />
+          <Property Type="Int32" Name="SSN" Nullable="false" />
+          <Property Type="Int32" Name="Age" Nullable="true" />
+          <Property Type="String" Name="Country_Birth" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="Residence" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="30" />
+          <Property Type="Boolean" Name="Hospitalized" Nullable="true" />
+          <Property Type="Boolean" Name="ICU" Nullable="true" />
+          <Property Type="String" Name="Medication" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Pathology" Nullable="false" MaxLength="60" />
         </ComplexType>
         <ComplexType Name="getPathologiesProcedure_Result">
           <Property Type="String" Name="Name" Nullable="false" MaxLength="60" />
@@ -1131,16 +1158,13 @@
           <Property Type="String" Name="Symptoms" Nullable="true" MaxLength="255" />
           <Property Type="String" Name="Treatment" Nullable="true" MaxLength="255" />
         </ComplexType>
+        <ComplexType Name="getRegionsProcedure_Result">
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Country_Name" Nullable="true" MaxLength="45" />
+        </ComplexType>
         <ComplexType Name="getSanitaryMeasurementsProcedure_Result">
           <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Description" Nullable="true" MaxLength="255" />
-        </ComplexType>
-        <ComplexType Name="getEnforcedMeasurementsProcedure_Result">
-          <Property Type="String" Name="Country_Name" Nullable="true" MaxLength="45" />
-          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="Start_Date" Nullable="true" />
-          <Property Type="DateTime" Name="End_Date" Nullable="true" />
-          <Property Type="Int32" Name="MeasurementId" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1159,6 +1183,7 @@
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Country_Birth" ColumnName="Country_Birth" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1194,6 +1219,7 @@
                 <ScalarProperty Name="Measurement_Id" ColumnName="Measurement_Id" />
                 <ScalarProperty Name="Start_Date" ColumnName="Start_Date" />
                 <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+                <ScalarProperty Name="State" ColumnName="State" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1237,7 +1263,6 @@
           <EntitySetMapping Name="Hospitals">
             <EntityTypeMapping TypeName="CoTecDBModel.Hospitals">
               <MappingFragment StoreEntitySet="Hospitals">
-                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ICU_Capacity" ColumnName="ICU_Capacity" />
@@ -1245,6 +1270,7 @@
                 <ScalarProperty Name="Manager_Name" ColumnName="Manager_Name" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Country_Name" ColumnName="Country_Name" />
+                <ScalarProperty Name="Country_Location_Id" ColumnName="Country_Location_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1317,13 +1343,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="getPatientsProcedure" FunctionName="CoTecDBModel.Store.getPatientsProcedure">
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="getRegionsProcedure" FunctionName="CoTecDBModel.Store.getRegionsProcedure">
+          <FunctionImportMapping FunctionImportName="getEnforcedMeasurementsProcedure" FunctionName="CoTecDBModel.Store.getEnforcedMeasurementsProcedure">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="CoTecDBModel.getRegionsProcedure_Result">
-                <ScalarProperty Name="Name" ColumnName="Name" />
+              <ComplexTypeMapping TypeName="CoTecDBModel.getEnforcedMeasurementsProcedure_Result">
                 <ScalarProperty Name="Country_Name" ColumnName="Country_Name" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Start_Date" ColumnName="Start_Date" />
+                <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+                <ScalarProperty Name="MeasurementId" ColumnName="MeasurementId" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1348,6 +1375,24 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getPacientsProcedure" FunctionName="CoTecDBModel.Store.getPacientsProcedure">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CoTecDBModel.getPacientsProcedure_Result">
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="SSN" ColumnName="SSN" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Country_Birth" ColumnName="Country_Birth" />
+                <ScalarProperty Name="Residence" ColumnName="Residence" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Hospitalized" ColumnName="Hospitalized" />
+                <ScalarProperty Name="ICU" ColumnName="ICU" />
+                <ScalarProperty Name="Medication" ColumnName="Medication" />
+                <ScalarProperty Name="Pathology" ColumnName="Pathology" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getPacientStatusProcedure" FunctionName="CoTecDBModel.Store.getPacientStatusProcedure" />
           <FunctionImportMapping FunctionImportName="getPathologiesProcedure" FunctionName="CoTecDBModel.Store.getPathologiesProcedure">
             <ResultMapping>
               <ComplexTypeMapping TypeName="CoTecDBModel.getPathologiesProcedure_Result">
@@ -1358,23 +1403,19 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="getPatientStatusProcedure" FunctionName="CoTecDBModel.Store.getPatientStatusProcedure" />
+          <FunctionImportMapping FunctionImportName="getRegionsProcedure" FunctionName="CoTecDBModel.Store.getRegionsProcedure">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CoTecDBModel.getRegionsProcedure_Result">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Country_Name" ColumnName="Country_Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="getSanitaryMeasurementsProcedure" FunctionName="CoTecDBModel.Store.getSanitaryMeasurementsProcedure">
             <ResultMapping>
               <ComplexTypeMapping TypeName="CoTecDBModel.getSanitaryMeasurementsProcedure_Result">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="getEnforcedMeasurementsProcedure" FunctionName="CoTecDBModel.Store.getEnforcedMeasurementsProcedure">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="CoTecDBModel.getEnforcedMeasurementsProcedure_Result">
-                <ScalarProperty Name="Country_Name" ColumnName="Country_Name" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Start_Date" ColumnName="Start_Date" />
-                <ScalarProperty Name="End_Date" ColumnName="End_Date" />
-                <ScalarProperty Name="MeasurementId" ColumnName="MeasurementId" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  countryLocations,
-  pathologies,
-  status,
-  hospitals,
-  sanity_measurements,
-  enforced_measurements,
-  medication
+  CountryLocations,
+  Pathologies,
+  PatientStatus,
+  Hospitals,
+  SanitaryMeasurements,
+  EnforcedMeasurements,
+  Medication
 } from './models';
 import {Services} from '../services/services';
 
@@ -29,13 +29,13 @@ export class AdminViewComponent implements OnInit {
   public dropdownList: any = [];
   public dropdownLists = [];
   public dropdown;
-  public hospitals: any = hospitals;
-  public countryLocations: any = countryLocations;
-  public pathologies: any = pathologies;
-  public status: any = status;
-  public medication: any = medication;
-  public sanity_measurements: any = sanity_measurements;
-  public enforced_measurements: any = enforced_measurements;
+  public Hospitals: any = Hospitals;
+  public CountryLocations: any = CountryLocations;
+  public Pathologies: any = Pathologies;
+  public PatientStatus: any = PatientStatus;
+  public Medication: any = Medication;
+  public SanitaryMeasurements: any = SanitaryMeasurements;
+  public EnforcedMeasurements: any = EnforcedMeasurements;
   private data: any;
 
 
@@ -122,12 +122,7 @@ export class AdminViewComponent implements OnInit {
     let list;
     if (dropdown){
       dropdown.forEach(e => {
-        if (e.Name){
           this.dropdownList.push(e.Name);
-        }
-        else{
-          this.dropdownList.push(e.SSN);
-        }
       });
     }
     list = [fk, this.dropdownList];
@@ -148,8 +143,9 @@ export class AdminViewComponent implements OnInit {
   // Loads data from server to render dropdowns
   loadData(data, fk){
     this.dropdownLists = [];
-    this.service.getData(fk).subscribe(dropDownData => {
-      this.dropdown = (dropDownData as any).data;
+    const type = (fk + 'SP');
+    this.service.getElements(type).subscribe(dropDownData => {
+      this.dropdown = (dropDownData as any);
       this.getDropDownList(this.dropdown, fk);
     });
   }

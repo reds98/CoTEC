@@ -45,24 +45,9 @@ namespace Anton.Models
         public virtual DbSet<Patients> Patients { get; set; }
         public virtual DbSet<SanityMeasurements> SanityMeasurements { get; set; }
     
-        public virtual ObjectResult<AcumulatedProcedure_Result> AcumulatedProcedure()
+        public virtual ObjectResult<getEnforcedMeasurementsProcedure_Result> getEnforcedMeasurementsProcedure()
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AcumulatedProcedure_Result>("AcumulatedProcedure");
-        }
-    
-        public virtual ObjectResult<Patients> getPatientsProcedure()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Patients>("getPatientsProcedure");
-        }
-    
-        public virtual ObjectResult<Patients> getPatientsProcedure(MergeOption mergeOption)
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Patients>("getPatientsProcedure", mergeOption);
-        }
-    
-        public virtual ObjectResult<getRegionsProcedure_Result> getRegionsProcedure()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getRegionsProcedure_Result>("getRegionsProcedure");
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getEnforcedMeasurementsProcedure_Result>("getEnforcedMeasurementsProcedure");
         }
     
         public virtual ObjectResult<getHospitalsProcedure_Result> getHospitalsProcedure()
@@ -70,14 +55,19 @@ namespace Anton.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getHospitalsProcedure_Result>("getHospitalsProcedure");
         }
     
-        public virtual ObjectResult<getEnforcedMeasurements_Result> getEnforcedMeasurements()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getEnforcedMeasurements_Result>("getEnforcedMeasurements");
-        }
-    
         public virtual ObjectResult<getMedicationProcedure_Result> getMedicationProcedure()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getMedicationProcedure_Result>("getMedicationProcedure");
+        }
+    
+        public virtual ObjectResult<getPacientsProcedure_Result> getPacientsProcedure()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getPacientsProcedure_Result>("getPacientsProcedure");
+        }
+    
+        public virtual ObjectResult<string> getPacientStatusProcedure()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("getPacientStatusProcedure");
         }
     
         public virtual ObjectResult<getPathologiesProcedure_Result> getPathologiesProcedure()
@@ -85,19 +75,14 @@ namespace Anton.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getPathologiesProcedure_Result>("getPathologiesProcedure");
         }
     
-        public virtual ObjectResult<string> getPatientStatusProcedure()
+        public virtual ObjectResult<getRegionsProcedure_Result> getRegionsProcedure()
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("getPatientStatusProcedure");
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getRegionsProcedure_Result>("getRegionsProcedure");
         }
     
         public virtual ObjectResult<getSanitaryMeasurementsProcedure_Result> getSanitaryMeasurementsProcedure()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getSanitaryMeasurementsProcedure_Result>("getSanitaryMeasurementsProcedure");
-        }
-    
-        public virtual ObjectResult<getEnforcedMeasurementsProcedure_Result> getEnforcedMeasurementsProcedure()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getEnforcedMeasurementsProcedure_Result>("getEnforcedMeasurementsProcedure");
         }
     }
 }

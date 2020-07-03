@@ -8,46 +8,48 @@ using Anton.Models;
 
 namespace Anton.Controllers
 {
-    public class PatientStatusSPController : ApiController
+    public class CountriesSPController : ApiController
     {
-        // GET: api/PatientStatusSP
-        public IList<PatientStatusSP> Get()
+        // GET: api/CountriesSP
+        public IList<CountriesSP> Get()
         {
             CoTecDBEntities db = new CoTecDBEntities();
 
-            var sp = db.Database.SqlQuery<PatientStatusSP>("getPacientStatusProcedure");
+            var sp = db.Database.SqlQuery<CountriesSP>("getCountriesProcedure");
 
 
-            IList<PatientStatusSP> list = new List<PatientStatusSP>();
+            IList<CountriesSP> list = new List<CountriesSP>();
 
-            foreach (PatientStatusSP item in sp)
+            foreach (CountriesSP item in sp)
             {
-                PatientStatusSP PSP = new PatientStatusSP();
+                CountriesSP PSP = new CountriesSP();
 
                 PSP.Name = item.Name;
+
                 list.Add(PSP);
 
             }
             return list;
+
         }
 
-            // GET: api/PatientStatusSP/5
-            public string Get(int id)
+        // GET: api/CountriesSP/5
+        public string Get(int id)
         {
             return "value";
         }
 
-        // POST: api/PatientStatusSP
+        // POST: api/CountriesSP
         public void Post([FromBody]string value)
         {
         }
 
-        // PUT: api/PatientStatusSP/5
+        // PUT: api/CountriesSP/5
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE: api/PatientStatusSP/5
+        // DELETE: api/CountriesSP/5
         public void Delete(int id)
         {
         }

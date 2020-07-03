@@ -22,7 +22,9 @@ namespace Anton.Models
         public string Address { get; set; }
         public string Email { get; set; }
         public Nullable<int> Age { get; set; }
+        public string Country_Birth { get; set; }
     
+        public virtual Countries Countries { get; set; }
         public virtual Patients Patients { get; set; }
     }
 }

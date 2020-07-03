@@ -30,9 +30,10 @@ namespace Anton.Models
         public string Manager_Name { get; set; }
         public string Phone { get; set; }
         public string Country_Name { get; set; }
-        public Nullable<int> RegionId { get; set; }
+        public Nullable<int> Country_Location_Id { get; set; }
     
         public virtual Countries Countries { get; set; }
+        public virtual CountryLocations CountryLocations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Hospital_ICUs> Hospital_ICUs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -41,6 +42,5 @@ namespace Anton.Models
         public virtual ICollection<Hospital_Patients> Hospital_Patients { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Patients> Patients { get; set; }
-        public virtual CountryLocations CountryLocations { get; set; }
     }
 }

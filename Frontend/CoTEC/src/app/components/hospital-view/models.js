@@ -1,4 +1,4 @@
-export const patients = [
+export const Patients = [
   {"column":"SSN","PK":"SSN"},
   {"column":"First_Name"},
   {"column":"Last_Name"},
@@ -7,9 +7,9 @@ export const patients = [
   {"column":"Age"},
   {"column":"Medication"},
   {"column":"Pathology"},
-  {"column":"Residence","FK":"countries"},
-  {"column":"Country_Birth","FK":"countries"},
-  {"column":"Status","FK":"status"}
+  {"column":"Residence","FK":"Countries"},
+  {"column":"Country_Birth","FK":"Countries"},
+  {"column":"Status","FK":"PatientStatus"}
 ];
 
 
@@ -20,5 +20,5 @@ export const contacts = [
   {"column":"Adress"},
   {"column":"Email"},
   {"column":"Age"},
-  {"column":"Patient_SSN","PK":"SSN", "FK": "patients"}
+  {"column":"Patient_SSN","PK":"SSN", "FK": "Patients"}
 ];

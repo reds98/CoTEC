@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Services} from '../services/services';
 import {
-  patients,
+  Patients,
   contacts
 } from '../hospital-view/models';
 
@@ -31,7 +31,7 @@ export class HospitalViewComponent implements OnInit {
   public dropdownList: any = [];
   public dropdownLists = [];
   public dropdown;
-  public patientsModel: any = patients;
+  public Patients: any = Patients;
   public contactsModel: any = contacts;
   private data: any;
 
@@ -141,8 +141,9 @@ export class HospitalViewComponent implements OnInit {
   // Loads data from server to render dropdowns
   loadData(data, fk, pk){
     this.dropdownLists = [];
-    this.service.getData(fk).subscribe(dropDownData => {
-      this.dropdown = (dropDownData as any).data;
+    const type = (fk + 'SP');
+    this.service.getElements(type).subscribe(dropDownData => {
+      this.dropdown = (dropDownData as any);
       this.getDropDownList(this.dropdown, fk, pk);
     });
   }

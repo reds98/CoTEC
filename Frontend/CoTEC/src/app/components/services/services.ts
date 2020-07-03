@@ -9,6 +9,7 @@ import {IPatientStatus} from '../Interfaces/IPatientStatus';
 import {IMedication} from '../Interfaces/IMedication';
 import {ISanitaryMeasurements} from '../Interfaces/SanitaryMeasurements';
 import {IEnforcedMeasurements} from '../Interfaces/IEnforcedMeasurements';
+import {ICountries} from '../Interfaces/ICountries';
 
 @Injectable({
   providedIn: 'root'
@@ -83,6 +84,9 @@ export class Services {
         break;
       case 'EnforcedMeasurementsSP':
         observable =  this.httpGet<IEnforcedMeasurements>(type);
+        break;
+      case 'CountriesSP':
+        observable =  this.httpGet<ICountries>(type);
         break;
       default:
         observable = {};

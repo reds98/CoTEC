@@ -17,6 +17,7 @@ namespace Anton.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Countries()
         {
+            this.Contacted_Person = new HashSet<Contacted_Person>();
             this.CountryLocations = new HashSet<CountryLocations>();
             this.EnforcedMeasurements = new HashSet<EnforcedMeasurements>();
             this.Hospitals = new HashSet<Hospitals>();
@@ -27,6 +28,8 @@ namespace Anton.Models
         public string Name { get; set; }
         public string Continent_Name { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Contacted_Person> Contacted_Person { get; set; }
         public virtual Continents Continents { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CountryLocations> CountryLocations { get; set; }
