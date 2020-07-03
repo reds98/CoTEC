@@ -9,6 +9,7 @@ import {
   Medication
 } from './models';
 import {Services} from '../services/services';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-admin-view',
@@ -110,6 +111,14 @@ export class AdminViewComponent implements OnInit {
   // Closes editing or creating mode
   onClose(): void {
     this.editStatus = false;
+    if(this.currentModel==CountryLocations){
+      console.log("vamos a crear una region perro")
+      this.service.CraeteRegion(this.currentItem).subscribe(respuesta => {
+        console.log(respuesta)
+      });
+      
+
+    }
     console.log(this.currentItem);
     
   }
