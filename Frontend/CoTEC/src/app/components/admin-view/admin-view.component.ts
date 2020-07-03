@@ -74,6 +74,12 @@ export class AdminViewComponent implements OnInit {
 
     // PK value
     console.log(item[PK]);
+    console.log(this.currentModel==CountryLocations);
+    if(this.currentModel==CountryLocations){
+      this.service.DeleteRegion(item[PK]).subscribe(respuesta => {
+        console.log(respuesta)
+      });
+    }
   }
 
 

@@ -5,12 +5,16 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Description;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 
 namespace Anton.Controllers
 {
     public class RegionsSPController : ApiController
     {
         // GET: api/Regions
+        private CoTecDBEntities db = new CoTecDBEntities();
         public IList<RegionsSP> Get()
         {
             CoTecDBEntities db = new CoTecDBEntities();
@@ -40,19 +44,86 @@ namespace Anton.Controllers
             return "value";
         }
 
-        // POST: api/Regions
-        public void Post([FromBody]string value)
+        // PUT: api/CountryLocations/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutCountryLocation(int id, CountryLocations countryLocation)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != countryLocation.Id)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(countryLocation).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!CountryLocationExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // PUT: api/Regions/5
-        public void Put(int id, [FromBody]string value)
+        // POST: api/CountryLocations
+        [ResponseType(typeof(CountryLocations))]
+        public IHttpActionResult PostCountryLocation(CountryLocations countryLocation)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.CountryLocations.Add(countryLocation);
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = countryLocation.Id }, countryLocation);
         }
 
-        // DELETE: api/Regions/5
-        public void Delete(int id)
+        // DELETE: api/CountryLocations/5
+        [ResponseType(typeof(CountryLocations))]
+        public IHttpActionResult DeleteCountryLocation(int id)
         {
+            CountryLocations countryLocation = db.CountryLocations.Find(id);
+            if (countryLocation == null)
+            {
+                return NotFound();
+            }
+
+            db.CountryLocations.Remove(countryLocation);
+            db.SaveChanges();
+
+            return Ok(countryLocation);
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        private bool CountryLocationExists(int id)
+        {
+            return db.CountryLocations.Count(e => e.Id == id) > 0;
+        }
+
+
     }
 }

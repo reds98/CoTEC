@@ -103,4 +103,10 @@ export class Services {
   private httpGet<T>(resource: string): Observable<T> {
     return this.http.get<T>(this.url + resource);
   }
+   DeleteRegion(id : any):Observable< any >{
+    return this.http.delete(this.url+"/RegionsSP/"+id);  
+  }
+  CraeteRegion(Region : any):Observable< any >{
+    return this.http.post(this.url+"/RegionsSP",Region);  
+  }
 }
