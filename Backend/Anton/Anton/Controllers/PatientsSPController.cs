@@ -27,7 +27,7 @@ namespace Anton.Controllers
                 PSP.SSN = item.SSN;
                 PSP.First_Name = item.First_Name;
                 PSP.Last_Name = item.Last_Name;
-                PSP.Hospital_Id = PSP.Hospital_Id;
+                PSP.Hospital_Id = item.Hospital_Id;
                 PSP.Hospitalized = item.Hospitalized;
                 PSP.ICU = item.ICU;
                 PSP.Age = item.Age;
@@ -38,6 +38,10 @@ namespace Anton.Controllers
                 PSP.Status = item.Status;
 
                 list.Add(PSP);
+
+
+
+                System.Diagnostics.Debug.WriteLine(string.Format("NOMBRE: {0}", item.Hospital_Id));
 
             }
             return list;
