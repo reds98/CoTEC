@@ -111,6 +111,7 @@ export class AdminViewComponent implements OnInit {
   onClose(): void {
     this.editStatus = false;
     console.log(this.currentItem);
+    
   }
 
   // Gets current columns and adds options column
