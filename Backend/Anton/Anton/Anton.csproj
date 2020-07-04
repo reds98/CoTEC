@@ -141,6 +141,7 @@
   <ItemGroup>
     <Compile Include="Controllers\ContactedPersonSPController.cs" />
     <Compile Include="Controllers\CountriesSPController.cs" />
+    <Compile Include="Controllers\CountryAccumulatedSPController.cs" />
     <Compile Include="Controllers\PatientsSPController.cs" />
     <Compile Include="Models\ContactedPersonSP.cs" />
     <Compile Include="Models\Contacted_Person.cs">
@@ -201,6 +202,7 @@
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CountriesSP.cs" />
+    <Compile Include="Models\CountryAccumulatedSP.cs" />
     <Compile Include="Models\CountryLocations.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -226,6 +228,9 @@
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\getContactedPersonProcedure_Result.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getCountryAccumulatedProcedure_Result.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\getEnforcedMeasurementsProcedure_Result.cs">
@@ -292,6 +297,15 @@
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Patient_Status.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Reports\CrystalReport1.cs">

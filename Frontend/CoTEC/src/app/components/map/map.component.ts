@@ -1,4 +1,3 @@
-
 import { Component, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
 import * as $ from 'jquery';
@@ -32,13 +31,11 @@ export class MapComponent implements AfterViewInit {
       this.countries = countries;
       this.initCountriesLayer();
     });
-    this.service.getData('countries').subscribe(countries => {
-      this.countriesGet = (countries as any).data;
+    this.service.getElements('CountriesSP').subscribe(countries => {
+      this.countriesGet = (countries as any);
       this.getCountriesList();
     });
-    this.service.getData('countryAccumulated').subscribe(countryAccumulated => {
-      this.countryAccumulated = (countryAccumulated as any).data;
-    });
+
   }
 
   // Add the shapes to the map as a layer, includes mouse events over layers
@@ -122,8 +119,19 @@ export class MapComponent implements AfterViewInit {
   initPopup(e, layer){
     this.layer = layer;
     const country = layer.feature.properties;
-    console.log(country.name);
-
+    this.countriesList.forEach(item => {
+      if (item == country.name){
+        console.log(item);
+        this.service.getCountryAccumulated(item).subscribe(countryAccumulated => {
+          let oldData = localStorage.getItem('countryAccumulated');
+          localStorage.setItem('countryAccumulated', item);
+          if (oldData !== localStorage.getItem('countryAccumulated')){
+            this.countryAccumulated = (countryAccumulated as any);
+            console.log(this.countryAccumulated);
+          }
+        });
+      }
+    });
 
     this.popup
       .setLatLng(e.latlng)
@@ -137,10 +145,10 @@ export class MapComponent implements AfterViewInit {
 
   // Returns countries list from data
   getCountriesList(){
-    if (this.countries){
-      for (let i = 0; i < this.countries.length; i++){
-        this.countriesList.push(this.countries[i].Name);
-      }
+    if (this.countriesGet){
+      this.countriesGet.forEach(e => {
+        this.countriesList.push(e.Name);
+      });
     }
   }
 

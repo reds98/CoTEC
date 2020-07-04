@@ -44,6 +44,7 @@
         <AssociationConnector Association="CoTecDBModel.FK__Patient_M__Patie__4E88ABD4" ManuallyRouted="false" />
         <AssociationConnector Association="CoTecDBModel.FK__Patient_P__Patie__4AB81AF0" ManuallyRouted="false" />
         <AssociationConnector Association="CoTecDBModel.FK__Patients__Status__47DBAE45" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CoTecDBModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="12.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -28,8 +28,10 @@ export class Services {
 
 
   // Returns data from the server
-  getData(type){
-    return this.http.get('/assets/' + type + '.json');
+
+  // Returns data for country accumulated from the server
+  getCountryAccumulated<ICountryAccumulated>(country){
+    return this.http.get<ICountryAccumulated>(this.url + 'CountryAccumulatedSP/' + country);
   }
 
   // Selects report to return
@@ -103,43 +105,43 @@ export class Services {
   private httpGet<T>(resource: string): Observable<T> {
     return this.http.get<T>(this.url + resource);
   }
-   DeleteRegion(id : any):Observable< any >{
-    return this.http.delete(this.url+"/RegionsSP/"+id);  
+   DeleteRegion(id : any): Observable < any >{
+    return this.http.delete(this.url+"/RegionsSP/"+id);
   }
   DeleteEnfermedad(id : any):Observable< any >{
-    return this.http.delete(this.url+"/PathologiesSP/"+id);  
+    return this.http.delete(this.url+"/PathologiesSP/"+id);
   }
   DeleteMedication(id : any):Observable< any >{
-    return this.http.delete(this.url+"/MedicationSP/"+id);  
+    return this.http.delete(this.url+"/MedicationSP/"+id);
   }
   DeletePatientStatus(id : any):Observable< any >{
-    return this.http.delete(this.url+"/PatientStatusSP/"+id);  
+    return this.http.delete(this.url+"/PatientStatusSP/"+id);
   }
   DeleteSanitaryMeasurements(id : any):Observable< any >{
-    return this.http.delete(this.url+"/SanitaryMeasurementsSP/"+id);  
+    return this.http.delete(this.url+"/SanitaryMeasurementsSP/"+id);
   }
   DeleteHospital(id : any):Observable< any >{
-    return this.http.delete(this.url+"/HospitalsSP/"+id);  
+    return this.http.delete(this.url+"/HospitalsSP/"+id);
   }
   CreateRegion(Region : any):Observable< any >{
-    return this.http.post(this.url+"/RegionsSP",Region);  
+    return this.http.post(this.url+"/RegionsSP",Region);
   }
   CreateEnfermedad(Region : any):Observable< any >{
-    return this.http.post(this.url+"/PathologiesSP",Region);  
+    return this.http.post(this.url+"/PathologiesSP",Region);
   }
   CreateMedication(Region : any):Observable< any >{
-    return this.http.post(this.url+"/MedicationSP",Region);  
+    return this.http.post(this.url+"/MedicationSP",Region);
   }
   CreatePatientStatus(Region : any):Observable< any >{
-    return this.http.post(this.url+"/PatientStatusSP",Region);  
+    return this.http.post(this.url+"/PatientStatusSP",Region);
   }
   CreateEnforcedMeasurements(Region : any):Observable< any >{
-    return this.http.post(this.url+"/EnforcedMeasurementsSP",Region);  
+    return this.http.post(this.url+"/EnforcedMeasurementsSP",Region);
   }
   CreateSanitaryMeasurements(Region : any):Observable< any >{
-    return this.http.post(this.url+"/SanitaryMeasurementsSP",Region);  
+    return this.http.post(this.url+"/SanitaryMeasurementsSP",Region);
   }
   CreateHospital(Region : any):Observable< any >{
-    return this.http.post(this.url+"/HospitalsSP",Region);  
+    return this.http.post(this.url+"/HospitalsSP",Region);
   }
 }
