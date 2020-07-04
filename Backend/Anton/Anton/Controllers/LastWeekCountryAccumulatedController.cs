@@ -18,8 +18,6 @@ namespace Anton.Controllers
         public List<DateTime> dates = new List<DateTime>();
 
 
-
-
         // GET: api/LastWeekCountryAccumulated
         [HttpGet]
         [Route("api/LastWeekCountryAccumulated/{country}")]

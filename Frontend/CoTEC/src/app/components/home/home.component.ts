@@ -28,8 +28,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.service.getElements('lastWeekAccumulated').subscribe(totalAccumulated => {
       this.globalAccumulated = (totalAccumulated as any);
-      console.log(this.globalAccumulated);
-      console.log(this.globalAccumulated.INFECTED);
       this.getGlobalData();
     });
 
@@ -52,7 +50,6 @@ export class HomeComponent implements OnInit {
     }
   }
 
-
   getCountryData(){
     this.service.getLastWeekCountryAccumulated(this.countrySelected).subscribe(countryAccumulated => {
       this.countryAccumulated = (countryAccumulated as any);
@@ -61,7 +58,6 @@ export class HomeComponent implements OnInit {
   }
   // Load data to update Country chart
   getCountryAccumulated(){
-    console.log(this.countryAccumulated);
     if (this.countryAccumulated !== []){
       this.chartCountryData = [
         { data: this.countryAccumulated.active_day, label: 'Activos' },
