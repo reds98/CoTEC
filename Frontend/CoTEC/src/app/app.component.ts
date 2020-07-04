@@ -10,9 +10,9 @@ export class AppComponent {
 
   // Attributes
   title = 'CoTEC';
-  adminViewOn = true;
-  hospitalViewOn = true;
-  public loggedIn = true;
+  adminViewOn = false;
+  hospitalViewOn = false;
+  public loggedIn = false;
   tokenForm = new FormControl();
   adminToken = '123456';
   hospitalToken = '654321';

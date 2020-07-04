@@ -64,11 +64,25 @@ export class HospitalViewComponent implements OnInit {
   // Deletes item
   onDelete(item): void {
     const PKs = [];
+    let PK: any;
     for (const field of this.currentModel){
       if (field.PK) {
         PKs.push(field.column);
+        PK = field.column;
         break;
       }
+    }
+    console.log(item);
+    console.log(this.currentModel == Contacted_Person);
+    if (this.currentModel == Contacted_Person){
+      this.service.DeleteContactedPerson(item[PK]).subscribe(respuesta => {
+        console.log(respuesta);
+      });
+    }
+    if (this.currentModel == Patients){
+      this.service.DeletePatient(item[PK]).subscribe(respuesta => {
+        console.log(respuesta);
+      });
     }
   }
 
@@ -88,6 +102,7 @@ export class HospitalViewComponent implements OnInit {
   // Creates item
   onCreate(): void {
     this.currentItem = {};
+    
     for (const field of this.currentModel){
       this.currentItem[field.column] = '';
     }
@@ -97,6 +112,24 @@ export class HospitalViewComponent implements OnInit {
   // Closes editing or creating mode
   onClose(): void {
     this.editStatus = false;
+    if (this.currentModel == Contacted_Person){
+      console.log('vamos a crear una region perro');
+      this.service.CreateContactedPerson(this.currentItem).subscribe(respuesta => {
+        console.log(respuesta);
+      });
+    
+
+
+    }
+    if (this.currentModel == Patients){
+      console.log('vamos a crear una region perro');
+      this.service.CreatePatient(this.currentItem).subscribe(respuesta => {
+        console.log(respuesta);
+      });
+    
+
+
+    }
   }
 
   // Gets current columns and adds options column
@@ -116,9 +149,11 @@ export class HospitalViewComponent implements OnInit {
     if (dropdown){
       dropdown.forEach(e => {
         if (e.Name){
+          console.log(e)
           this.dropdownList.push(e.Name);
         }
         else{
+          
           this.dropdownList.push(e.SSN);
         }
       });
@@ -140,6 +175,7 @@ export class HospitalViewComponent implements OnInit {
 
   // Loads data from server to render dropdowns
   loadData(data, fk, pk){
+    console.log("pk",pk);
     this.dropdownLists = [];
     const type = (fk + 'SP');
     console.log(type);

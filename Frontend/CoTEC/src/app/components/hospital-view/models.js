@@ -15,12 +15,13 @@ export const Patients = [
 
 
 export const Contacted_Person = [
-  {"column":"SSN","PK":"SSN"},
+  {"column":"Id","PK":"Id"},
+  {"column":"SSN"},
   {"column":"First_Name"},
   {"column":"Last_Name"},
   {"column":"Address"},
   {"column":"Country_Birth"},
   {"column":"Email"},
   {"column":"Age"},
-  {"column":"Patient_SSN","PK":"SSN", "FK": "Patients"}
+  {"column":"Patient_SSN", "FK": "Patients"}
 ];

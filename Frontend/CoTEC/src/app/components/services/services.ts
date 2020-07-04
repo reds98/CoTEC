@@ -17,14 +17,15 @@ import {ITotalAccumulated} from '../Interfaces/ITotalAccumulated';
   providedIn: 'root'
 })
 export class Services {
-  private url = 'http://localhost:55789/api/';
+  private url = 'http://localhost/Anton/api/';
+  //private url = 'http://localhost:55789/api/';
 
   constructor(private http: HttpClient) { }
 
 
   // Returns an observable of our serialized geojson object
   getStateShapes(): Observable<any> {
-    return this.http.get('/assets/world-map.json');
+    return this.http.get('assets/world-map.json');
   }
 
 
@@ -43,7 +44,7 @@ export class Services {
     return this.http.get<ICountryMeasurements>(this.url + 'CountryMeasurementsSP/' + country + '/' + date);
   }
   getData(type){
-    return this.http.get('/assets/' + type + '.json');
+    return this.http.get('assets/' + type + '.json');
   }
   // Selects report to return
   getReports(type){
@@ -119,6 +120,13 @@ export class Services {
   private httpGet<T>(resource: string): Observable<T> {
     return this.http.get<T>(this.url + resource);
   }
+  DeletePatient(id: any): Observable < any >{
+    return this.http.delete(this.url + '/PatientsSP/' + id);
+  }
+
+  DeleteContactedPerson(id: any): Observable < any >{
+    return this.http.delete(this.url + '/ContactedPersonSP/' + id);
+  }
 
    DeleteRegion(id: any): Observable < any >{
     return this.http.delete(this.url + '/RegionsSP/' + id);
@@ -137,6 +145,14 @@ export class Services {
   }
   DeleteHospital(id: any): Observable< any >{
     return this.http.delete(this.url + '/HospitalsSP/' + id);
+  }
+  CreateContactedPerson(Region: any): Observable< any >{
+    console.log(Region)
+    return this.http.post(this.url + '/ContactedPersonSP', Region);
+  }
+  CreatePatient(Region: any): Observable< any >{
+    console.log(Region)
+    return this.http.post(this.url + '/PatientsSP', Region);
   }
   CreateRegion(Region: any): Observable< any >{
     return this.http.post(this.url + '/RegionsSP', Region);
