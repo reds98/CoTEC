@@ -20,19 +20,19 @@ export class MeasuresComponent implements OnInit {
   public nextWeek;
   public mydate = new Date();
   public todayMeasures;
-  public nextMeasures;
+  public nextWeekMeasures;
   public countriesList = [];
+  public todayName: any | string;
+  public nextWeekName: any | string;
 
   constructor(private service: Services, private datePipe: DatePipe) {
     this.consultDay = this.datePipe.transform(this.mydate, 'yyyy-MM-dd');
   }
 
   ngOnInit(): void {
-    this.service.getData('measures').subscribe(measures => {
-      this.measures = (measures as any).data;
-    });
-    this.service.getData('countries').subscribe(countries => {
-      this.countries = (countries as any).data;
+
+    this.service.getElements('CountriesSP').subscribe(countries => {
+      this.countries = (countries as any);
       this.getCountriesList();
     });
   }
@@ -59,21 +59,24 @@ export class MeasuresComponent implements OnInit {
 
 
   // Consults data and if match with dates and countries occurs, returns measurements
-  getMeasurements(){
+  getHttp(){
     const country = this.countrySelected;
-    if (this.measures && this.countries){
-      for (let i = 0; i < this.measures.length; i++){
-        if (this.measures[i].Country == country){
-          if (this.measures[i].Date == this.consultDay){
-            this.todayMeasures = this.measures[i].Description;
-          }
-          if (this.measures[i].Date == this.nextWeek){
-            this.nextMeasures = this.measures[i].Description;
-          }
-        }
-      }
+    if (this.consultDay && this.nextWeek){
+      this.service.getCountryMeasurements(this.countrySelected, this.consultDay).subscribe(measures => {
+        this.measures = (measures as any);
+        this.measures.forEach (e => {
+          this.renderMeasurements(e);
+        });
+      });
+
     }
   }
 
+  renderMeasurements(item){
+    this.todayName = item.Name;
+    this.todayMeasures = item.Description;
+    this.nextWeekName = item.Name;
+    this.nextWeekMeasures = item.Description;
+  }
 
 }

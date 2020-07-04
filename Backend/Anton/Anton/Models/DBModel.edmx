@@ -456,6 +456,10 @@ advertencia 6013: La tabla o vista 'CoTecDB.dbo.WeeklyCases' no tiene definida u
         <Function Name="getCountryAccumulatedProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Country" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="getCountryMeasurementsProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Country" Type="varchar" Mode="In" />
+          <Parameter Name="Date" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="getEnforcedMeasurementsProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getHospitalsProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getMedicationProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -1186,7 +1190,7 @@ advertencia 6013: La tabla o vista 'CoTecDB.dbo.WeeklyCases' no tiene definida u
           <FunctionImport Name="getCountriesProcedure" ReturnType="Collection(String)" />
           <EntitySet Name="sysdiagrams" EntityType="CoTecDBModel.sysdiagrams" />
           <FunctionImport Name="getCountryAccumulatedProcedure" ReturnType="Collection(CoTecDBModel.getCountryAccumulatedProcedure_Result)">
-            <Parameter Name="Country" Mode="In" Type="String" />
+          <Parameter Name="Country" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -1218,6 +1222,10 @@ advertencia 6013: La tabla o vista 'CoTecDB.dbo.WeeklyCases' no tiene definida u
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="getCountryMeasurementsProcedure" ReturnType="Collection(CoTecDBModel.getCountryMeasurementsProcedure_Result)">
+            <Parameter Name="Country" Mode="In" Type="String" />
+            <Parameter Name="Date" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="getEnforcedMeasurementsProcedure_Result">
           <Property Type="String" Name="Country_Name" Nullable="true" MaxLength="45" />
@@ -1302,6 +1310,10 @@ advertencia 6013: La tabla o vista 'CoTecDB.dbo.WeeklyCases' no tiene definida u
           <Property Type="Int32" Name="ID" Nullable="false" />
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="getCountryMeasurementsProcedure_Result">
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="255" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1616,6 +1628,14 @@ advertencia 6013: La tabla o vista 'CoTecDB.dbo.WeeklyCases' no tiene definida u
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="CoTecDBModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="CoTecDBModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="getCountryMeasurementsProcedure" FunctionName="CoTecDBModel.Store.getCountryMeasurementsProcedure">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CoTecDBModel.getCountryMeasurementsProcedure_Result">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

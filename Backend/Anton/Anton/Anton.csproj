@@ -142,6 +142,7 @@
     <Compile Include="Controllers\ContactedPersonSPController.cs" />
     <Compile Include="Controllers\CountriesSPController.cs" />
     <Compile Include="Controllers\CountryAccumulatedSPController.cs" />
+    <Compile Include="Controllers\CountryMeasurementsSPController.cs" />
     <Compile Include="Controllers\PatientsSPController.cs" />
     <Compile Include="Models\ContactedPersonSP.cs" />
     <Compile Include="Models\Contacted_Person.cs">
@@ -206,6 +207,7 @@
     <Compile Include="Models\CountryLocations.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CountryMeasurementsSP.cs" />
     <Compile Include="Models\DBModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -231,6 +233,9 @@
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\getCountryAccumulatedProcedure_Result.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getCountryMeasurementsProcedure_Result.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\getEnforcedMeasurementsProcedure_Result.cs">

@@ -11,7 +11,7 @@
       <br>
       <mat-form-field class="form">
         <mat-label>Seleccione un país</mat-label>
-        <mat-select (selectionChange)="getMeasurements()" [(ngModel)]="countrySelected" name="food">
+        <mat-select (selectionChange)="getHttp()" [(ngModel)]="countrySelected" name="food">
           <mat-option *ngFor="let country of countriesList" [value]="country">
             {{country}}
           </mat-option>
@@ -22,6 +22,8 @@
         <h3 class="mt-5">Medidas de {{this.consultDay}}</h3>
         <ul>
           <li class="list mt-3">
+            <a>{{todayName}}</a>
+            <br>
             <a>{{todayMeasures}}</a>
           </li>
         </ul>
@@ -29,7 +31,9 @@
           <h3 class="mt-5">Medidas de {{this.nextWeek}}</h3>
           <ul>
             <li class="list mt-3">
-              {{nextMeasures}}
+              <a>{{nextWeekName}}</a>
+              <br>
+              <a>{{nextWeekMeasures}}</a>
             </li>
           </ul>
         </div>

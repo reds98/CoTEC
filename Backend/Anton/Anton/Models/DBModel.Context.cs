@@ -207,5 +207,18 @@ namespace Anton.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
+    
+        public virtual ObjectResult<getCountryMeasurementsProcedure_Result> getCountryMeasurementsProcedure(string country, string date)
+        {
+            var countryParameter = country != null ?
+                new ObjectParameter("Country", country) :
+                new ObjectParameter("Country", typeof(string));
+    
+            var dateParameter = date != null ?
+                new ObjectParameter("Date", date) :
+                new ObjectParameter("Date", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCountryMeasurementsProcedure_Result>("getCountryMeasurementsProcedure", countryParameter, dateParameter);
+        }
     }
 }

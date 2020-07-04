@@ -34,6 +34,11 @@ export class Services {
     return this.http.get<ICountryAccumulated>(this.url + 'CountryAccumulatedSP/' + country);
   }
 
+  // Returns data for country accumulated from the server
+  getCountryMeasurements<ICountryMeasurements>(country, date){
+    return this.http.get<ICountryMeasurements>(this.url + 'CountryMeasurementsSP/' + country + '/' + date);
+  }
+
   // Selects report to return
   getReports(type){
     let observableItem;
