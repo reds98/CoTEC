@@ -97,6 +97,16 @@ export class AdminViewComponent implements OnInit {
         console.log(respuesta)
       });
     }
+    if(this.currentModel==SanitaryMeasurements){
+      this.service.DeleteSanitaryMeasurements(item[PK]).subscribe(respuesta => {
+        console.log(respuesta)
+      });
+    }
+    if(this.currentModel==Hospitals){
+      this.service.DeleteHospital(item[PK]).subscribe(respuesta => {
+        console.log(respuesta)
+      });
+    }
   }
 
 
@@ -176,7 +186,33 @@ export class AdminViewComponent implements OnInit {
       
 
     }
-    
+    if(this.currentModel==SanitaryMeasurements){
+      console.log("vamos a crear una Estado jajaja perro")
+      this.service.CreateSanitaryMeasurements(this.currentItem).subscribe(respuesta => {
+        console.log(respuesta)
+      });
+      
+
+    }
+    if(this.currentModel==Hospitals){
+      let hospital = { 
+        Id : Number(this.currentItem["Id"]), //scalar value 
+        Name: this.currentItem.Name,  
+        ICU_Capacity:this.currentItem.ICU_Capacity, 
+        Capacity: this.currentItem.Capacity, 
+        Manager_Name: this.currentItem.Manager_Name, 
+        Phone: this.currentItem.Phone ,
+        Country_Name: this.currentItem.Country_Name,
+        Country_Location_Id: this.currentItem.Country_Location_Id  ,
+     };
+      console.log(hospital)
+      console.log("vamos a crear una Hospital jajaja perro")
+      this.service.CreateHospital(hospital).subscribe(respuesta => {
+        console.log(respuesta)
+      });
+      
+
+    }
     console.log(this.currentItem);
     
   }
@@ -199,6 +235,12 @@ export class AdminViewComponent implements OnInit {
       dropdown.forEach(e => {
         if(e.Id) {
           this.dropdownList.push(e.Id);
+        }
+        if(e.Country_Location_Id) {
+          this.dropdownList.push(e.Country_Location_Id);
+        }
+        if(e.Regions) {
+          this.dropdownList.push(e.Regions);
         }
         else{
           this.dropdownList.push(e.Name);

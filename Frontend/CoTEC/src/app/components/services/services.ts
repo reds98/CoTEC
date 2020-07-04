@@ -115,6 +115,12 @@ export class Services {
   DeletePatientStatus(id : any):Observable< any >{
     return this.http.delete(this.url+"/PatientStatusSP/"+id);  
   }
+  DeleteSanitaryMeasurements(id : any):Observable< any >{
+    return this.http.delete(this.url+"/SanitaryMeasurementsSP/"+id);  
+  }
+  DeleteHospital(id : any):Observable< any >{
+    return this.http.delete(this.url+"/HospitalsSP/"+id);  
+  }
   CreateRegion(Region : any):Observable< any >{
     return this.http.post(this.url+"/RegionsSP",Region);  
   }
@@ -129,5 +135,11 @@ export class Services {
   }
   CreateEnforcedMeasurements(Region : any):Observable< any >{
     return this.http.post(this.url+"/EnforcedMeasurementsSP",Region);  
+  }
+  CreateSanitaryMeasurements(Region : any):Observable< any >{
+    return this.http.post(this.url+"/SanitaryMeasurementsSP",Region);  
+  }
+  CreateHospital(Region : any):Observable< any >{
+    return this.http.post(this.url+"/HospitalsSP",Region);  
   }
 }
