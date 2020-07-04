@@ -2,34 +2,34 @@
   <div class="row content">
     <div class="col-4" align="center">
 
-      <div class="jumbotron customJumbotron mt-3 text--amber" *ngFor="let item of globalAccumulated">
+      <div class="jumbotron customJumbotron mt-3 text--amber">
         <label class="N-Secundary customLabel mt-3 text--grey">
           Datos breves
         </label>
         <br>
         <label class="N-Primary customLabel mt-3 text--amber">
-          {{item.contagiados}}
+          {{globalAccumulated.INFECTED}}
         </label>
         <label class="customLabel mt-3 text--grey">
           Total de casos confirmados
         </label>
         <br>
         <label class="N-Primary customLabel mt-3 text--green">
-          {{item.muertos}}
+          {{globalAccumulated.DEAD}}
         </label>
         <label class="customLabel mt-3 text--grey">
           Total de muertos
         </label>
         <br>
         <label class="N-Primary customLabel mt-3 text--yellow">
-          {{item.activos}}
+          {{globalAccumulated.ACTIVE}}
         </label>
         <label class="customLabel mt-3 text--grey">
           Total de activos
         </label>
         <br>
         <label class="N-Primary customLabel mt-3 text--red">
-          {{item.recuperados}}
+          {{globalAccumulated.RECOVERED}}
         </label>
         <label class="customLabel mt-3 text--grey">
           Total de recuperados
@@ -44,13 +44,13 @@
       <h3 align="center" class="text--grey">Incremento de casos diarios por país</h3>
       <mat-form-field class="form mb-3">
         <mat-label>Seleccione un país</mat-label>
-        <mat-select [(ngModel)]="countrySelected" name="countries">
+        <mat-select (selectionChange)="getCountryData()" [(ngModel)]="countrySelected" name="countries">
           <mat-option *ngFor="let country of countriesList" [value]="country">
             {{country}}
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <app-chart [chartDataSets] = "chartCountryData" [chartLabels] = "chartLabels"></app-chart>
+      <app-chart [chartDataSets] = "chartCountryData" [chartLabels] = "countryChartLabels"></app-chart>
       </div>
     </div>
   </div>

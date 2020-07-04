@@ -143,6 +143,8 @@
     <Compile Include="Controllers\CountriesSPController.cs" />
     <Compile Include="Controllers\CountryAccumulatedSPController.cs" />
     <Compile Include="Controllers\CountryMeasurementsSPController.cs" />
+    <Compile Include="Controllers\LastWeekAccumulatedController.cs" />
+    <Compile Include="Controllers\LastWeekCountryAccumulatedController.cs" />
     <Compile Include="Controllers\PatientsSPController.cs" />
     <Compile Include="Models\ContactedPersonSP.cs" />
     <Compile Include="Models\Contacted_Person.cs">
@@ -193,7 +195,6 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\AcumuladoController.cs" />
     <Compile Include="Controllers\ContinentsController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -204,6 +205,7 @@
     </Compile>
     <Compile Include="Models\CountriesSP.cs" />
     <Compile Include="Models\CountryAccumulatedSP.cs" />
+    <Compile Include="Models\CountryAcumulado.cs" />
     <Compile Include="Models\CountryLocations.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -244,6 +246,16 @@
     <Compile Include="Models\getHospitalsProcedure_Result.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\getLastWeekAccumulated_Result.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getLastWeekCountryAccumulated_Result.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getTotalAccumulated_Result.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LastWeekAccumulated.cs" />
     <Compile Include="Models\getMedicationProcedure_Result.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -271,6 +283,7 @@
     <Compile Include="Models\Hospital_Patients.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LastWeekCountryAccumulated.cs" />
     <Compile Include="Models\Medications.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -313,6 +326,7 @@
     <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TotalAccumulated.cs" />
     <Compile Include="Reports\CrystalReport1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

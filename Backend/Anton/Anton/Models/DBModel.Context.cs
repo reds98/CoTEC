@@ -220,5 +220,24 @@ namespace Anton.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCountryMeasurementsProcedure_Result>("getCountryMeasurementsProcedure", countryParameter, dateParameter);
         }
+    
+        public virtual ObjectResult<getLastWeekAccumulated_Result> getLastWeekAccumulated()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getLastWeekAccumulated_Result>("getLastWeekAccumulated");
+        }
+    
+        public virtual ObjectResult<getLastWeekCountryAccumulated_Result> getLastWeekCountryAccumulated(string country)
+        {
+            var countryParameter = country != null ?
+                new ObjectParameter("Country", country) :
+                new ObjectParameter("Country", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getLastWeekCountryAccumulated_Result>("getLastWeekCountryAccumulated", countryParameter);
+        }
+    
+        public virtual ObjectResult<getTotalAccumulated_Result> getTotalAccumulated()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getTotalAccumulated_Result>("getTotalAccumulated");
+        }
     }
 }

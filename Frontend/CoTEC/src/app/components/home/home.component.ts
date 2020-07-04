@@ -19,22 +19,22 @@ export class HomeComponent implements OnInit {
   // Initial data for awaiting response
   chartGlobalData: any = [{ data: [], label: '' }];
   chartLabels = [''];
+  countryChartLabels = [''];
 
   chartCountryData: any = [{ data: [], label: '' }];
 
   constructor(private service: Services) { }
 
   ngOnInit() {
-    this.service.getData('accumulated').subscribe(totalAccumulated => {
-      this.globalAccumulated = (totalAccumulated as any).data;
+    this.service.getElements('lastWeekAccumulated').subscribe(totalAccumulated => {
+      this.globalAccumulated = (totalAccumulated as any);
+      console.log(this.globalAccumulated);
+      console.log(this.globalAccumulated.INFECTED);
       this.getGlobalData();
     });
-    this.service.getData('countryAccumulated').subscribe(countryAccumulated => {
-      this.countryAccumulated = (countryAccumulated as any).data;
-      this.getCountryData();
-    });
-    this.service.getData('countries').subscribe(countries => {
-      this.countries = (countries as any).data;
+
+    this.service.getElements('CountriesSP').subscribe(countries => {
+      this.countries = (countries as any);
       this.getCountriesList();
     });
   }
@@ -43,24 +43,33 @@ export class HomeComponent implements OnInit {
   getGlobalData(){
     if (this.globalAccumulated !== []){
       this.chartGlobalData = [
-        { data: this.globalAccumulated[0].activos_dia, label: 'Activos' },
-        { data: this.globalAccumulated[0].recuperados_dia, label: 'Recuperados' },
-        { data: this.globalAccumulated[0].muertos_dia, label: 'Muertos' },
-        { data: this.globalAccumulated[0].contagiados_dia, label: 'Contagiados' }
+        { data: this.globalAccumulated.active_day, label: 'Activos' },
+        { data: this.globalAccumulated.recovered_day, label: 'Recuperados' },
+        { data: this.globalAccumulated.dead_day, label: 'Muertos' },
+        { data: this.globalAccumulated.infected_day, label: 'Contagiados' }
       ];
-      this.chartLabels = this.globalAccumulated[0].Fechas;
+      this.chartLabels = this.globalAccumulated.Dates;
     }
   }
 
-  // Load data to update Country chart
+
   getCountryData(){
+    this.service.getLastWeekCountryAccumulated(this.countrySelected).subscribe(countryAccumulated => {
+      this.countryAccumulated = (countryAccumulated as any);
+      this.getCountryAccumulated();
+    });
+  }
+  // Load data to update Country chart
+  getCountryAccumulated(){
+    console.log(this.countryAccumulated);
     if (this.countryAccumulated !== []){
       this.chartCountryData = [
-        { data: this.countryAccumulated[0].activos_dia, label: 'Activos' },
-        { data: this.countryAccumulated[0].recuperados_dia, label: 'Recuperados' },
-        { data: this.countryAccumulated[0].muertos_dia, label: 'Muertos' },
-        { data: this.countryAccumulated[0].contagiados_dia, label: 'Contagiados' }
+        { data: this.countryAccumulated.active_day, label: 'Activos' },
+        { data: this.countryAccumulated.recovered_day, label: 'Recuperados' },
+        { data: this.countryAccumulated.dead_day, label: 'Muertos' },
+        { data: this.countryAccumulated.infected_day, label: 'Contagiados' }
       ];
+      this.countryChartLabels = this.countryAccumulated.Dates;
     }
   }
 
@@ -70,9 +79,6 @@ export class HomeComponent implements OnInit {
         this.countriesList.push(this.countries[i].Name);
       }
     }
-  }
-
-  calcGlobalIncrease(){
   }
 
 

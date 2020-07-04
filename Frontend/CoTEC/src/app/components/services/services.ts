@@ -11,6 +11,7 @@ import {ISanitaryMeasurements} from '../Interfaces/SanitaryMeasurements';
 import {IEnforcedMeasurements} from '../Interfaces/IEnforcedMeasurements';
 import {ICountries} from '../Interfaces/ICountries';
 import {IContacts} from '../Interfaces/IContacts';
+import {ITotalAccumulated} from '../Interfaces/ITotalAccumulated';
 
 @Injectable({
   providedIn: 'root'
@@ -33,12 +34,17 @@ export class Services {
   getCountryAccumulated<ICountryAccumulated>(country){
     return this.http.get<ICountryAccumulated>(this.url + 'CountryAccumulatedSP/' + country);
   }
-
+  // Returns data for country accumulated increment from the server
+  getLastWeekCountryAccumulated<ICountryAccumulated>(country){
+    return this.http.get<ICountryAccumulated>(this.url + 'LastWeekCountryAccumulated/' + country);
+  }
   // Returns data for country accumulated from the server
   getCountryMeasurements<ICountryMeasurements>(country, date){
     return this.http.get<ICountryMeasurements>(this.url + 'CountryMeasurementsSP/' + country + '/' + date);
   }
-
+  getData(type){
+    return this.http.get('/assets/' + type + '.json');
+  }
   // Selects report to return
   getReports(type){
     let observableItem;
@@ -99,6 +105,9 @@ export class Services {
       case 'CountriesSP':
         observable =  this.httpGet<ICountries>(type);
         break;
+      case 'lastWeekAccumulated':
+        observable =  this.httpGet<ITotalAccumulated>(type);
+        break;
       default:
         observable = {};
     }
@@ -110,43 +119,44 @@ export class Services {
   private httpGet<T>(resource: string): Observable<T> {
     return this.http.get<T>(this.url + resource);
   }
-   DeleteRegion(id : any): Observable < any >{
-    return this.http.delete(this.url+"/RegionsSP/"+id);
+
+   DeleteRegion(id: any): Observable < any >{
+    return this.http.delete(this.url + '/RegionsSP/' + id);
   }
-  DeleteEnfermedad(id : any):Observable< any >{
-    return this.http.delete(this.url+"/PathologiesSP/"+id);
+  DeleteEnfermedad(id: any): Observable< any >{
+    return this.http.delete(this.url + '/PathologiesSP/' + id);
   }
-  DeleteMedication(id : any):Observable< any >{
-    return this.http.delete(this.url+"/MedicationSP/"+id);
+  DeleteMedication(id: any): Observable< any >{
+    return this.http.delete(this.url + '/MedicationSP/' + id);
   }
-  DeletePatientStatus(id : any):Observable< any >{
-    return this.http.delete(this.url+"/PatientStatusSP/"+id);
+  DeletePatientStatus(id: any): Observable< any >{
+    return this.http.delete(this.url + '/PatientStatusSP/' + id);
   }
-  DeleteSanitaryMeasurements(id : any):Observable< any >{
-    return this.http.delete(this.url+"/SanitaryMeasurementsSP/"+id);
+  DeleteSanitaryMeasurements(id: any): Observable< any >{
+    return this.http.delete(this.url + '/SanitaryMeasurementsSP/' + id);
   }
-  DeleteHospital(id : any):Observable< any >{
-    return this.http.delete(this.url+"/HospitalsSP/"+id);
+  DeleteHospital(id: any): Observable< any >{
+    return this.http.delete(this.url + '/HospitalsSP/' + id);
   }
-  CreateRegion(Region : any):Observable< any >{
-    return this.http.post(this.url+"/RegionsSP",Region);
+  CreateRegion(Region: any): Observable< any >{
+    return this.http.post(this.url + '/RegionsSP', Region);
   }
-  CreateEnfermedad(Region : any):Observable< any >{
-    return this.http.post(this.url+"/PathologiesSP",Region);
+  CreateEnfermedad(Region: any): Observable< any >{
+    return this.http.post(this.url + '/PathologiesSP', Region);
   }
-  CreateMedication(Region : any):Observable< any >{
-    return this.http.post(this.url+"/MedicationSP",Region);
+  CreateMedication(Region: any): Observable< any >{
+    return this.http.post(this.url + '/MedicationSP', Region);
   }
-  CreatePatientStatus(Region : any):Observable< any >{
-    return this.http.post(this.url+"/PatientStatusSP",Region);
+  CreatePatientStatus(Region: any): Observable< any >{
+    return this.http.post(this.url + '/PatientStatusSP', Region);
   }
-  CreateEnforcedMeasurements(Region : any):Observable< any >{
-    return this.http.post(this.url+"/EnforcedMeasurementsSP",Region);
+  CreateEnforcedMeasurements(Region: any): Observable< any >{
+    return this.http.post(this.url + '/EnforcedMeasurementsSP', Region);
   }
-  CreateSanitaryMeasurements(Region : any):Observable< any >{
-    return this.http.post(this.url+"/SanitaryMeasurementsSP",Region);
+  CreateSanitaryMeasurements(Region: any): Observable< any >{
+    return this.http.post(this.url + '/SanitaryMeasurementsSP', Region);
   }
-  CreateHospital(Region : any):Observable< any >{
-    return this.http.post(this.url+"/HospitalsSP",Region);
+  CreateHospital(Region: any): Observable< any >{
+    return this.http.post(this.url + '/HospitalsSP', Region);
   }
 }

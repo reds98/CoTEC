@@ -53,7 +53,7 @@ export class AdminViewComponent implements OnInit {
       this.currentData = this.data;
       this.currentModel = model;
       this.columns = this.getColumns();
-      console.log("DATA");
+      console.log('DATA');
       console.log(data);
       for (const key of this.currentModel){
         if (key.FK){
@@ -76,35 +76,35 @@ export class AdminViewComponent implements OnInit {
 
     // PK value
     console.log(item[PK]);
-    console.log(this.currentModel==CountryLocations);
-    if(this.currentModel==CountryLocations){
+    console.log(this.currentModel == CountryLocations);
+    if (this.currentModel == CountryLocations){
       this.service.DeleteRegion(item[PK]).subscribe(respuesta => {
-        console.log(respuesta)
+        console.log(respuesta);
       });
     }
-    if(this.currentModel==Pathologies){
+    if (this.currentModel == Pathologies){
       this.service.DeleteEnfermedad(item[PK]).subscribe(respuesta => {
-        console.log(respuesta)
+        console.log(respuesta);
       });
     }
-    if(this.currentModel==Medication){
+    if (this.currentModel == Medication){
       this.service.DeleteMedication(item[PK]).subscribe(respuesta => {
-        console.log(respuesta)
+        console.log(respuesta);
       });
     }
-    if(this.currentModel==PatientStatus){
+    if (this.currentModel == PatientStatus){
       this.service.DeletePatientStatus(item[PK]).subscribe(respuesta => {
-        console.log(respuesta)
+        console.log(respuesta);
       });
     }
-    if(this.currentModel==SanitaryMeasurements){
+    if (this.currentModel == SanitaryMeasurements){
       this.service.DeleteSanitaryMeasurements(item[PK]).subscribe(respuesta => {
-        console.log(respuesta)
+        console.log(respuesta);
       });
     }
-    if(this.currentModel==Hospitals){
+    if (this.currentModel == Hospitals){
       this.service.DeleteHospital(item[PK]).subscribe(respuesta => {
-        console.log(respuesta)
+        console.log(respuesta);
       });
     }
   }
@@ -137,84 +137,84 @@ export class AdminViewComponent implements OnInit {
   // Closes editing or creating mode
   onClose(): void {
     this.editStatus = false;
-    if(this.currentModel==CountryLocations){
-      console.log("vamos a crear una region perro")
+    if (this.currentModel == CountryLocations){
+      console.log('vamos a crear una region perro');
       this.service.CreateRegion(this.currentItem).subscribe(respuesta => {
-        console.log(respuesta)
+        console.log(respuesta);
       });
-      
+
 
     }
-    if(this.currentModel==Pathologies){
-      console.log("vamos a crear una region perro")
+    if (this.currentModel == Pathologies){
+      console.log('vamos a crear una region perro');
       this.service.CreateEnfermedad(this.currentItem).subscribe(respuesta => {
-        console.log(respuesta)
+        console.log(respuesta);
       });
-      
+
 
     }
-    if(this.currentModel==Medication){
-      console.log("vamos a crear una region perro")
+    if (this.currentModel == Medication){
+      console.log('vamos a crear una region perro');
       this.service.CreateMedication(this.currentItem).subscribe(respuesta => {
-        console.log(respuesta)
+        console.log(respuesta);
       });
-      
+
 
     }
-    if(this.currentModel==PatientStatus){
-      console.log("vamos a crear una Estado jajaja perro")
+    if (this.currentModel == PatientStatus){
+      console.log('vamos a crear una Estado jajaja perro');
       this.service.CreatePatientStatus(this.currentItem).subscribe(respuesta => {
-        console.log(respuesta)
+        console.log(respuesta);
       });
-      
+
 
     }
-    if(this.currentModel==EnforcedMeasurements){
-      let medida = { 
-        Id : Number(this.currentItem["Id"]), //scalar value 
-        Country_Name: this.currentItem.Country_Name,  
-        Measurement_Id:this.currentItem.MeasurementId, 
-        Start_Date: this.currentItem.Start_Date, 
-        End_Date: this.currentItem.End_Date, 
-        State: 1//collection  
+    if (this.currentModel == EnforcedMeasurements){
+      const medida = {
+        Id : Number(this.currentItem.Id), // scalar value
+        Country_Name: this.currentItem.Country_Name,
+        Measurement_Id: this.currentItem.MeasurementId,
+        Start_Date: this.currentItem.Start_Date,
+        End_Date: this.currentItem.End_Date,
+        State: 1// collection
      };
       console.log(medida);
-      console.log("vamos a crear una Medida forzada perro")
+      console.log('vamos a crear una Medida forzada perro');
       this.service.CreateEnforcedMeasurements(medida).subscribe(respuesta => {
-        console.log(respuesta)
+        console.log(respuesta);
       });
-      
+
 
     }
-    if(this.currentModel==SanitaryMeasurements){
-      console.log("vamos a crear una Estado jajaja perro")
+    if (this.currentModel == SanitaryMeasurements){
+      console.log('vamos a crear una Estado jajaja perro');
       this.service.CreateSanitaryMeasurements(this.currentItem).subscribe(respuesta => {
-        console.log(respuesta)
+        console.log(respuesta);
       });
-      
+
 
     }
-    if(this.currentModel==Hospitals){
-      let hospital = { 
-        Id : Number(this.currentItem["Id"]), //scalar value 
-        Name: this.currentItem.Name,  
-        ICU_Capacity:this.currentItem.ICU_Capacity, 
-        Capacity: this.currentItem.Capacity, 
-        Manager_Name: this.currentItem.Manager_Name, 
+    if (this.currentModel == Hospitals){
+      const hospital = {
+        Id : Number(this.currentItem.Id), // scalar value
+        Name: this.currentItem.Name,
+        ICU_Capacity: this.currentItem.ICU_Capacity,
+        Capacity: this.currentItem.Capacity,
+        Manager_Name: this.currentItem.Manager_Name,
         Phone: this.currentItem.Phone ,
         Country_Name: this.currentItem.Country_Name,
         Country_Location_Id: this.currentItem.Country_Location_Id  ,
      };
-      console.log(hospital)
-      console.log("vamos a crear una Hospital jajaja perro")
+      console.log(hospital);
+      console.log('vamos a crear una Hospital jajaja perro');
       this.service.CreateHospital(hospital).subscribe(respuesta => {
-        console.log(respuesta)
+        console.log(respuesta);
       });
-      
+
 
     }
     console.log(this.currentItem);
-    
+
   }
 
   // Gets current columns and adds options column
@@ -233,13 +233,13 @@ export class AdminViewComponent implements OnInit {
     let list;
     if (dropdown){
       dropdown.forEach(e => {
-        if(e.Id) {
+        if (e.Id) {
           this.dropdownList.push(e.Id);
         }
-        if(e.Country_Location_Id) {
+        if (e.Country_Location_Id) {
           this.dropdownList.push(e.Country_Location_Id);
         }
-        if(e.Regions) {
+        if (e.Regions) {
           this.dropdownList.push(e.Regions);
         }
         else{

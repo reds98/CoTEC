@@ -462,12 +462,17 @@ advertencia 6013: La tabla o vista 'CoTecDB.dbo.WeeklyCases' no tiene definida u
         </Function>
         <Function Name="getEnforcedMeasurementsProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getHospitalsProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getLastWeekAccumulated" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getLastWeekCountryAccumulated" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Country" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="getMedicationProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getPacientsProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getPacientStatusProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getPathologiesProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getRegionsProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getSanitaryMeasurementsProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getTotalAccumulated" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -1226,6 +1231,11 @@ advertencia 6013: La tabla o vista 'CoTecDB.dbo.WeeklyCases' no tiene definida u
             <Parameter Name="Country" Mode="In" Type="String" />
             <Parameter Name="Date" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="getLastWeekAccumulated" ReturnType="Collection(CoTecDBModel.getLastWeekAccumulated_Result)" />
+          <FunctionImport Name="getLastWeekCountryAccumulated" ReturnType="Collection(CoTecDBModel.getLastWeekCountryAccumulated_Result)">
+            <Parameter Name="Country" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getTotalAccumulated" ReturnType="Collection(CoTecDBModel.getTotalAccumulated_Result)" />
         </EntityContainer>
         <ComplexType Name="getEnforcedMeasurementsProcedure_Result">
           <Property Type="String" Name="Country_Name" Nullable="true" MaxLength="45" />
@@ -1314,6 +1324,27 @@ advertencia 6013: La tabla o vista 'CoTecDB.dbo.WeeklyCases' no tiene definida u
         <ComplexType Name="getCountryMeasurementsProcedure_Result">
           <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Description" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="getLastWeekAccumulated_Result">
+          <Property Type="DateTime" Name="Date" Nullable="true" />
+          <Property Type="Int32" Name="ACTIVE" Nullable="true" />
+          <Property Type="Int32" Name="RECOVERED" Nullable="true" />
+          <Property Type="Int32" Name="DEAD" Nullable="true" />
+          <Property Type="Int32" Name="INFECTED" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getLastWeekCountryAccumulated_Result">
+          <Property Type="String" Name="Residence" Nullable="true" MaxLength="45" />
+          <Property Type="DateTime" Name="Date" Nullable="true" />
+          <Property Type="Int32" Name="ACTIVE" Nullable="true" />
+          <Property Type="Int32" Name="RECOVERED" Nullable="true" />
+          <Property Type="Int32" Name="DEAD" Nullable="true" />
+          <Property Type="Int32" Name="INFECTED" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getTotalAccumulated_Result">
+          <Property Type="Int32" Name="ACTIVE" Nullable="true" />
+          <Property Type="Int32" Name="RECOVERED" Nullable="true" />
+          <Property Type="Int32" Name="DEAD" Nullable="true" />
+          <Property Type="Int32" Name="INFECTED" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1633,6 +1664,39 @@ advertencia 6013: La tabla o vista 'CoTecDB.dbo.WeeklyCases' no tiene definida u
               <ComplexTypeMapping TypeName="CoTecDBModel.getCountryMeasurementsProcedure_Result">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getLastWeekAccumulated" FunctionName="CoTecDBModel.Store.getLastWeekAccumulated">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CoTecDBModel.getLastWeekAccumulated_Result">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+                <ScalarProperty Name="RECOVERED" ColumnName="RECOVERED" />
+                <ScalarProperty Name="DEAD" ColumnName="DEAD" />
+                <ScalarProperty Name="INFECTED" ColumnName="INFECTED" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getLastWeekCountryAccumulated" FunctionName="CoTecDBModel.Store.getLastWeekCountryAccumulated">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CoTecDBModel.getLastWeekCountryAccumulated_Result">
+                <ScalarProperty Name="Residence" ColumnName="Residence" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+                <ScalarProperty Name="RECOVERED" ColumnName="RECOVERED" />
+                <ScalarProperty Name="DEAD" ColumnName="DEAD" />
+                <ScalarProperty Name="INFECTED" ColumnName="INFECTED" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getTotalAccumulated" FunctionName="CoTecDBModel.Store.getTotalAccumulated">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CoTecDBModel.getTotalAccumulated_Result">
+                <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+                <ScalarProperty Name="RECOVERED" ColumnName="RECOVERED" />
+                <ScalarProperty Name="DEAD" ColumnName="DEAD" />
+                <ScalarProperty Name="INFECTED" ColumnName="INFECTED" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
