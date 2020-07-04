@@ -15,7 +15,7 @@ AS
 
 CREATE PROCEDURE getCountryAccumulatedProcedure @Country varchar (45)
 AS
-	SELECT P.Residence,	SUM(IIF(P.Status = 'Activo', 1, 0)) AS ACTIVE,
+	SELECT P.Residence, SUM(IIF(P.Status = 'Activo', 1, 0)) AS ACTIVE,
 	SUM(IIF(P.Status = 'Recuperado', 1, 0)) AS RECOVERED,
 	SUM(IIF(P.Status = 'Muerto', 1, 0)) AS DEAD,
 	SUM(IIF(P.Status = 'Recuperado', 1, 0) + IIF(P.Status = 'Muerto', 1, 0) + IIF(P.Status = 'Activo', 1, 0)) AS INFECTED
@@ -26,7 +26,7 @@ AS
 
 CREATE PROCEDURE getCountryMeasurementsProcedure @Country varchar(45), @Date Date
 AS
-	SELECT SM.Name, SM.Description
+	SELECT SM.Id, SM.Name, SM.Description
 	FROM EnforcedMeasurements as EM
 	INNER JOIN SanityMeasurements as SM ON SM.Id = EM.Measurement_Id
 	WHERE EM.Country_Name = @Country
@@ -36,7 +36,7 @@ AS
 
 CREATE PROCEDURE getEnforcedMeasurementsProcedure
 AS
-	SELECT EM.Country_Name, SM.Name, EM.Start_Date, EM.End_Date, SM.Id AS MeasurementId
+	SELECT EM.Id, EM.Country_Name, SM.Name, EM.Start_Date, EM.End_Date, SM.Id AS MeasurementId
 	FROM EnforcedMeasurements as EM
 	INNER JOIN SanityMeasurements as SM ON SM.Id = EM.Measurement_Id
 
@@ -74,7 +74,7 @@ AS
 
 CREATE PROCEDURE getMedicationProcedure
 AS
-	SELECT M.Name, M.Provider
+	SELECT M.Id, M.Name, M.Provider
 	FROM Medications as M
 
 
@@ -114,7 +114,7 @@ AS
 
 CREATE PROCEDURE getSanitaryMeasurementsProcedure
 AS
-	SELECT SM.Name, SM.Description
+	SELECT SM.Id, SM.Name, SM.Description
 	FROM SanityMeasurements as SM
 
 
