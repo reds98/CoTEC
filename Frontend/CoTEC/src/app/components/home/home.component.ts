@@ -25,15 +25,15 @@ export class HomeComponent implements OnInit {
   constructor(private service: Services) { }
 
   ngOnInit() {
-    this.service.getData('accumulated').subscribe(totalAccumulated => {
+    this.service.getElements('accumulated').subscribe(totalAccumulated => {
       this.globalAccumulated = (totalAccumulated as any).data;
       this.getGlobalData();
     });
-    this.service.getData('countryAccumulated').subscribe(countryAccumulated => {
+    this.service.getElements('countryAccumulated').subscribe(countryAccumulated => {
       this.countryAccumulated = (countryAccumulated as any).data;
       this.getCountryData();
     });
-    this.service.getData('countries').subscribe(countries => {
+    this.service.getElements('countries').subscribe(countries => {
       this.countries = (countries as any).data;
       this.getCountriesList();
     });
