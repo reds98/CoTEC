@@ -1,0 +1,17 @@
+{
+  "data": [
+    {
+      "Date": "2020-07-17",
+      "Country": "Costa Rica",
+      "Name": "cierre de locales",
+      "Description": "no se permiten locales con más de 20 personas"
+    },
+    {
+      "Date": "2020-07-24",
+      "Country": "Costa Rica",
+      "Name": "limitar el tráfico",
+      "Description": "no se permite circular despueś de las 7pm"
+    }
+
+  ]
+}

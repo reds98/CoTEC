@@ -1,0 +1,20 @@
+@import "src/styles";
+
+.customJumbotron{
+  background: white;
+  border-radius: 20px;
+  border: white solid 10px;
+  width: border-box;
+  height: auto;
+}
+
+.form{
+  font-size: 20px;
+  width: 250px;
+}
+
+.list{
+  list-style: none;
+  color: #000;
+  text-transform: uppercase;
+}

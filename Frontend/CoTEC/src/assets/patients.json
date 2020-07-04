@@ -1,0 +1,28 @@
+{
+  "data": [
+    {
+      "SSN": "123456",
+      "First_Name": "Marco",
+      "Last_Name": "Polo",
+      "Hospitalized": "true",
+      "ICU": "false",
+      "Age": 24,
+      "Residence": "Costa Rica",
+      "Country_Birth": "Costa Rica",
+      "Hospital_Id": 1,
+      "Status": "Active"
+    },
+  {
+    "SSN": "123457",
+    "First_Name": "Jorge",
+    "Last_Name": "Solano",
+    "Hospitalized": "true",
+    "ICU": "false",
+    "Age": 25,
+    "Residence": "Costa Rica",
+    "Country_Birth": "Spain",
+    "Hospital_Id": 1,
+    "Status": "Recovered"
+  }
+  ]
+}

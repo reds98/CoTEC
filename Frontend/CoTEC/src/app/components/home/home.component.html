@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row content">
+    <div class="col-4" align="center">
+
+      <div class="jumbotron customJumbotron mt-3 text--amber">
+        <label class="N-Secundary customLabel mt-3 text--grey">
+          Datos breves
+        </label>
+        <br>
+        <label class="N-Primary customLabel mt-3 text--amber">
+          {{globalAccumulated.INFECTED}}
+        </label>
+        <label class="customLabel mt-3 text--grey">
+          Total de casos confirmados
+        </label>
+        <br>
+        <label class="N-Primary customLabel mt-3 text--green">
+          {{globalAccumulated.DEAD}}
+        </label>
+        <label class="customLabel mt-3 text--grey">
+          Total de muertos
+        </label>
+        <br>
+        <label class="N-Primary customLabel mt-3 text--yellow">
+          {{globalAccumulated.ACTIVE}}
+        </label>
+        <label class="customLabel mt-3 text--grey">
+          Total de activos
+        </label>
+        <br>
+        <label class="N-Primary customLabel mt-3 text--red">
+          {{globalAccumulated.RECOVERED}}
+        </label>
+        <label class="customLabel mt-3 text--grey">
+          Total de recuperados
+        </label>
+      </div>
+    </div>
+    <div class="col-8 mt-3">
+      <h3 align="center" class="text--grey">Incremento de casos diarios mundial</h3>
+      <app-chart [chartDataSets] = "chartGlobalData" [chartLabels] = "chartLabels"></app-chart>
+      <br>
+      <div class="customJumbotron">
+      <h3 align="center" class="text--grey">Incremento de casos diarios por país</h3>
+      <mat-form-field class="form mb-3">
+        <mat-label>Seleccione un país</mat-label>
+        <mat-select (selectionChange)="getCountryData()" [(ngModel)]="countrySelected" name="countries">
+          <mat-option *ngFor="let country of countriesList" [value]="country">
+            {{country}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <app-chart [chartDataSets] = "chartCountryData" [chartLabels] = "countryChartLabels"></app-chart>
+      </div>
+    </div>
+  </div>
+  <div class="row" >
+    <div class="col-8 mt-3" >
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+{
+  "data" :   [
+    {
+      "Id": "12345",
+      "Name": "Juan Santamaria",
+      "ICU_Capacity": "589",
+      "Capacity": "2458",
+      "Manager_name": "Karen",
+      "Phone": "52963741",
+      "Country_Name": "Costa Rica"
+    },
+    {
+      "Id": "9875",
+      "Name": "Mexico",
+      "ICU_Capacity": "799",
+      "Capacity": "6958",
+      "Manager_name": "John",
+      "Phone": "85489641",
+      "Country_Name": "Costa Rica"
+    }
+    ]
+}

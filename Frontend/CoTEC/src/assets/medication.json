@@ -1,0 +1,19 @@
+{
+  "data": [
+    {
+      "Id": 22,
+      "Name": "Paracetamol",
+      "Provider": "Wallmart"
+    },
+    {
+      "Id": 23,
+      "Name": "Soup",
+      "Provider": "Pharmacy"
+    },
+    {
+      "Id": 24,
+      "Name": "Herbs",
+      "Provider": "Wallmart"
+    }
+  ]
+}

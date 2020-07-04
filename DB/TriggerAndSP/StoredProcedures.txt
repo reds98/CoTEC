@@ -1,0 +1,132 @@
+USE CoTecDB
+
+CREATE PROCEDURE getContactedPersonProcedure
+AS
+	SELECT CP.First_Name, CP.Last_Name, CP.SSN, CP.Age, CP.Country_Birth, CP.Address, CP.Email, CP.Patient_SSN
+	FROM Contacted_Person as CP
+
+
+
+CREATE PROCEDURE getCountriesProcedure
+AS
+	SELECT C.Name
+	FROM Countries as C
+
+
+CREATE PROCEDURE getCountryAccumulatedProcedure @Country varchar (45)
+AS
+	SELECT P.Residence, SUM(IIF(P.Status = 'Activo', 1, 0)) AS ACTIVE,
+	SUM(IIF(P.Status = 'Recuperado', 1, 0)) AS RECOVERED,
+	SUM(IIF(P.Status = 'Muerto', 1, 0)) AS DEAD,
+	SUM(IIF(P.Status = 'Recuperado', 1, 0) + IIF(P.Status = 'Muerto', 1, 0) + IIF(P.Status = 'Activo', 1, 0)) AS INFECTED
+	FROM Patients as P
+	GROUP BY P.Residence
+	HAVING P.Residence = @Country
+
+
+CREATE PROCEDURE getCountryMeasurementsProcedure @Country varchar(45), @Date Date
+AS
+	SELECT SM.Id, SM.Name, SM.Description
+	FROM EnforcedMeasurements as EM
+	INNER JOIN SanityMeasurements as SM ON SM.Id = EM.Measurement_Id
+	WHERE EM.Country_Name = @Country
+	GROUP BY SM.Name, SM.Description, EM.Start_Date, EM.End_Date
+	HAVING @Date BETWEEN EM.Start_Date and EM.End_Date
+
+
+CREATE PROCEDURE getEnforcedMeasurementsProcedure
+AS
+	SELECT EM.Id, EM.Country_Name, SM.Name, EM.Start_Date, EM.End_Date, SM.Id AS MeasurementId
+	FROM EnforcedMeasurements as EM
+	INNER JOIN SanityMeasurements as SM ON SM.Id = EM.Measurement_Id
+
+
+CREATE PROCEDURE getHospitalsProcedure
+AS
+	SELECT H.Id, H.Name, H.Manager_Name, H.Phone, H.Capacity, H.ICU_Capacity, H.Country_Name, H.Country_Location_Id, CL.Name as Region
+	FROM Hospitals as H
+	INNER JOIN CountryLocations as CL ON CL.Id = H.Country_Location_Id
+
+
+CREATE PROCEDURE getLastWeekAccumulated
+AS
+	SELECT E.Date, SUM(IIF(E.Status_Event = 'Activo', 1, 0)) AS ACTIVE, 
+	SUM(IIF(E.Status_Event = 'Recuperado', 1, 0)) AS RECOVERED,
+	SUM(IIF(E.Status_Event = 'Muerto', 1, 0)) AS DEAD,
+	SUM(IIF(E.Status_Event = 'Recuperado', 1, 0) + IIF(E.Status_Event = 'Muerto', 1, 0) + IIF(E.Status_Event = 'Activo', 1, 0)) AS INFECTED
+	FROM Events as E
+	WHERE E.Date Between DATEADD(day, -7, GETDATE())  and CONVERT(VARCHAR(10), getdate(), 126)
+	GROUP BY CONVERT(VARCHAR(10), E.Date, 126), E.Date
+
+
+CREATE PROCEDURE getLastWeekCountryAccumulated @Country varchar (45)
+AS
+	SELECT P.Residence, E.Date, SUM(IIF(E.Status_Event = 'Activo', 1, 0)) AS ACTIVE,
+	SUM(IIF(E.Status_Event = 'Recuperado', 1, 0)) AS RECOVERED,
+	SUM(IIF(E.Status_Event = 'Muerto', 1, 0)) AS DEAD,
+	SUM(IIF(E.Status_Event = 'Recuperado', 1, 0) + IIF(E.Status_Event = 'Muerto', 1, 0) + IIF(E.Status_Event = 'Activo', 1, 0)) AS INFECTED
+	FROM Events as E
+	INNER JOIN Patients as P ON P.SSN = E.Patient_SSN
+	WHERE E.Date Between DATEADD(day, -7, GETDATE())  and CONVERT(VARCHAR(10), getdate(), 126)
+	GROUP BY CONVERT(VARCHAR(10), E.Date, 126), E.Date, P.Residence
+	HAVING P.Residence = @Country
+
+
+CREATE PROCEDURE getMedicationProcedure
+AS
+	SELECT M.Id, M.Name, M.Provider
+	FROM Medications as M
+
+
+CREATE PROCEDURE getPacientStatusProcedure
+AS
+	SELECT PS.Name
+	FROM Patient_Status as PS
+
+
+
+CREATE PROCEDURE getPathologiesProcedure
+AS
+	SELECT P.Name, P.Description, P.Symptoms, P.Treatment
+	FROM Pathologies as P
+
+
+CREATE PROCEDURE getPacientsProcedure
+AS
+	SELECT P.First_Name, P.Last_Name, P.SSN, P.Age, P.Country_Birth, P.Residence, P.Status, P.Hospital_Id, P.Hospitalized, P.ICU, M.Name AS Medication, Pt.Name AS Pathology
+	FROM Patients as P
+	INNER JOIN Patient_Medications as PM ON P.SSN = PM.Patient_SSN
+	INNER JOIN Medications as M ON M.Id = PM.Medication_Id
+	INNER JOIN Patient_Pathologies as PP ON P.SSN = PP.Patient_SSN
+	INNER JOIN Pathologies as Pt ON Pt.Name = PP.Pathology_Name
+
+	UNION
+	SELECT P.First_Name, P.Last_Name, P.SSN, P.Age, P.Country_Birth, P.Residence, P.Status, P.Hospital_Id, P.Hospitalized, P.ICU, 'No tiene' AS Medication, 'No tiene' AS Pathology
+	FROM Patients as P
+
+
+CREATE PROCEDURE getRegionsProcedure
+AS
+	SELECT CL.Name, CL.Country_Name
+	FROM 
+	CountryLocations as CL
+
+
+CREATE PROCEDURE getSanitaryMeasurementsProcedure
+AS
+	SELECT SM.Id, SM.Name, SM.Description
+	FROM SanityMeasurements as SM
+
+
+CREATE PROCEDURE getTotalAccumulated
+AS
+	SELECT SUM(IIF(E.Status_Event = 'Activo', 1, 0)) AS ACTIVE, 
+	SUM(IIF(E.Status_Event = 'Recuperado', 1, 0)) AS RECOVERED,
+	SUM(IIF(E.Status_Event = 'Muerto', 1, 0)) AS DEAD,
+	SUM(IIF(E.Status_Event = 'Recuperado', 1, 0) + IIF(E.Status_Event = 'Muerto', 1, 0) + IIF(E.Status_Event = 'Activo', 1, 0)) AS INFECTED
+	FROM Events as E
+
+
+
+
+

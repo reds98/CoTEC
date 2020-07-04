@@ -1,0 +1,16 @@
+{
+  "data": [
+    {
+      "Name": "Ebola",
+      "Symptoms": "Hemorrhage",
+      "Description": "Only in Africa",
+      "Treatment": "None"
+    },
+    {
+      "Name": "Covid",
+      "Symptoms": "Cough",
+      "Description": "Global",
+      "Treatment": "Inhaler"
+    }
+  ]
+}
